@@ -1,5 +1,5 @@
 {
-    "name": "studioastra/astra-checkout-bundle",
+    "name": "romain-genin/astra-checkout-bundle",
     "description": "Complete, accessible and fast e-commerce for Symfony: catalog (PLP/PDP), variants, cart, checkout, customer account and orders. Twig + Tailwind CSS + Alpine.js.",
     "type": "symfony-bundle",
     "license": "MIT",
