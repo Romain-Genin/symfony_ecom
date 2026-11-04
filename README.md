@@ -50,6 +50,11 @@ variantes, panier, tunnel de commande, compte client et commandes. Le front est 
 composer require romain-genin/symfony-ecom
 ```
 
+> **Avec le starter** [`romain-genin/symfony-starter`](https://packagist.org/packages/romain-genin/symfony-starter) : `composer require`
+> suffit. Le starter fournit la configuration (vos utilisateurs comme clients, son gabarit, URL en français, langue
+> préfixée avec le module multilingue) : sautez les étapes 1 et 2 ci-dessous, puis générez la migration (étape 3).
+> Le bundle reste utilisable seul dans n'importe quel projet Symfony.
+
 Avec Symfony Flex, le bundle est enregistré automatiquement. Sinon, dans `config/bundles.php` :
 
 ```php
@@ -452,7 +457,7 @@ php bin/console astra:search:reindex     # crée l'index, applique les réglages
 - **Front léger** : CSS 42 Ko et JS 60 Ko minifiés (≈ 8 Ko + 22 Ko compressés, Alpine compris), polices système (aucune police web),
   `defer`, URLs versionnées par empreinte (cache d'un an possible), images en `loading="lazy"` avec `width`/`height` (pas de décalage
   de mise en page), première image de la fiche produit préchargée en `fetchpriority="high"`.
-- **Images** : si [`romain-genin/symfony-image-optimizer-bundle`](https://github.com/StudioAstra/ImageOptimizer) est installé, toutes les images
+- **Images** : si [`romain-genin/symfony-image-optimizer-bundle`](https://github.com/Romain-Genin/symfony_imageoptim) est installé, toutes les images
   produits passent automatiquement par `responsive_image()` (AVIF/WebP, `srcset` adapté à l'écran) sans rien changer aux templates.
 - Compatible avec les runtimes persistants (FrankenPHP worker, RoadRunner) : les services avec état implémentent `ResetInterface`.
 

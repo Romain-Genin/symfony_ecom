@@ -6,7 +6,7 @@ Le projet respecte le [versionnage sémantique](https://semver.org/lang/fr/).
 
 ### Modifié (rupture)
 
-- Namespace PHP renommé `StudioAstra\\AstraCheckoutBundle` → `RomainGenin\\AstraCheckoutBundle` : mettez à jour `config/bundles.php`
+- Namespace PHP renommé `StudioAstra\AstraCheckoutBundle` → `RomainGenin\AstraCheckoutBundle` : mettez à jour `config/bundles.php`
   et vos `use`.
 - Toutes les références au paquet utilisent son nom Composer `romain-genin/symfony-ecom` (chemins `vendor/…` compris).
 - Alias AssetMapper `@studioastra/astra-checkout` → `@romain-genin/symfony-ecom`
