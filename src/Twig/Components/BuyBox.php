@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Twig\Components;
+namespace RomainGenin\AstraCheckoutBundle\Twig\Components;
 
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
-use StudioAstra\AstraCheckoutBundle\Entity\ProductVariant;
-use StudioAstra\AstraCheckoutBundle\Presentation\ProductPresenter;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Entity\ProductVariant;
+use RomainGenin\AstraCheckoutBundle\Presentation\ProductPresenter;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 use Symfony\UX\TwigComponent\Attribute\PostMount;
 
@@ -24,7 +24,7 @@ final class BuyBox
     public bool $reassurance = true;
     /** @var list<array<string, mixed>> */
     public array $variants = [];
-    /** @var list<\StudioAstra\AstraCheckoutBundle\Entity\Promotion> */
+    /** @var list<\RomainGenin\AstraCheckoutBundle\Entity\Promotion> */
     public array $promotions = [];
 
     public function __construct(private readonly ProductPresenter $presenter)

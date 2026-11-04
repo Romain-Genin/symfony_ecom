@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Search\Meilisearch;
+namespace RomainGenin\AstraCheckoutBundle\Search\Meilisearch;
 
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 

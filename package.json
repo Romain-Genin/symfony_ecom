@@ -1,5 +1,5 @@
 {
-  "name": "@studioastra/astra-checkout-assets",
+  "name": "@romain-genin/symfony-ecom-assets",
   "private": true,
   "description": "Front-end sources of AstraCheckoutBundle. The compiled files in public/ are committed: applications do not need Node.",
   "scripts": {

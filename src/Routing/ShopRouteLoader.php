@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Routing;
+namespace RomainGenin\AstraCheckoutBundle\Routing;
 
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Routing\RouteCollection;

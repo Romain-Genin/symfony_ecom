@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Order;
+namespace RomainGenin\AstraCheckoutBundle\Order;
 
 use Doctrine\ORM\EntityManagerInterface;
-use StudioAstra\AstraCheckoutBundle\Entity\Order;
-use StudioAstra\AstraCheckoutBundle\Entity\Promotion;
-use StudioAstra\AstraCheckoutBundle\Enum\OrderStatus;
-use StudioAstra\AstraCheckoutBundle\Event\OrderStatusChangedEvent;
+use RomainGenin\AstraCheckoutBundle\Entity\Order;
+use RomainGenin\AstraCheckoutBundle\Entity\Promotion;
+use RomainGenin\AstraCheckoutBundle\Enum\OrderStatus;
+use RomainGenin\AstraCheckoutBundle\Event\OrderStatusChangedEvent;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 /**

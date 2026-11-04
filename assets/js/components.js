@@ -4,7 +4,7 @@
  * - Bundled build (public/astra-checkout.js): Alpine + these components, nothing to do.
  * - Your own Alpine (Vite, AssetMapper…):
  *     import Alpine from 'alpinejs';
- *     import { registerAstraCheckout } from '@studioastra/astra-checkout/js/components.js';
+ *     import { registerAstraCheckout } from '@romain-genin/symfony-ecom/js/components.js';
  *     registerAstraCheckout(Alpine);
  *     Alpine.start();
  *

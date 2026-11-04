@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Catalog;
+namespace RomainGenin\AstraCheckoutBundle\Catalog;
 
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
 
 /** One page of a product listing. */
 final class ProductPage implements \IteratorAggregate, \Countable

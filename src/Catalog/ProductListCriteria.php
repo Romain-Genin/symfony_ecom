@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Catalog;
+namespace RomainGenin\AstraCheckoutBundle\Catalog;
 
 use Symfony\Component\HttpFoundation\Request;
 

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Command;
+namespace RomainGenin\AstraCheckoutBundle\Command;
 
-use StudioAstra\AstraCheckoutBundle\Repository\CartRepository;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Repository\CartRepository;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

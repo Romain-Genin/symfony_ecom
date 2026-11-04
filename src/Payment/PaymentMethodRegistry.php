@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Payment;
+namespace RomainGenin\AstraCheckoutBundle\Payment;
 
-use StudioAstra\AstraCheckoutBundle\Entity\Cart;
+use RomainGenin\AstraCheckoutBundle\Entity\Cart;
 
 final class PaymentMethodRegistry
 {

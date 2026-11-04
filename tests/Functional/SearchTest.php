@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Tests\Functional;
+namespace RomainGenin\AstraCheckoutBundle\Tests\Functional;
 
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
-use StudioAstra\AstraCheckoutBundle\Entity\ProductVariant;
-use StudioAstra\AstraCheckoutBundle\Search\TextNormalizer;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Entity\ProductVariant;
+use RomainGenin\AstraCheckoutBundle\Search\TextNormalizer;
 
 final class SearchTest extends ShopTestCase
 {

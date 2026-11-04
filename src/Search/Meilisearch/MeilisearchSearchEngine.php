@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Search\Meilisearch;
+namespace RomainGenin\AstraCheckoutBundle\Search\Meilisearch;
 
 use Psr\Log\LoggerInterface;
-use StudioAstra\AstraCheckoutBundle\Catalog\ProductListCriteria;
-use StudioAstra\AstraCheckoutBundle\Catalog\ProductPage;
-use StudioAstra\AstraCheckoutBundle\Repository\ProductRepository;
-use StudioAstra\AstraCheckoutBundle\Search\DatabaseSearchEngine;
-use StudioAstra\AstraCheckoutBundle\Search\SearchEngineInterface;
+use RomainGenin\AstraCheckoutBundle\Catalog\ProductListCriteria;
+use RomainGenin\AstraCheckoutBundle\Catalog\ProductPage;
+use RomainGenin\AstraCheckoutBundle\Repository\ProductRepository;
+use RomainGenin\AstraCheckoutBundle\Search\DatabaseSearchEngine;
+use RomainGenin\AstraCheckoutBundle\Search\SearchEngineInterface;
 
 /**
  * Meilisearch: typo tolerance ("swaet" finds "sweat"), synonyms, results in a few milliseconds

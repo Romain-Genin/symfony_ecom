@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Tests\Functional;
+namespace RomainGenin\AstraCheckoutBundle\Tests\Functional;
 
 use Doctrine\ORM\Events;
-use StudioAstra\AstraCheckoutBundle\Catalog\ProductListCriteria;
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
-use StudioAstra\AstraCheckoutBundle\Repository\ProductRepository;
-use StudioAstra\AstraCheckoutBundle\Search\DatabaseSearchEngine;
-use StudioAstra\AstraCheckoutBundle\Search\Meilisearch\MeilisearchClient;
-use StudioAstra\AstraCheckoutBundle\Search\Meilisearch\MeilisearchIndex;
-use StudioAstra\AstraCheckoutBundle\Search\Meilisearch\MeilisearchIndexer;
-use StudioAstra\AstraCheckoutBundle\Search\Meilisearch\MeilisearchSearchEngine;
-use StudioAstra\AstraCheckoutBundle\Search\ProductDocumentFactory;
+use RomainGenin\AstraCheckoutBundle\Catalog\ProductListCriteria;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Repository\ProductRepository;
+use RomainGenin\AstraCheckoutBundle\Search\DatabaseSearchEngine;
+use RomainGenin\AstraCheckoutBundle\Search\Meilisearch\MeilisearchClient;
+use RomainGenin\AstraCheckoutBundle\Search\Meilisearch\MeilisearchIndex;
+use RomainGenin\AstraCheckoutBundle\Search\Meilisearch\MeilisearchIndexer;
+use RomainGenin\AstraCheckoutBundle\Search\Meilisearch\MeilisearchSearchEngine;
+use RomainGenin\AstraCheckoutBundle\Search\ProductDocumentFactory;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
 

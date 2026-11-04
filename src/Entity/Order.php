@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Entity;
+namespace RomainGenin\AstraCheckoutBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use StudioAstra\AstraCheckoutBundle\Customer\CustomerInterface;
-use StudioAstra\AstraCheckoutBundle\Enum\OrderStatus;
-use StudioAstra\AstraCheckoutBundle\Repository\OrderRepository;
+use RomainGenin\AstraCheckoutBundle\Customer\CustomerInterface;
+use RomainGenin\AstraCheckoutBundle\Enum\OrderStatus;
+use RomainGenin\AstraCheckoutBundle\Repository\OrderRepository;
 
 /**
  * A placed order: an immutable snapshot of the cart (names, prices, addresses), so that later

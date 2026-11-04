@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Search;
+namespace RomainGenin\AstraCheckoutBundle\Search;
 
-use StudioAstra\AstraCheckoutBundle\Catalog\ProductListCriteria;
-use StudioAstra\AstraCheckoutBundle\Catalog\ProductPage;
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Catalog\ProductListCriteria;
+use RomainGenin\AstraCheckoutBundle\Catalog\ProductPage;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
 
 /**
  * Full-text product search. Built-in: "database" (no extra service) and "meilisearch"

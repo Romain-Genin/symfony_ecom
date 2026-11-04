@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\EventListener;
+namespace RomainGenin\AstraCheckoutBundle\EventListener;
 
-use StudioAstra\AstraCheckoutBundle\Http\PageResponse;
+use RomainGenin\AstraCheckoutBundle\Http\PageResponse;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 

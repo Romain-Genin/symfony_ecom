@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Twig;
+namespace RomainGenin\AstraCheckoutBundle\Twig;
 
-use StudioAstra\AstraCheckoutBundle\Announcement\AnnouncementProvider;
-use StudioAstra\AstraCheckoutBundle\Pricing\MoneyFormatter;
-use StudioAstra\AstraCheckoutBundle\Repository\CategoryRepository;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Announcement\AnnouncementProvider;
+use RomainGenin\AstraCheckoutBundle\Pricing\MoneyFormatter;
+use RomainGenin\AstraCheckoutBundle\Repository\CategoryRepository;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Intl\Countries;
@@ -34,7 +34,7 @@ final class AstraCheckoutExtension extends AbstractExtension implements GlobalsI
         private readonly ?Packages $packages = null,
         private readonly ?AnnouncementProvider $announcements = null,
         private readonly ?RequestStack $requestStack = null,
-        private readonly ?\StudioAstra\AstraCheckoutBundle\Routing\ShopUrls $urls = null,
+        private readonly ?\RomainGenin\AstraCheckoutBundle\Routing\ShopUrls $urls = null,
     ) {
     }
 
@@ -83,7 +83,7 @@ final class AstraCheckoutExtension extends AbstractExtension implements GlobalsI
 
     /**
      * Product image with explicit dimensions (no layout shift) and lazy loading by default.
-     * Uses responsive_image() (AVIF/WebP + srcset) when studioastra/image-optimizer-bundle is installed.
+     * Uses responsive_image() (AVIF/WebP + srcset) when romain-genin/symfony-image-optimizer-bundle is installed.
      *
      * @param array<string, mixed> $attributes alt, sizes, class, width, height, loading, fetchpriority…
      */

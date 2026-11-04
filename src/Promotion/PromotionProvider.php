@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Promotion;
+namespace RomainGenin\AstraCheckoutBundle\Promotion;
 
 use Psr\Clock\ClockInterface;
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
-use StudioAstra\AstraCheckoutBundle\Entity\Promotion;
-use StudioAstra\AstraCheckoutBundle\Repository\PromotionRepository;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Entity\Promotion;
+use RomainGenin\AstraCheckoutBundle\Repository\PromotionRepository;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\Service\ResetInterface;

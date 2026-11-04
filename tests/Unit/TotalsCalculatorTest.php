@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Tests\Unit;
+namespace RomainGenin\AstraCheckoutBundle\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use StudioAstra\AstraCheckoutBundle\Entity\Cart;
-use StudioAstra\AstraCheckoutBundle\Entity\CartItem;
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
-use StudioAstra\AstraCheckoutBundle\Entity\ProductVariant;
-use StudioAstra\AstraCheckoutBundle\Pricing\TotalsCalculator;
-use StudioAstra\AstraCheckoutBundle\Shipping\ShippingMethodRegistry;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Entity\Cart;
+use RomainGenin\AstraCheckoutBundle\Entity\CartItem;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Entity\ProductVariant;
+use RomainGenin\AstraCheckoutBundle\Pricing\TotalsCalculator;
+use RomainGenin\AstraCheckoutBundle\Shipping\ShippingMethodRegistry;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 
 final class TotalsCalculatorTest extends TestCase
 {

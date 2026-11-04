@@ -39,7 +39,7 @@
         "symfony/string": "^6.4|^7.0|^8.0",
         "symfony/translation": "^6.4|^7.0|^8.0",
         "symfony/twig-bundle": "^6.4|^7.0|^8.0",
-        "symfony/ux-twig-component": "^2.20",
+        "symfony/ux-twig-component": "^2.20|^3.0",
         "symfony/validator": "^6.4|^7.0|^8.0",
         "twig/twig": "^3.8"
     },
@@ -53,19 +53,20 @@
         "symfony/yaml": "^6.4|^7.0|^8.0"
     },
     "suggest": {
-        "symfony/mailer": "Order confirmation and password reset e-mails",
-        "studioastra/image-optimizer-bundle": "Lossless optimization of product images and responsive AVIF/WebP delivery (used automatically by the templates)",
         "easycorp/easyadmin-bundle": "Back-office for products, categories, customers and orders (see README)",
-        "symfony/http-client": "Required by the Meilisearch search engine (typo tolerance, instant search on large catalogs)"
+        "romain-genin/symfony-image-optimizer-bundle": "Lossless optimization of product images and responsive AVIF/WebP delivery (used automatically by the templates)",
+        "romain-genin/symfony-multilang-bundle": "Locale-prefixed URLs, language switcher and RTL: the shop follows the request locale",
+        "symfony/http-client": "Required by the Meilisearch search engine (typo tolerance, instant search on large catalogs)",
+        "symfony/mailer": "Order confirmation and password reset e-mails"
     },
     "autoload": {
         "psr-4": {
-            "StudioAstra\\AstraCheckoutBundle\\": "src/"
+            "RomainGenin\\AstraCheckoutBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "StudioAstra\\AstraCheckoutBundle\\Tests\\": "tests/"
+            "RomainGenin\\AstraCheckoutBundle\\Tests\\": "tests/"
         }
     },
     "config": {
@@ -73,7 +74,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-main": "1.x-dev"
+            "dev-main": "2.x-dev"
         }
     }
 }

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Repository;
+namespace RomainGenin\AstraCheckoutBundle\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
-use StudioAstra\AstraCheckoutBundle\Entity\Cart;
+use RomainGenin\AstraCheckoutBundle\Entity\Cart;
 
 /**
  * @extends ServiceEntityRepository<Cart>

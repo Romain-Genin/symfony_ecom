@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Controller;
+namespace RomainGenin\AstraCheckoutBundle\Controller;
 
-use StudioAstra\AstraCheckoutBundle\Cart\CartContext;
-use StudioAstra\AstraCheckoutBundle\Checkout\CheckoutFlow;
-use StudioAstra\AstraCheckoutBundle\Repository\OrderRepository;
-use StudioAstra\AstraCheckoutBundle\Routing\ShopUrls;
+use RomainGenin\AstraCheckoutBundle\Cart\CartContext;
+use RomainGenin\AstraCheckoutBundle\Checkout\CheckoutFlow;
+use RomainGenin\AstraCheckoutBundle\Repository\OrderRepository;
+use RomainGenin\AstraCheckoutBundle\Routing\ShopUrls;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;

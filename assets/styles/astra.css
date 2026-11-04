@@ -3,7 +3,7 @@
  * shop with your own theme (one stylesheet, no conflict):
  *
  *   @import "tailwindcss";
- *   @import "../../vendor/studioastra/astra-checkout-bundle/assets/styles/astra.css";
+ *   @import "../../vendor/romain-genin/symfony-ecom/assets/styles/astra.css";
  *
  * It scans the shop templates (@source), declares the shop colour tokens (override them in your
  * own @theme, e.g. --color-accent-700: var(--color-primary-700)) and the shop components.

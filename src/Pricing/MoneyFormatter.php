@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Pricing;
+namespace RomainGenin\AstraCheckoutBundle\Pricing;
 
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /** Formats minor-unit amounts ("1990" → "19,90 €") for the current locale. */

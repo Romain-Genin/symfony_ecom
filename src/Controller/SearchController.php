@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Controller;
+namespace RomainGenin\AstraCheckoutBundle\Controller;
 
-use StudioAstra\AstraCheckoutBundle\Pricing\MoneyFormatter;
-use StudioAstra\AstraCheckoutBundle\Search\SearchEngineInterface;
-use StudioAstra\AstraCheckoutBundle\Search\TextNormalizer;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
-use StudioAstra\AstraCheckoutBundle\Twig\AstraCheckoutExtension;
+use RomainGenin\AstraCheckoutBundle\Pricing\MoneyFormatter;
+use RomainGenin\AstraCheckoutBundle\Search\SearchEngineInterface;
+use RomainGenin\AstraCheckoutBundle\Search\TextNormalizer;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Twig\AstraCheckoutExtension;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,7 +20,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 final class SearchController extends AbstractController
 {
     #[Route('/search/suggest', name: 'astra_search_suggest', methods: ['GET'], priority: 1)]
-    public function suggest(Request $request, \StudioAstra\AstraCheckoutBundle\Routing\ShopUrls $urls, SearchEngineInterface $engine, AstraCheckoutExtension $twig, MoneyFormatter $money, Packages $packages, ShopSettings $settings, TranslatorInterface $translator): JsonResponse
+    public function suggest(Request $request, \RomainGenin\AstraCheckoutBundle\Routing\ShopUrls $urls, SearchEngineInterface $engine, AstraCheckoutExtension $twig, MoneyFormatter $money, Packages $packages, ShopSettings $settings, TranslatorInterface $translator): JsonResponse
     {
         $query = trim(mb_substr((string) $request->query->get('q', ''), 0, 100));
         $data = ['query' => $query, 'products' => [], 'categories' => [], 'searchUrl' => $urls->path('search', ['q' => $query])];

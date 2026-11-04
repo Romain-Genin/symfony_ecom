@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle;
+namespace RomainGenin\AstraCheckoutBundle;
 
-use StudioAstra\AstraCheckoutBundle\Customer\Customer;
-use StudioAstra\AstraCheckoutBundle\Customer\CustomerInfo;
-use StudioAstra\AstraCheckoutBundle\Customer\CustomerInterface;
-use StudioAstra\AstraCheckoutBundle\Payment\PaymentMethodInterface;
-use StudioAstra\AstraCheckoutBundle\Routing\ShopRouteLoader;
-use StudioAstra\AstraCheckoutBundle\Routing\ShopUrls;
-use StudioAstra\AstraCheckoutBundle\Payment\PaymentMethodRegistry;
-use StudioAstra\AstraCheckoutBundle\Pricing\MoneyFormatter;
-use StudioAstra\AstraCheckoutBundle\Search\DatabaseSearchEngine;
-use StudioAstra\AstraCheckoutBundle\Search\Meilisearch\MeilisearchClient;
-use StudioAstra\AstraCheckoutBundle\Search\Meilisearch\MeilisearchIndex;
-use StudioAstra\AstraCheckoutBundle\Search\Meilisearch\MeilisearchIndexer;
-use StudioAstra\AstraCheckoutBundle\Search\Meilisearch\MeilisearchSearchEngine;
-use StudioAstra\AstraCheckoutBundle\Search\ProductDocumentFactory;
-use StudioAstra\AstraCheckoutBundle\Search\SearchEngineInterface;
+use RomainGenin\AstraCheckoutBundle\Customer\Customer;
+use RomainGenin\AstraCheckoutBundle\Customer\CustomerInfo;
+use RomainGenin\AstraCheckoutBundle\Customer\CustomerInterface;
+use RomainGenin\AstraCheckoutBundle\Payment\PaymentMethodInterface;
+use RomainGenin\AstraCheckoutBundle\Routing\ShopRouteLoader;
+use RomainGenin\AstraCheckoutBundle\Routing\ShopUrls;
+use RomainGenin\AstraCheckoutBundle\Payment\PaymentMethodRegistry;
+use RomainGenin\AstraCheckoutBundle\Pricing\MoneyFormatter;
+use RomainGenin\AstraCheckoutBundle\Search\DatabaseSearchEngine;
+use RomainGenin\AstraCheckoutBundle\Search\Meilisearch\MeilisearchClient;
+use RomainGenin\AstraCheckoutBundle\Search\Meilisearch\MeilisearchIndex;
+use RomainGenin\AstraCheckoutBundle\Search\Meilisearch\MeilisearchIndexer;
+use RomainGenin\AstraCheckoutBundle\Search\Meilisearch\MeilisearchSearchEngine;
+use RomainGenin\AstraCheckoutBundle\Search\ProductDocumentFactory;
+use RomainGenin\AstraCheckoutBundle\Search\SearchEngineInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
-use StudioAstra\AstraCheckoutBundle\Shipping\ShippingMethodInterface;
-use StudioAstra\AstraCheckoutBundle\Shipping\ShippingMethodRegistry;
+use RomainGenin\AstraCheckoutBundle\Shipping\ShippingMethodInterface;
+use RomainGenin\AstraCheckoutBundle\Shipping\ShippingMethodRegistry;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -243,7 +243,7 @@ final class AstraCheckoutBundle extends AbstractBundle
                 'type' => 'attribute',
                 'is_bundle' => false,
                 'dir' => __DIR__ . '/Entity',
-                'prefix' => 'StudioAstra\AstraCheckoutBundle\Entity',
+                'prefix' => 'RomainGenin\AstraCheckoutBundle\Entity',
                 'alias' => 'AstraCheckout',
             ],
         ];
@@ -253,16 +253,16 @@ final class AstraCheckoutBundle extends AbstractBundle
                 'type' => 'attribute',
                 'is_bundle' => false,
                 'dir' => __DIR__ . '/Customer',
-                'prefix' => 'StudioAstra\AstraCheckoutBundle\Customer',
+                'prefix' => 'RomainGenin\AstraCheckoutBundle\Customer',
                 'alias' => 'AstraCheckoutCustomer',
             ];
         }
 
-        // AssetMapper: expose the JS/CSS sources as "@studioastra/astra-checkout/…" (import from your app.js).
+        // AssetMapper: expose the JS/CSS sources as "@romain-genin/symfony-ecom/…" (import from your app.js).
         if (interface_exists(\Symfony\Component\AssetMapper\AssetMapperInterface::class)) {
             foreach ($builder->getExtensionConfig('framework') as $framework) {
                 if (isset($framework['asset_mapper']) && false !== ($framework['asset_mapper']['enabled'] ?? true)) {
-                    $builder->prependExtensionConfig('framework', ['asset_mapper' => ['paths' => [\dirname(__DIR__) . '/assets' => '@studioastra/astra-checkout']]]);
+                    $builder->prependExtensionConfig('framework', ['asset_mapper' => ['paths' => [\dirname(__DIR__) . '/assets' => '@romain-genin/symfony-ecom']]]);
                     break;
                 }
             }
@@ -284,7 +284,7 @@ final class AstraCheckoutBundle extends AbstractBundle
     {
         $services = $container->services()->defaults()->autowire()->autoconfigure()->private();
 
-        $services->load('StudioAstra\\AstraCheckoutBundle\\', __DIR__ . '/')
+        $services->load('RomainGenin\\AstraCheckoutBundle\\', __DIR__ . '/')
             ->exclude([
                 __DIR__ . '/{Entity,Enum,Event,Exception,Catalog,AstraCheckoutBundle.php,ShopSettings.php}',
                 __DIR__ . '/Pricing/Totals.php',

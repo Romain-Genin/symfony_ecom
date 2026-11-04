@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Presentation;
+namespace RomainGenin\AstraCheckoutBundle\Presentation;
 
-use StudioAstra\AstraCheckoutBundle\Cart\CartContext;
-use StudioAstra\AstraCheckoutBundle\Cart\CartManager;
-use StudioAstra\AstraCheckoutBundle\Entity\Cart;
-use StudioAstra\AstraCheckoutBundle\Pricing\MoneyFormatter;
-use StudioAstra\AstraCheckoutBundle\Pricing\TotalsCalculator;
-use StudioAstra\AstraCheckoutBundle\Shipping\ShippingMethodRegistry;
+use RomainGenin\AstraCheckoutBundle\Cart\CartContext;
+use RomainGenin\AstraCheckoutBundle\Cart\CartManager;
+use RomainGenin\AstraCheckoutBundle\Entity\Cart;
+use RomainGenin\AstraCheckoutBundle\Pricing\MoneyFormatter;
+use RomainGenin\AstraCheckoutBundle\Pricing\TotalsCalculator;
+use RomainGenin\AstraCheckoutBundle\Shipping\ShippingMethodRegistry;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 final class CartPresenter
@@ -24,7 +24,7 @@ final class CartPresenter
     ) {
     }
 
-    /** @return array{cart: ?Cart, totals: ?\StudioAstra\AstraCheckoutBundle\Pricing\Totals, notices: list<array{key: string, parameters: array<string, mixed>}>, free_shipping: ?array, coupon_attempt: ?string, coupon_error: ?string} */
+    /** @return array{cart: ?Cart, totals: ?\RomainGenin\AstraCheckoutBundle\Pricing\Totals, notices: list<array{key: string, parameters: array<string, mixed>}>, free_shipping: ?array, coupon_attempt: ?string, coupon_error: ?string} */
     public function view(): array
     {
         $cart = $this->context->getCart();

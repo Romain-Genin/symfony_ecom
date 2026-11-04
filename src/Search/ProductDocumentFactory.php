@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Search;
+namespace RomainGenin\AstraCheckoutBundle\Search;
 
-use StudioAstra\AstraCheckoutBundle\Entity\Category;
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Entity\Category;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
 
 /** What is searchable about a product, for every engine. */
 final class ProductDocumentFactory

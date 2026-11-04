@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Routing;
+namespace RomainGenin\AstraCheckoutBundle\Routing;
 
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Form;
+namespace RomainGenin\AstraCheckoutBundle\Form;
 
-use StudioAstra\AstraCheckoutBundle\Entity\Cart;
-use StudioAstra\AstraCheckoutBundle\Payment\PaymentMethodInterface;
-use StudioAstra\AstraCheckoutBundle\Shipping\ShippingMethodInterface;
+use RomainGenin\AstraCheckoutBundle\Entity\Cart;
+use RomainGenin\AstraCheckoutBundle\Payment\PaymentMethodInterface;
+use RomainGenin\AstraCheckoutBundle\Shipping\ShippingMethodInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;

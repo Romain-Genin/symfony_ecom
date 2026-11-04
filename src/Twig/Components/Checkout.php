@@ -2,28 +2,28 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Twig\Components;
+namespace RomainGenin\AstraCheckoutBundle\Twig\Components;
 
 use Doctrine\ORM\EntityManagerInterface;
-use StudioAstra\AstraCheckoutBundle\Cart\CartContext;
-use StudioAstra\AstraCheckoutBundle\Cart\CartManager;
-use StudioAstra\AstraCheckoutBundle\Checkout\CheckoutFlow;
-use StudioAstra\AstraCheckoutBundle\Checkout\CheckoutProcessor;
-use StudioAstra\AstraCheckoutBundle\Customer\CustomerInfo;
-use StudioAstra\AstraCheckoutBundle\Entity\Address;
-use StudioAstra\AstraCheckoutBundle\Entity\Cart;
-use StudioAstra\AstraCheckoutBundle\Exception\CartException;
-use StudioAstra\AstraCheckoutBundle\Form\CheckoutAddressType;
-use StudioAstra\AstraCheckoutBundle\Form\PlaceOrderType;
-use StudioAstra\AstraCheckoutBundle\Form\ShippingPaymentType;
-use StudioAstra\AstraCheckoutBundle\Http\PageResponse;
-use StudioAstra\AstraCheckoutBundle\Payment\PaymentMethodRegistry;
-use StudioAstra\AstraCheckoutBundle\Pricing\Totals;
-use StudioAstra\AstraCheckoutBundle\Pricing\TotalsCalculator;
-use StudioAstra\AstraCheckoutBundle\Repository\AddressRepository;
-use StudioAstra\AstraCheckoutBundle\Routing\ShopUrls;
-use StudioAstra\AstraCheckoutBundle\Shipping\ShippingMethodRegistry;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Cart\CartContext;
+use RomainGenin\AstraCheckoutBundle\Cart\CartManager;
+use RomainGenin\AstraCheckoutBundle\Checkout\CheckoutFlow;
+use RomainGenin\AstraCheckoutBundle\Checkout\CheckoutProcessor;
+use RomainGenin\AstraCheckoutBundle\Customer\CustomerInfo;
+use RomainGenin\AstraCheckoutBundle\Entity\Address;
+use RomainGenin\AstraCheckoutBundle\Entity\Cart;
+use RomainGenin\AstraCheckoutBundle\Exception\CartException;
+use RomainGenin\AstraCheckoutBundle\Form\CheckoutAddressType;
+use RomainGenin\AstraCheckoutBundle\Form\PlaceOrderType;
+use RomainGenin\AstraCheckoutBundle\Form\ShippingPaymentType;
+use RomainGenin\AstraCheckoutBundle\Http\PageResponse;
+use RomainGenin\AstraCheckoutBundle\Payment\PaymentMethodRegistry;
+use RomainGenin\AstraCheckoutBundle\Pricing\Totals;
+use RomainGenin\AstraCheckoutBundle\Pricing\TotalsCalculator;
+use RomainGenin\AstraCheckoutBundle\Repository\AddressRepository;
+use RomainGenin\AstraCheckoutBundle\Routing\ShopUrls;
+use RomainGenin\AstraCheckoutBundle\Shipping\ShippingMethodRegistry;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;

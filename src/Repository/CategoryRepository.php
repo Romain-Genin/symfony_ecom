@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Repository;
+namespace RomainGenin\AstraCheckoutBundle\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use StudioAstra\AstraCheckoutBundle\Entity\Category;
+use RomainGenin\AstraCheckoutBundle\Entity\Category;
 
 /**
  * @extends ServiceEntityRepository<Category>

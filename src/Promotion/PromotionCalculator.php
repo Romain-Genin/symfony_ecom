@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Promotion;
+namespace RomainGenin\AstraCheckoutBundle\Promotion;
 
-use StudioAstra\AstraCheckoutBundle\Entity\Cart;
-use StudioAstra\AstraCheckoutBundle\Entity\CartItem;
-use StudioAstra\AstraCheckoutBundle\Entity\Promotion;
-use StudioAstra\AstraCheckoutBundle\Enum\PromotionType;
+use RomainGenin\AstraCheckoutBundle\Entity\Cart;
+use RomainGenin\AstraCheckoutBundle\Entity\CartItem;
+use RomainGenin\AstraCheckoutBundle\Entity\Promotion;
+use RomainGenin\AstraCheckoutBundle\Enum\PromotionType;
 
 /**
  * Promotion engine.

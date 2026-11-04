@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Entity;
+namespace RomainGenin\AstraCheckoutBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use StudioAstra\AstraCheckoutBundle\Enum\AnnouncementPlacement;
-use StudioAstra\AstraCheckoutBundle\Repository\AnnouncementRepository;
+use RomainGenin\AstraCheckoutBundle\Enum\AnnouncementPlacement;
+use RomainGenin\AstraCheckoutBundle\Repository\AnnouncementRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**

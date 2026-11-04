@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Controller\Account;
+namespace RomainGenin\AstraCheckoutBundle\Controller\Account;
 
 use Doctrine\ORM\EntityManagerInterface;
-use StudioAstra\AstraCheckoutBundle\Customer\Customer;
-use StudioAstra\AstraCheckoutBundle\Form\ChangePasswordType;
-use StudioAstra\AstraCheckoutBundle\Form\PasswordResetRequestType;
-use StudioAstra\AstraCheckoutBundle\Mailer\ShopMailer;
-use StudioAstra\AstraCheckoutBundle\Repository\CustomerRepository;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Customer\Customer;
+use RomainGenin\AstraCheckoutBundle\Form\ChangePasswordType;
+use RomainGenin\AstraCheckoutBundle\Form\PasswordResetRequestType;
+use RomainGenin\AstraCheckoutBundle\Mailer\ShopMailer;
+use RomainGenin\AstraCheckoutBundle\Repository\CustomerRepository;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

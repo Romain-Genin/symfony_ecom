@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Form;
+namespace RomainGenin\AstraCheckoutBundle\Form;
 
-use StudioAstra\AstraCheckoutBundle\Entity\PostalAddress;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Entity\PostalAddress;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;

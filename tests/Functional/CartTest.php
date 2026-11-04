@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Tests\Functional;
+namespace RomainGenin\AstraCheckoutBundle\Tests\Functional;
 
 final class CartTest extends ShopTestCase
 {
@@ -75,7 +75,7 @@ final class CartTest extends ShopTestCase
     public function testCartRevalidationWarnsAboutStockChanges(): void
     {
         $this->addToCart('TS-S', 5);
-        $variant = $this->em()->getRepository(\StudioAstra\AstraCheckoutBundle\Entity\ProductVariant::class)->findOneBy(['sku' => 'TS-S']);
+        $variant = $this->em()->getRepository(\RomainGenin\AstraCheckoutBundle\Entity\ProductVariant::class)->findOneBy(['sku' => 'TS-S']);
         $variant->setStock(3);
         $this->em()->flush();
 

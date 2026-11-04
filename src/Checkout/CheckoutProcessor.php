@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Checkout;
+namespace RomainGenin\AstraCheckoutBundle\Checkout;
 
 use Doctrine\DBAL\LockMode;
 use Doctrine\ORM\EntityManagerInterface;
-use StudioAstra\AstraCheckoutBundle\Cart\CartManager;
-use StudioAstra\AstraCheckoutBundle\Entity\Cart;
-use StudioAstra\AstraCheckoutBundle\Entity\Order;
-use StudioAstra\AstraCheckoutBundle\Entity\OrderItem;
-use StudioAstra\AstraCheckoutBundle\Entity\ProductVariant;
-use StudioAstra\AstraCheckoutBundle\Entity\Promotion;
-use StudioAstra\AstraCheckoutBundle\Promotion\PromotionCalculator;
-use StudioAstra\AstraCheckoutBundle\Event\OrderPlacedEvent;
-use StudioAstra\AstraCheckoutBundle\Exception\CheckoutException;
-use StudioAstra\AstraCheckoutBundle\Order\OrderNumberGenerator;
-use StudioAstra\AstraCheckoutBundle\Payment\PaymentMethodRegistry;
-use StudioAstra\AstraCheckoutBundle\Pricing\TotalsCalculator;
-use StudioAstra\AstraCheckoutBundle\Shipping\ShippingMethodRegistry;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Cart\CartManager;
+use RomainGenin\AstraCheckoutBundle\Entity\Cart;
+use RomainGenin\AstraCheckoutBundle\Entity\Order;
+use RomainGenin\AstraCheckoutBundle\Entity\OrderItem;
+use RomainGenin\AstraCheckoutBundle\Entity\ProductVariant;
+use RomainGenin\AstraCheckoutBundle\Entity\Promotion;
+use RomainGenin\AstraCheckoutBundle\Promotion\PromotionCalculator;
+use RomainGenin\AstraCheckoutBundle\Event\OrderPlacedEvent;
+use RomainGenin\AstraCheckoutBundle\Exception\CheckoutException;
+use RomainGenin\AstraCheckoutBundle\Order\OrderNumberGenerator;
+use RomainGenin\AstraCheckoutBundle\Payment\PaymentMethodRegistry;
+use RomainGenin\AstraCheckoutBundle\Pricing\TotalsCalculator;
+use RomainGenin\AstraCheckoutBundle\Shipping\ShippingMethodRegistry;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 

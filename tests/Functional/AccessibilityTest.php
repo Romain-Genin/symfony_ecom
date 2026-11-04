@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Tests\Functional;
+namespace RomainGenin\AstraCheckoutBundle\Tests\Functional;
 
 use Masterminds\HTML5;
-use StudioAstra\AstraCheckoutBundle\Entity\Order;
+use RomainGenin\AstraCheckoutBundle\Entity\Order;
 
 /**
  * Static WCAG checks on every page of the shop, as rendered by the server (what users get
@@ -23,12 +23,12 @@ final class AccessibilityTest extends ShopTestCase
     public function testPromotionsAnnouncementsAndSearchPages(): void
     {
         $em = $this->em();
-        $promotion = (new \StudioAstra\AstraCheckoutBundle\Entity\Promotion('Code', \StudioAstra\AstraCheckoutBundle\Enum\PromotionType::Percentage, 1000))->setCode('DIX');
+        $promotion = (new \RomainGenin\AstraCheckoutBundle\Entity\Promotion('Code', \RomainGenin\AstraCheckoutBundle\Enum\PromotionType::Percentage, 1000))->setCode('DIX');
         $em->persist($promotion);
-        $em->persist((new \StudioAstra\AstraCheckoutBundle\Entity\Announcement('Livraison offerte'))->setDismissible(true));
-        $em->persist((new \StudioAstra\AstraCheckoutBundle\Entity\Announcement('-10 % avec'))->setPromotion($promotion)->setLinkUrl('/products')->setLinkLabel('Voir les produits'));
-        foreach (\StudioAstra\AstraCheckoutBundle\Enum\AnnouncementPlacement::cases() as $placement) {
-            $em->persist(new \StudioAstra\AstraCheckoutBundle\Entity\Announcement('Annonce ' . $placement->value, $placement));
+        $em->persist((new \RomainGenin\AstraCheckoutBundle\Entity\Announcement('Livraison offerte'))->setDismissible(true));
+        $em->persist((new \RomainGenin\AstraCheckoutBundle\Entity\Announcement('-10 % avec'))->setPromotion($promotion)->setLinkUrl('/products')->setLinkLabel('Voir les produits'));
+        foreach (\RomainGenin\AstraCheckoutBundle\Enum\AnnouncementPlacement::cases() as $placement) {
+            $em->persist(new \RomainGenin\AstraCheckoutBundle\Entity\Announcement('Annonce ' . $placement->value, $placement));
         }
         $em->flush();
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Controller\Account;
+namespace RomainGenin\AstraCheckoutBundle\Controller\Account;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Mailer;
+namespace RomainGenin\AstraCheckoutBundle\Mailer;
 
 use Psr\Log\LoggerInterface;
-use StudioAstra\AstraCheckoutBundle\Customer\Customer;
-use StudioAstra\AstraCheckoutBundle\Entity\Order;
-use StudioAstra\AstraCheckoutBundle\Enum\OrderStatus;
-use StudioAstra\AstraCheckoutBundle\Event\OrderPlacedEvent;
-use StudioAstra\AstraCheckoutBundle\Event\OrderStatusChangedEvent;
-use StudioAstra\AstraCheckoutBundle\Payment\PaymentMethodRegistry;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Customer\Customer;
+use RomainGenin\AstraCheckoutBundle\Entity\Order;
+use RomainGenin\AstraCheckoutBundle\Enum\OrderStatus;
+use RomainGenin\AstraCheckoutBundle\Event\OrderPlacedEvent;
+use RomainGenin\AstraCheckoutBundle\Event\OrderStatusChangedEvent;
+use RomainGenin\AstraCheckoutBundle\Payment\PaymentMethodRegistry;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\Mailer\MailerInterface;

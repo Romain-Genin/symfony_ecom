@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Presentation;
+namespace RomainGenin\AstraCheckoutBundle\Presentation;
 
-use StudioAstra\AstraCheckoutBundle\Catalog\ProductListCriteria;
-use StudioAstra\AstraCheckoutBundle\Entity\Category;
-use StudioAstra\AstraCheckoutBundle\Repository\CategoryRepository;
-use StudioAstra\AstraCheckoutBundle\Search\ProductFinder;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Catalog\ProductListCriteria;
+use RomainGenin\AstraCheckoutBundle\Entity\Category;
+use RomainGenin\AstraCheckoutBundle\Repository\CategoryRepository;
+use RomainGenin\AstraCheckoutBundle\Search\ProductFinder;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 

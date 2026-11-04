@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Twig\Components;
+namespace RomainGenin\AstraCheckoutBundle\Twig\Components;
 
-use StudioAstra\AstraCheckoutBundle\Customer\CustomerInfo;
-use StudioAstra\AstraCheckoutBundle\Entity\Address;
-use StudioAstra\AstraCheckoutBundle\Repository\AddressRepository;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Customer\CustomerInfo;
+use RomainGenin\AstraCheckoutBundle\Entity\Address;
+use RomainGenin\AstraCheckoutBundle\Repository\AddressRepository;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 use Symfony\UX\TwigComponent\Attribute\PostMount;

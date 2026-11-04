@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Command;
+namespace RomainGenin\AstraCheckoutBundle\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
-use StudioAstra\AstraCheckoutBundle\Entity\Announcement;
-use StudioAstra\AstraCheckoutBundle\Entity\Category;
-use StudioAstra\AstraCheckoutBundle\Entity\Promotion;
-use StudioAstra\AstraCheckoutBundle\Enum\AnnouncementPlacement;
-use StudioAstra\AstraCheckoutBundle\Enum\PromotionType;
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
-use StudioAstra\AstraCheckoutBundle\Entity\ProductImage;
-use StudioAstra\AstraCheckoutBundle\Entity\ProductVariant;
+use RomainGenin\AstraCheckoutBundle\Entity\Announcement;
+use RomainGenin\AstraCheckoutBundle\Entity\Category;
+use RomainGenin\AstraCheckoutBundle\Entity\Promotion;
+use RomainGenin\AstraCheckoutBundle\Enum\AnnouncementPlacement;
+use RomainGenin\AstraCheckoutBundle\Enum\PromotionType;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Entity\ProductImage;
+use RomainGenin\AstraCheckoutBundle\Entity\ProductVariant;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

@@ -6,7 +6,7 @@
          cacheDirectory=".phpunit.cache">
     <php>
         <ini name="error_reporting" value="-1"/>
-        <server name="KERNEL_CLASS" value="StudioAstra\AstraCheckoutBundle\Tests\Functional\TestKernel"/>
+        <server name="KERNEL_CLASS" value="RomainGenin\AstraCheckoutBundle\Tests\Functional\TestKernel"/>
     </php>
     <testsuites>
         <testsuite name="AstraCheckoutBundle">

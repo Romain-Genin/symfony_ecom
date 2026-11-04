@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Search;
+namespace RomainGenin\AstraCheckoutBundle\Search;
 
 use Symfony\Component\String\UnicodeString;
 

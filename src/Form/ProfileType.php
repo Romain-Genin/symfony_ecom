@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Form;
+namespace RomainGenin\AstraCheckoutBundle\Form;
 
-use StudioAstra\AstraCheckoutBundle\Customer\Customer;
+use RomainGenin\AstraCheckoutBundle\Customer\Customer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;

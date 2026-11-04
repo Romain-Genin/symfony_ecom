@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Tests\Functional;
+namespace RomainGenin\AstraCheckoutBundle\Tests\Functional;
 
-use StudioAstra\AstraCheckoutBundle\Entity\Announcement;
-use StudioAstra\AstraCheckoutBundle\Entity\Promotion;
-use StudioAstra\AstraCheckoutBundle\Enum\AnnouncementPlacement;
-use StudioAstra\AstraCheckoutBundle\Enum\PromotionType;
+use RomainGenin\AstraCheckoutBundle\Entity\Announcement;
+use RomainGenin\AstraCheckoutBundle\Entity\Promotion;
+use RomainGenin\AstraCheckoutBundle\Enum\AnnouncementPlacement;
+use RomainGenin\AstraCheckoutBundle\Enum\PromotionType;
 use Symfony\Component\Clock\Clock;
 use Symfony\Component\Clock\MockClock;
 

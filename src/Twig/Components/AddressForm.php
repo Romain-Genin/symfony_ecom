@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Twig\Components;
+namespace RomainGenin\AstraCheckoutBundle\Twig\Components;
 
 use Doctrine\ORM\EntityManagerInterface;
-use StudioAstra\AstraCheckoutBundle\Customer\CustomerInfo;
-use StudioAstra\AstraCheckoutBundle\Entity\Address;
-use StudioAstra\AstraCheckoutBundle\Form\AddressType;
-use StudioAstra\AstraCheckoutBundle\Http\PageResponse;
-use StudioAstra\AstraCheckoutBundle\Repository\AddressRepository;
-use StudioAstra\AstraCheckoutBundle\Routing\ShopUrls;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Customer\CustomerInfo;
+use RomainGenin\AstraCheckoutBundle\Entity\Address;
+use RomainGenin\AstraCheckoutBundle\Form\AddressType;
+use RomainGenin\AstraCheckoutBundle\Http\PageResponse;
+use RomainGenin\AstraCheckoutBundle\Repository\AddressRepository;
+use RomainGenin\AstraCheckoutBundle\Routing\ShopUrls;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormView;

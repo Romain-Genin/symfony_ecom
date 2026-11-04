@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Entity;
+namespace RomainGenin\AstraCheckoutBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use StudioAstra\AstraCheckoutBundle\Customer\CustomerInterface;
-use StudioAstra\AstraCheckoutBundle\Repository\CartRepository;
+use RomainGenin\AstraCheckoutBundle\Customer\CustomerInterface;
+use RomainGenin\AstraCheckoutBundle\Repository\CartRepository;
 
 /**
  * Shopping cart, persisted in the database (it survives the session and follows the customer

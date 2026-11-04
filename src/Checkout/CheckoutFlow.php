@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Checkout;
+namespace RomainGenin\AstraCheckoutBundle\Checkout;
 
-use StudioAstra\AstraCheckoutBundle\Entity\Cart;
-use StudioAstra\AstraCheckoutBundle\Payment\PaymentMethodRegistry;
-use StudioAstra\AstraCheckoutBundle\Shipping\ShippingMethodRegistry;
+use RomainGenin\AstraCheckoutBundle\Entity\Cart;
+use RomainGenin\AstraCheckoutBundle\Payment\PaymentMethodRegistry;
+use RomainGenin\AstraCheckoutBundle\Shipping\ShippingMethodRegistry;
 
 /**
  * Checkout steps: address → shipping & payment → review. A step is reachable only when the

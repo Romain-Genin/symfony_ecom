@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Twig\Components;
+namespace RomainGenin\AstraCheckoutBundle\Twig\Components;
 
-use StudioAstra\AstraCheckoutBundle\Catalog\ProductListCriteria;
-use StudioAstra\AstraCheckoutBundle\Entity\Category;
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
-use StudioAstra\AstraCheckoutBundle\Repository\CategoryRepository;
-use StudioAstra\AstraCheckoutBundle\Repository\ProductRepository;
+use RomainGenin\AstraCheckoutBundle\Catalog\ProductListCriteria;
+use RomainGenin\AstraCheckoutBundle\Entity\Category;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Repository\CategoryRepository;
+use RomainGenin\AstraCheckoutBundle\Repository\ProductRepository;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 use Symfony\UX\TwigComponent\Attribute\PostMount;
 

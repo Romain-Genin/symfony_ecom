@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Cart;
+namespace RomainGenin\AstraCheckoutBundle\Cart;
 
 use Doctrine\ORM\EntityManagerInterface;
-use StudioAstra\AstraCheckoutBundle\Entity\Cart;
-use StudioAstra\AstraCheckoutBundle\Entity\CartItem;
-use StudioAstra\AstraCheckoutBundle\Entity\ProductVariant;
-use StudioAstra\AstraCheckoutBundle\Event\CartChangedEvent;
-use StudioAstra\AstraCheckoutBundle\Exception\CartException;
-use StudioAstra\AstraCheckoutBundle\Promotion\CouponValidator;
-use StudioAstra\AstraCheckoutBundle\Promotion\PromotionProvider;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Entity\Cart;
+use RomainGenin\AstraCheckoutBundle\Entity\CartItem;
+use RomainGenin\AstraCheckoutBundle\Entity\ProductVariant;
+use RomainGenin\AstraCheckoutBundle\Event\CartChangedEvent;
+use RomainGenin\AstraCheckoutBundle\Exception\CartException;
+use RomainGenin\AstraCheckoutBundle\Promotion\CouponValidator;
+use RomainGenin\AstraCheckoutBundle\Promotion\PromotionProvider;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 final class CartManager

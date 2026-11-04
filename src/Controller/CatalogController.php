@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Controller;
+namespace RomainGenin\AstraCheckoutBundle\Controller;
 
-use StudioAstra\AstraCheckoutBundle\Http\CatalogCacheHelper;
-use StudioAstra\AstraCheckoutBundle\Presentation\CatalogListing;
-use StudioAstra\AstraCheckoutBundle\Presentation\ProductPresenter;
-use StudioAstra\AstraCheckoutBundle\Presentation\ListingView;
+use RomainGenin\AstraCheckoutBundle\Http\CatalogCacheHelper;
+use RomainGenin\AstraCheckoutBundle\Presentation\CatalogListing;
+use RomainGenin\AstraCheckoutBundle\Presentation\ProductPresenter;
+use RomainGenin\AstraCheckoutBundle\Presentation\ListingView;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

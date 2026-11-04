@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Command;
+namespace RomainGenin\AstraCheckoutBundle\Command;
 
-use StudioAstra\AstraCheckoutBundle\Enum\OrderStatus;
-use StudioAstra\AstraCheckoutBundle\Repository\OrderRepository;
+use RomainGenin\AstraCheckoutBundle\Enum\OrderStatus;
+use RomainGenin\AstraCheckoutBundle\Repository\OrderRepository;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

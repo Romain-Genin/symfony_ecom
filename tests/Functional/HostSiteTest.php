@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Tests\Functional;
+namespace RomainGenin\AstraCheckoutBundle\Tests\Functional;
 
-use StudioAstra\AstraCheckoutBundle\Entity\Address;
-use StudioAstra\AstraCheckoutBundle\Entity\Order;
-use StudioAstra\AstraCheckoutBundle\Tests\Functional\App\User;
+use RomainGenin\AstraCheckoutBundle\Entity\Address;
+use RomainGenin\AstraCheckoutBundle\Entity\Order;
+use RomainGenin\AstraCheckoutBundle\Tests\Functional\App\User;
 
 /**
  * The shop added to an existing website: the site keeps its User entity, login pages and layout,

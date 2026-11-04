@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Controller\Account;
+namespace RomainGenin\AstraCheckoutBundle\Controller\Account;
 
 use Doctrine\ORM\EntityManagerInterface;
-use StudioAstra\AstraCheckoutBundle\Customer\CustomerInfo;
-use StudioAstra\AstraCheckoutBundle\Entity\Address;
-use StudioAstra\AstraCheckoutBundle\Entity\Cart;
-use StudioAstra\AstraCheckoutBundle\Entity\Order;
-use StudioAstra\AstraCheckoutBundle\Repository\AddressRepository;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
-use StudioAstra\AstraCheckoutBundle\Enum\OrderStatus;
-use StudioAstra\AstraCheckoutBundle\Form\ChangePasswordType;
-use StudioAstra\AstraCheckoutBundle\Form\DeleteAccountType;
-use StudioAstra\AstraCheckoutBundle\Form\ProfileType;
-use StudioAstra\AstraCheckoutBundle\Order\OrderStateMachine;
-use StudioAstra\AstraCheckoutBundle\Repository\OrderRepository;
+use RomainGenin\AstraCheckoutBundle\Customer\CustomerInfo;
+use RomainGenin\AstraCheckoutBundle\Entity\Address;
+use RomainGenin\AstraCheckoutBundle\Entity\Cart;
+use RomainGenin\AstraCheckoutBundle\Entity\Order;
+use RomainGenin\AstraCheckoutBundle\Repository\AddressRepository;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Enum\OrderStatus;
+use RomainGenin\AstraCheckoutBundle\Form\ChangePasswordType;
+use RomainGenin\AstraCheckoutBundle\Form\DeleteAccountType;
+use RomainGenin\AstraCheckoutBundle\Form\ProfileType;
+use RomainGenin\AstraCheckoutBundle\Order\OrderStateMachine;
+use RomainGenin\AstraCheckoutBundle\Repository\OrderRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +37,7 @@ final class AccountController extends AbstractController
         private readonly ShopSettings $settings,
         private readonly CustomerInfo $customers,
         private readonly AddressRepository $addresses,
-        private readonly \StudioAstra\AstraCheckoutBundle\Routing\ShopUrls $urls,
+        private readonly \RomainGenin\AstraCheckoutBundle\Routing\ShopUrls $urls,
     ) {
     }
 

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Tests\Functional;
+namespace RomainGenin\AstraCheckoutBundle\Tests\Functional;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
-use StudioAstra\AstraCheckoutBundle\AstraCheckoutBundle;
-use StudioAstra\AstraCheckoutBundle\Customer\Customer;
-use StudioAstra\AstraCheckoutBundle\Tests\Functional\App\User;
+use RomainGenin\AstraCheckoutBundle\AstraCheckoutBundle;
+use RomainGenin\AstraCheckoutBundle\Customer\Customer;
+use RomainGenin\AstraCheckoutBundle\Tests\Functional\App\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
@@ -78,7 +78,7 @@ final class TestKernel extends Kernel
             'dbal' => ['url' => 'sqlite:///' . \dirname(__DIR__) . '/var/' . $this->environment . '/shop.sqlite'],
             'orm' => array_filter([
                 'auto_mapping' => true,
-                'mappings' => $host ? ['App' => ['type' => 'attribute', 'is_bundle' => false, 'dir' => __DIR__ . '/App', 'prefix' => 'StudioAstra\\AstraCheckoutBundle\\Tests\\Functional\\App']] : null,
+                'mappings' => $host ? ['App' => ['type' => 'attribute', 'is_bundle' => false, 'dir' => __DIR__ . '/App', 'prefix' => 'RomainGenin\\AstraCheckoutBundle\\Tests\\Functional\\App']] : null,
                 'enable_lazy_ghost_objects' => \PHP_VERSION_ID < 80400 ? true : null,
                 'report_fields_where_declared' => true,
                 'controller_resolver' => ['auto_mapping' => false],

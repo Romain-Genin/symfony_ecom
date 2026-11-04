@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Command;
+namespace RomainGenin\AstraCheckoutBundle\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
-use StudioAstra\AstraCheckoutBundle\Search\Meilisearch\MeilisearchIndex;
-use StudioAstra\AstraCheckoutBundle\Search\ProductDocumentFactory;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Search\Meilisearch\MeilisearchIndex;
+use RomainGenin\AstraCheckoutBundle\Search\ProductDocumentFactory;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
