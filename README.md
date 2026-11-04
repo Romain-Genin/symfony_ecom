@@ -50,10 +50,9 @@ variantes, panier, tunnel de commande, compte client et commandes. Le front est 
 composer require romain-genin/symfony-ecom
 ```
 
-> **Avec le starter** [`romain-genin/symfony-starter`](https://packagist.org/packages/romain-genin/symfony-starter) : `composer require`
-> suffit. Le starter fournit la configuration (vos utilisateurs comme clients, son gabarit, URL en français, langue
-> préfixée avec le module multilingue) : sautez les étapes 1 et 2 ci-dessous, puis générez la migration (étape 3).
-> Le bundle reste utilisable seul dans n'importe quel projet Symfony.
+> Site existant avec ses propres comptes et son gabarit (par exemple
+> [`romain-genin/symfony-starter`](https://packagist.org/packages/romain-genin/symfony-starter)) :
+> voir [Exemple : brancher la boutique sur un site existant](#exemple--brancher-la-boutique-sur-un-site-existant).
 
 Avec Symfony Flex, le bundle est enregistré automatiquement. Sinon, dans `config/bundles.php` :
 
@@ -631,6 +630,53 @@ astra_checkout:
   `RomainGenin\AstraCheckoutBundle\Customer\CustomerInterface`.
 - Connexion, inscription et déconnexion restent celles de votre site ; les pages équivalentes du bundle ne sont pas enregistrées.
   Après la connexion, le client revient au tunnel de commande et son panier anonyme est fusionné dans le sien.
+
+### Exemple : brancher la boutique sur un site existant
+
+Cas d'un site qui a déjà ses utilisateurs (`App\Entity\User`, connexion `app_login`), son gabarit Tailwind + Alpine
+et sa page d'accueil, comme [`romain-genin/symfony-starter`](https://packagist.org/packages/romain-genin/symfony-starter) :
+
+```yaml
+# config/packages/astra_checkout.yaml
+astra_checkout:
+    shop_name: 'Mon site'
+    layout: base.html.twig                 # pages de la boutique dans le gabarit du site
+    customer:
+        class: App\Entity\User             # mêmes comptes, même connexion, panier fusionné à la connexion
+        properties: { email: email, first_name: firstName, last_name: lastName, phone: ~ }
+    account:
+        login_route: app_login
+        logout_route: app_logout
+        register_route: app_register
+    routing:
+        home: false                        # l'accueil reste celui du site
+        paths:
+            catalog: /boutique
+            search: /boutique/recherche
+            category: /boutique/categorie
+            product: /boutique/produit
+            cart: /panier
+            checkout: /commande
+            account: /mon-compte/boutique  # commandes et adresses, à côté de l'espace compte du site
+    mailer:
+        from: no-reply@example.com
+```
+
+```yaml
+# config/routes/astra_checkout.yaml (avec un site multilingue : ajoutez le même prefix /{_locale} que vos pages)
+astra_checkout:
+    resource: '@AstraCheckoutBundle/config/routes.yaml'
+```
+
+Dans le gabarit :
+
+- `<twig:Astra:CartButton />` (et un lien vers `path('astra_catalog')`) dans l'en-tête ;
+- `{% block meta %}{% endblock %}` dans `<head>` si votre gabarit ne l'a pas : les fiches produits y placent
+  description, canonical et Open Graph (retirez alors les vôtres pour ces pages) ;
+- Alpine importé dans votre build (`assets/app.js`, cas du starter) : `assets: { js: none }` et enregistrez
+  les composants avant `Alpine.start()` (voir [Alpine.js](#alpinejs)).
+
+Puis `php bin/console make:migration && php bin/console doctrine:migrations:migrate` (tables `astra_*`).
 
 ### Tailwind : votre thème, une seule feuille de style
 

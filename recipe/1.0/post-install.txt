@@ -1,0 +1,4 @@
+  * Créez les tables : <comment>php bin/console make:migration && php bin/console doctrine:migrations:migrate</comment>
+  * Produits de démo (facultatif) : <comment>php bin/console astra:demo:load</comment>
+  * Boutique : <comment>/products</comment> — configuration : <comment>config/packages/astra_checkout.yaml</comment>
+  * Documentation : <comment>vendor/romain-genin/symfony-ecom/README.md</comment>

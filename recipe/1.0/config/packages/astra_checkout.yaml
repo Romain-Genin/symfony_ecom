@@ -1,0 +1,19 @@
+# AstraCheckoutBundle - https://packagist.org/packages/romain-genin/symfony-ecom
+# Toutes les clés sont facultatives : vendor/romain-genin/symfony-ecom/README.md
+astra_checkout:
+    shop_name: 'Ma boutique'
+    mailer:
+        from: '%env(SHOP_MAILER_FROM)%'
+
+    # Réutiliser vos comptes utilisateurs (sinon : comptes clients intégrés, voir README « Sécurité »)
+    # customer:
+    #     class: App\Entity\User
+    # account:
+    #     login_route: app_login
+    #     logout_route: app_logout
+    #     register_route: app_register
+
+    # Afficher la boutique dans le gabarit de votre site
+    # layout: base.html.twig
+    # routing:
+    #     home: false
