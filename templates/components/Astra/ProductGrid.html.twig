@@ -1,0 +1,10 @@
+{% trans_default_domain 'AstraCheckout' %}
+{% if products is not empty %}
+    <ul role="list" {{ attributes.defaults({class: 'grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4'}) }}>
+        {% for product in products %}
+            <li>{% block card %}<twig:Astra:ProductCard :product="product" :eager="loop.index <= eager" :headingLevel="headingLevel" />{% endblock %}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    {% block empty %}{% endblock %}
+{% endif %}

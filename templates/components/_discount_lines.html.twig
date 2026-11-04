@@ -1,0 +1,9 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# Promotion lines of a <dl>. Param: totals (Totals) or discounts (order snapshot) + currency #}
+{% set list = discounts is defined ? discounts : totals.promotions.discounts|map(d => d.toArray) %}
+{% for d in list %}
+    <div class="flex justify-between gap-4 text-success-700">
+        <dt>{{ d.label }}{% if d.code %} <span class="font-mono text-xs">({{ d.code }})</span>{% endif %}</dt>
+        <dd class="shrink-0 font-medium">{% if d.freeShipping %}{{ 'coupon.free_shipping'|trans }}{% else %}−{{ d.amount|astra_price(currency|default(null)) }}{% endif %}</dd>
+    </div>
+{% endfor %}

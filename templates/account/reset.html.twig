@@ -1,0 +1,12 @@
+{% extends '@AstraCheckout/account/_auth_layout.html.twig' %}
+{% trans_default_domain 'AstraCheckout' %}
+{% form_theme form '@AstraCheckout/form/theme.html.twig' %}
+{% block title %}{{ 'account.reset_new_title'|trans }} | {{ astra.settings.shopName }}{% endblock %}
+{% block heading %}{{ 'account.reset_new_title'|trans }}{% endblock %}
+{% block content %}
+    {{ include('@AstraCheckout/form/_error_summary.html.twig') }}
+    {{ form_start(form, {attr: {novalidate: 'novalidate', class: 'space-y-5'}}) }}
+        {{ form_row(form.newPassword) }}
+        <button type="submit" class="astra-btn-primary astra-btn-lg w-full">{{ 'account.change_password'|trans }}</button>
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% trans_default_domain 'AstraCheckout' %}
+<section aria-labelledby="astra-order-items" class="mt-8">
+    <h2 id="astra-order-items" class="text-lg font-semibold">{{ 'order.items'|trans }}</h2>
+    <ul role="list" class="mt-3 divide-y divide-neutral-200 border-y border-neutral-200">
+        {% for item in order.items %}
+            <li class="flex gap-4 py-4">
+                <div class="h-20 w-16 shrink-0 overflow-hidden rounded-lg bg-neutral-100">{{ astra_image(item.imagePath, {alt: '', width: 64, height: 80, sizes: '64px', class: 'h-full w-full object-cover'}) }}</div>
+                <div class="flex-1 text-sm">
+                    <p class="font-medium">{{ item.productName }}</p>
+                    {% if item.variantName %}<p class="text-neutral-700">{{ item.variantName }}</p>{% endif %}
+                    <p class="text-neutral-700">{{ 'order.quantity_price'|trans({'%quantity%': item.quantity, '%price%': item.unitPrice|astra_price(order.currency)}) }}</p>
+                </div>
+                <p class="text-sm font-semibold">{{ item.total|astra_price(order.currency) }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    <dl class="mt-4 ml-auto max-w-sm space-y-2 text-sm">
+        <div class="flex justify-between"><dt>{{ 'cart.subtotal'|trans }}</dt><dd>{{ order.subtotal|astra_price(order.currency) }}</dd></div>
+        {{ include('@AstraCheckout/components/_discount_lines.html.twig', {discounts: order.promotions, currency: order.currency}) }}
+        <div class="flex justify-between"><dt>{{ 'cart.shipping'|trans }} ({{ order.shippingMethodLabel }})</dt><dd>{{ order.shippingTotal == 0 ? 'checkout.free'|trans : order.shippingTotal|astra_price(order.currency) }}</dd></div>
+        {% if not order.pricesIncludeTax %}<div class="flex justify-between"><dt>{{ 'cart.tax'|trans }}</dt><dd>{{ order.taxTotal|astra_price(order.currency) }}</dd></div>{% endif %}
+        <div class="flex justify-between border-t border-neutral-200 pt-2 text-base font-semibold"><dt>{{ 'cart.total'|trans }}</dt><dd>{{ order.total|astra_price(order.currency) }}</dd></div>
+        {% if order.pricesIncludeTax %}<div class="flex justify-between text-neutral-600"><dt>{{ 'cart.tax_included'|trans }}</dt><dd>{{ order.taxTotal|astra_price(order.currency) }}</dd></div>{% endif %}
+    </dl>
+</section>
+
+<div class="mt-8 grid gap-4 sm:grid-cols-3">
+    <section class="rounded-xl border border-neutral-200 p-4 text-sm" aria-labelledby="o-ship">
+        <h2 id="o-ship" class="font-semibold">{{ 'checkout.shipping_address'|trans }}</h2>
+        <address class="mt-2 not-italic text-neutral-700">{% for line in order.shippingAddress.lines %}{{ line }}<br>{% endfor %}{{ order.shippingAddress.countryCode|astra_country(app.request.locale) }}</address>
+    </section>
+    <section class="rounded-xl border border-neutral-200 p-4 text-sm" aria-labelledby="o-bill">
+        <h2 id="o-bill" class="font-semibold">{{ 'checkout.billing_address'|trans }}</h2>
+        <address class="mt-2 not-italic text-neutral-700">{% for line in order.billingAddress.lines %}{{ line }}<br>{% endfor %}{{ order.billingAddress.countryCode|astra_country(app.request.locale) }}</address>
+    </section>
+    <section class="rounded-xl border border-neutral-200 p-4 text-sm" aria-labelledby="o-pay">
+        <h2 id="o-pay" class="font-semibold">{{ 'checkout.payment_method'|trans }}</h2>
+        <p class="mt-2 text-neutral-700">{{ order.paymentMethodLabel }}</p>
+    </section>
+</div>

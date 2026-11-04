@@ -1,0 +1,37 @@
+{% trans_default_domain 'AstraCheckout' %}
+    {% set section = 'rounded-xl border border-neutral-200 p-4 text-sm' %}
+    <div class="grid gap-4 sm:grid-cols-2">
+        <section class="{{ section }}" aria-labelledby="r-contact">
+            <div class="flex justify-between gap-4"><h3 id="r-contact" class="font-semibold">{{ 'checkout.contact'|trans }}</h3><a href="{{ astra_path('checkout', {step: 'address'}) }}" class="astra-link">{{ 'checkout.edit'|trans }}<span class="sr-only"> {{ 'checkout.contact'|trans|lower }}</span></a></div>
+            <p class="mt-2 text-neutral-700">{{ cart.email }}</p>
+        </section>
+        <section class="{{ section }}" aria-labelledby="r-shipping">
+            <div class="flex justify-between gap-4"><h3 id="r-shipping" class="font-semibold">{{ 'checkout.shipping_address'|trans }}</h3><a href="{{ astra_path('checkout', {step: 'address'}) }}" class="astra-link">{{ 'checkout.edit'|trans }}<span class="sr-only"> {{ 'checkout.shipping_address'|trans|lower }}</span></a></div>
+            <address class="mt-2 not-italic text-neutral-700">{% for line in cart.shippingAddress.lines %}{{ line }}<br>{% endfor %}{{ cart.shippingAddress.countryCode|astra_country(app.request.locale) }}</address>
+        </section>
+        <section class="{{ section }}" aria-labelledby="r-billing">
+            <div class="flex justify-between gap-4"><h3 id="r-billing" class="font-semibold">{{ 'checkout.billing_address'|trans }}</h3><a href="{{ astra_path('checkout', {step: 'address'}) }}" class="astra-link">{{ 'checkout.edit'|trans }}<span class="sr-only"> {{ 'checkout.billing_address'|trans|lower }}</span></a></div>
+            {% if cart.billingSameAsShipping %}<p class="mt-2 text-neutral-700">{{ 'checkout.billing_same_short'|trans }}</p>{% else %}
+            <address class="mt-2 not-italic text-neutral-700">{% for line in cart.billingAddress.lines %}{{ line }}<br>{% endfor %}{{ cart.billingAddress.countryCode|astra_country(app.request.locale) }}</address>{% endif %}
+        </section>
+        <section class="{{ section }}" aria-labelledby="r-methods">
+            <div class="flex justify-between gap-4"><h3 id="r-methods" class="font-semibold">{{ 'checkout.shipping_and_payment'|trans }}</h3><a href="{{ astra_path('checkout', {step: 'shipping'}) }}" class="astra-link">{{ 'checkout.edit'|trans }}<span class="sr-only"> {{ 'checkout.shipping_and_payment'|trans|lower }}</span></a></div>
+            <p class="mt-2 text-neutral-700">{{ shipping_method.label|trans }} — {{ totals.shipping == 0 ? 'checkout.free'|trans : totals.shipping|astra_price }}</p>
+            <p class="text-neutral-700">{{ payment_method.label|trans }}</p>
+            {% if cart.customerNote %}<p class="mt-2 text-neutral-600"><span class="font-medium">{{ 'checkout.note'|trans }} :</span> {{ cart.customerNote }}</p>{% endif %}
+        </section>
+    </div>
+
+    {{ include('@AstraCheckout/form/_error_summary.html.twig') }}
+
+    {{ form_start(form, {attr: {novalidate: 'novalidate', class: 'mt-8 space-y-6', 'x-data': '{ busy: false }', '@submit': 'busy = true'}}) }}
+        {{ form_row(form.acceptTerms) }}
+        <div class="rounded-xl bg-neutral-50 p-4 text-sm text-neutral-700">
+            <p class="flex justify-between text-base font-semibold text-neutral-900"><span>{{ 'checkout.amount_due'|trans }}</span><span>{{ totals.total|astra_price }}</span></p>
+        </div>
+        <div class="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <a href="{{ astra_path('checkout', {step: 'shipping'}) }}" class="astra-link text-sm">← {{ 'checkout.back_to_shipping'|trans }}</a>
+            {# Wording required by EU consumer law (Directive 2011/83/EU, art. 8.2). #}
+            <button type="submit" class="astra-btn-primary astra-btn-lg" :disabled="busy" :aria-busy="busy.toString()">{{ 'checkout.place_order'|trans }}</button>
+        </div>
+    {{ form_end(form) }}

@@ -1,0 +1,8 @@
+{# Shop assets for <head>. Injected automatically in your layout on shop pages (or call {{ astra_head() }}). #}
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js')</script>
+{% if astra.settings.assetsCss %}<link rel="stylesheet" href="{{ astra_asset('astra-checkout.css') }}">{% endif %}
+{% if astra.settings.assetsJs == 'bundled' %}
+    <script src="{{ astra_asset('astra-checkout.js') }}" defer></script>
+{% elseif astra.settings.assetsJs == 'components' %}
+    <script src="{{ astra_asset('astra-checkout-components.js') }}" defer></script>
+{% endif %}

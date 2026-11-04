@@ -1,0 +1,7 @@
+astra.email.taken: An account already exists with this e-mail address.
+astra.phone.invalid: This phone number is not valid.
+checkout.error.accept_terms: You must accept the terms and conditions.
+checkout.error.choose_shipping: Choose a shipping method.
+checkout.error.choose_payment: Choose a payment method.
+account.wrong_password: The password is incorrect.
+account.password_too_short: The password must be at least {{ limit }} characters long.

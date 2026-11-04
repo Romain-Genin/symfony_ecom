@@ -1,0 +1,15 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# Error summary at the top of a submitted form, with links to each field (WCAG 3.3.1 / 3.3.3).
+   Receives focus on display, so screen reader and keyboard users know what to fix. #}
+{% macro collect(view) %}
+    {%- for error in view.vars.errors -%}
+        <li><a class="underline" href="#{{ view.vars.compound and view.children is not empty ? (view.children|first).vars.id : view.vars.id }}">{% if view.vars.label and view.parent %}{{ view.vars.label|trans({}, view.vars.translation_domain) }} : {% endif %}{{ error.message }}</a></li>
+    {%- endfor -%}
+    {%- for child in view.children -%}{{ _self.collect(child) }}{%- endfor -%}
+{% endmacro %}
+{% if form.vars.submitted and not form.vars.valid %}
+    <div x-data="errorSummary" tabindex="-1" role="alert" aria-labelledby="{{ form.vars.id }}-errors-title" class="mb-6 rounded-xl border border-red-200 bg-danger-50 p-4 text-sm text-danger-700">
+        <h2 id="{{ form.vars.id }}-errors-title" class="font-semibold">{{ 'form.error_summary'|trans }}</h2>
+        <ul role="list" class="mt-2 list-disc space-y-1 pl-5">{{ _self.collect(form) }}</ul>
+    </div>
+{% endif %}

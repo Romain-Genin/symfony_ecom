@@ -1,0 +1,27 @@
+{% extends astra.layout %}
+{% trans_default_domain 'AstraCheckout' %}
+
+{% set page = listing.page %}{% set criteria = listing.criteria %}{% set category = listing.category %}{% set is_search = listing.isSearch %}
+{% if is_search %}
+    {% set heading = criteria.search ? 'catalog.search_results'|trans({'%query%': criteria.search}) : 'catalog.search'|trans %}
+{% elseif category %}
+    {% set heading = category.name %}
+{% else %}
+    {% set heading = 'catalog.all_products'|trans %}
+{% endif %}
+
+{% block title %}{{ heading }}{% if page.page > 1 %} – {{ 'pagination.page_n'|trans({'%page%': page.page}) }}{% endif %} | {{ astra.settings.shopName }}{% endblock %}
+
+{% block meta %}
+    {% if category and category.metaDescription %}<meta name="description" content="{{ category.metaDescription }}">{% endif %}
+    {% if not criteria.hasFilters and not is_search %}
+        <link rel="canonical" href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge(page.page > 1 ? {page: page.page} : {})) }}">
+    {% endif %}
+{% endblock %}
+
+{# Public, cacheable page: no session access. #}
+{% block flashes %}{% endblock %}
+
+{% block body %}
+    <twig:Astra:ProductList :listing="listing" class="astra-container py-6 sm:py-8" />
+{% endblock %}

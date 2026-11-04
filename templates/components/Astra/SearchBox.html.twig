@@ -1,0 +1,6 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# <twig:Astra:SearchBox id="site-search" class="w-72" inputClass="…" /> #}
+<form action="{{ astra_path('search') }}" method="get" role="search" {{ attributes }}
+      x-data="searchSuggest('{{ path('astra_search_suggest') }}', {{ astra.settings.searchMinLength }})" @click.outside="close()" @keydown.escape.prevent="escape()">
+    {{ include('@AstraCheckout/components/_search_field.html.twig', {id: id, input_class: inputClass, value: value}) }}
+</form>

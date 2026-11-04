@@ -1,0 +1,8 @@
+{% extends astra.layout %}
+{% trans_default_domain 'AstraCheckout' %}
+
+{% block title %}{{ 'cart.title'|trans }} | {{ astra.settings.shopName }}{% endblock %}
+
+{% block body %}
+    <twig:Astra:Cart class="astra-container py-8" />
+{% endblock %}

@@ -1,0 +1,9 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# <twig:Astra:CartButton class="nav-link" /> — cart link + live badge, opens the mini-cart. #}
+<a href="{{ astra_path('cart') }}" x-data {{ attributes.defaults({class: 'astra-icon-btn relative sm:w-auto sm:gap-2 sm:px-3'}) }}
+   @click.prevent="$store.cart.loaded ? document.getElementById('astra-minicart').showModal() : (window.location = $el.href)">
+    {% if icon %}<svg aria-hidden="true" class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 7h12l-1 13H7L6 7Z"/><path stroke-linecap="round" d="M9 7a3 3 0 0 1 6 0"/></svg>{% endif %}
+    <span class="{{ labelClass }}">{{ 'layout.cart'|trans }}</span>
+    <span class="{{ badgeClass }}" x-show="$store.cart.count > 0" x-cloak x-text="$store.cart.count" aria-hidden="true"></span>
+    <span class="sr-only" x-text="', ' + $store.cart.label()"></span>
+</a>

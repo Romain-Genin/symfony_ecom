@@ -1,0 +1,16 @@
+{% extends '@AstraCheckout/account/_layout.html.twig' %}
+{% trans_default_domain 'AstraCheckout' %}
+{% form_theme form '@AstraCheckout/form/theme.html.twig' %}
+{% block content %}
+    <div class="max-w-xl">
+        {% block intro %}{% endblock %}
+        {{ include('@AstraCheckout/form/_error_summary.html.twig') }}
+        {{ form_start(form, {attr: {novalidate: 'novalidate', class: 'space-y-5'}}) }}
+            {{ form_widget(form) }}
+            <div class="flex flex-wrap items-center gap-4 pt-2">
+                <button type="submit" class="{% block submit_class %}astra-btn-primary{% endblock %}">{% block submit %}{{ 'form.save'|trans }}{% endblock %}</button>
+                {% block cancel %}{% endblock %}
+            </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

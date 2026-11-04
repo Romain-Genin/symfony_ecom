@@ -1,0 +1,42 @@
+{% trans_default_domain 'AstraCheckout' %}
+    {% if app.user is null %}
+        <p class="mb-6 rounded-xl bg-neutral-50 px-4 py-3 text-sm">
+            {{ 'checkout.already_customer'|trans }} <a href="{{ path(astra.settings.loginRoute, {checkout: 1}) }}" class="astra-link">{{ 'checkout.login'|trans }}</a>
+        </p>
+    {% endif %}
+
+    {{ include('@AstraCheckout/form/_error_summary.html.twig') }}
+
+    {{ form_start(form, {attr: {novalidate: 'novalidate', class: 'space-y-8'}}) }}
+        {% if form.email is defined %}
+            <div class="max-w-md">{{ form_row(form.email) }}</div>
+        {% endif %}
+
+        {% if saved_addresses is not empty %}
+            <div class="js-only max-w-md" x-data="addressBook({{ saved_addresses|json_encode|e('html_attr') }}, '{{ form.shippingAddress.vars.id }}')">
+                <label for="astra-address-book" class="astra-label">{{ 'checkout.saved_addresses'|trans }}</label>
+                <select id="astra-address-book" class="astra-select" x-model="chosen" @change="fill()">
+                    <option value="">{{ 'checkout.choose_saved_address'|trans }}</option>
+                    {% for address in saved_addresses %}
+                        <option value="{{ address.id }}">{{ address.label ? address.label ~ ' – ' }}{{ address.lines|join(', ') }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        {% endif %}
+
+        {{ form_row(form.shippingAddress) }}
+
+        <div x-data="{ same: {{ form.billingSameAsShipping.vars.checked ? 'true' : 'false' }} }" class="space-y-6">
+            <div @change="same = $event.target.checked">{{ form_row(form.billingSameAsShipping) }}</div>
+            {% if form.billingAddress is defined %}
+                <div x-show="!same" {% if form.billingSameAsShipping.vars.checked %}x-cloak{% endif %}>{{ form_row(form.billingAddress) }}</div>
+            {% endif %}
+        </div>
+
+        {% if form.saveAddress is defined %}{{ form_row(form.saveAddress) }}{% endif %}
+
+        <div class="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <a href="{{ astra_path('cart') }}" class="astra-link text-sm">← {{ 'checkout.back_to_cart'|trans }}</a>
+            <button type="submit" class="astra-btn-primary astra-btn-lg">{{ 'checkout.continue_to_shipping'|trans }}</button>
+        </div>
+    {{ form_end(form) }}

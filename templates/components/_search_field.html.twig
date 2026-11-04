@@ -1,0 +1,36 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# Search field with accessible suggestions (combobox). Param: id. Must be inside x-data="searchSuggest(...)". #}
+<label for="{{ id }}" class="sr-only">{{ 'layout.search_label'|trans }}</label>
+<div class="relative">
+    <svg aria-hidden="true" class="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-neutral-500" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="m20 20-3.5-3.5"/></svg>
+    <input id="{{ id }}" x-ref="input" type="search" name="q" value="{{ value ?? app.request.query.get('q', '') }}"
+           placeholder="{{ 'layout.search_placeholder'|trans }}" autocomplete="off" enterkeyhint="search" spellcheck="false"
+           role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="{{ id }}-listbox" aria-describedby="{{ id }}-status"
+           :aria-expanded="open.toString()" :aria-activedescendant="active >= 0 ? '{{ id }}-opt-' + active : false"
+           x-model="query" @input="input()" @focus="query.trim().length >= {{ astra.settings.searchMinLength }} && options.length && (open = true)"
+           @keydown.arrow-down.prevent="move(1)" @keydown.arrow-up.prevent="move(-1)" @keydown.enter="enter($event)"
+           class="block min-h-11 w-full rounded-full border border-neutral-500 bg-neutral-50 py-2 pl-10 pr-4 text-base placeholder:text-neutral-600 focus:bg-white sm:text-sm {{ input_class|default('') }}">
+    <p id="{{ id }}-status" class="sr-only" role="status" x-text="open ? status : ''"></p>
+    <ul id="{{ id }}-listbox" role="listbox" aria-label="{{ 'search.suggestions_label'|trans }}" x-show="open" x-cloak
+        class="absolute left-0 right-0 top-full z-50 mt-2 max-h-[70vh] overflow-y-auto rounded-2xl border border-neutral-200 bg-white p-2 text-left shadow-xl">
+        <template x-for="(option, i) in options" :key="option.url">
+            <li role="option" :id="'{{ id }}-opt-' + i" :aria-selected="(active === i).toString()" @mousedown.prevent="window.location = option.url" @mousemove="active = i"
+                class="flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2" :class="active === i && 'bg-neutral-100'">
+                <template x-if="option.kind === 'product'">
+                    <span class="h-12 w-10 shrink-0 overflow-hidden rounded-md bg-neutral-100"><template x-if="option.image"><img :src="option.image" alt="" width="40" height="48" class="h-full w-full object-cover"></template></span>
+                </template>
+                <template x-if="option.kind === 'category'">
+                    <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-neutral-100 text-neutral-600" aria-hidden="true"><svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h10"/></svg></span>
+                </template>
+                <span class="min-w-0 flex-1">
+                    <span class="block truncate text-sm font-medium text-neutral-900" x-text="option.name"></span>
+                    <span class="block text-xs text-neutral-600" x-text="option.kind === 'category' ? '{{ 'search.category'|trans|e('js') }}' : option.price"></span>
+                </span>
+            </li>
+        </template>
+        <li role="option" :id="'{{ id }}-opt-' + options.length" :aria-selected="(active === options.length).toString()" @mousedown.prevent="window.location = searchUrl" @mousemove="active = options.length"
+            class="mt-1 cursor-pointer rounded-xl border-t border-neutral-100 px-3 py-2.5 text-sm font-medium text-accent-700" :class="active === options.length && 'bg-neutral-100'">
+            <span x-text="'{{ 'search.see_all'|trans|e('js') }}'.replace('%query%', query.trim())"></span>
+        </li>
+    </ul>
+</div>

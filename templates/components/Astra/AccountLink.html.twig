@@ -1,0 +1,11 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# <twig:Astra:AccountLink class="nav-link" :icon="false" /> #}
+{% set default_label = label ?? 'layout.account'|trans %}
+<a href="{{ astra_path('account') }}" x-data {{ attributes.defaults({class: 'astra-icon-btn sm:w-auto sm:gap-2 sm:px-3'}) }}>
+    {% if icon %}<svg aria-hidden="true" class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path stroke-linecap="round" d="M4 21a8 8 0 0 1 16 0"/></svg>{% endif %}
+    <span class="{{ labelClass }}">
+        {%- if greet -%}
+            <span x-text="$store.cart.customer ? $store.cart.customer.firstName : '{{ default_label|e('js') }}'">{{ default_label }}</span>
+        {%- else -%}{{ default_label }}{%- endif -%}
+    </span>
+</a>

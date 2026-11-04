@@ -1,0 +1,59 @@
+{% trans_default_domain 'AstraCheckout' %}
+{% set categories = astra_categories() %}
+<twig:Astra:Announcements placement="top_bar" />
+<header class="sticky top-0 z-40 border-b border-neutral-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+    <div class="astra-container flex h-16 items-center gap-3 lg:gap-6">
+        <div x-data="dialog('astra-mobile-nav')" class="lg:hidden">
+            <button type="button" class="astra-icon-btn -ml-2" @click="open()" aria-haspopup="dialog" aria-controls="astra-mobile-nav">
+                <svg aria-hidden="true" class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                <span class="sr-only">{{ 'layout.menu'|trans }}</span>
+            </button>
+        </div>
+
+        <a href="{{ astra_home_path() }}" class="shrink-0 text-lg font-bold tracking-tight text-neutral-900">
+            {{ astra.settings.shopName }}<span class="sr-only">, {{ 'layout.home'|trans }}</span>
+        </a>
+
+        <nav aria-label="{{ 'layout.main_nav'|trans }}" class="hidden lg:block">
+            <twig:Astra:CategoryMenu :depth="2" />
+        </nav>
+
+        <twig:Astra:SearchBox id="astra-search" class="ml-auto hidden flex-1 md:block md:max-w-xs lg:max-w-sm" />
+
+        <div class="ml-auto flex items-center gap-1 md:ml-0">
+            <a href="{{ astra_path('search') }}" class="astra-icon-btn md:hidden">
+                <svg aria-hidden="true" class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="m20 20-3.5-3.5"/></svg>
+                <span class="sr-only">{{ 'layout.search_label'|trans }}</span>
+            </a>
+            <twig:Astra:AccountLink />
+            <twig:Astra:CartButton />
+        </div>
+    </div>
+</header>
+
+<dialog id="astra-mobile-nav" aria-labelledby="astra-mobile-nav-title" class="astra-dialog m-0 h-dvh w-[min(22rem,90vw)] bg-white p-0 shadow-xl open:flex open:flex-col">
+    <div class="flex items-center justify-between border-b border-neutral-200 px-4 py-3">
+        <h2 id="astra-mobile-nav-title" class="text-base font-semibold">{{ 'layout.menu'|trans }}</h2>
+        <form method="dialog"><button class="astra-icon-btn" autofocus><svg aria-hidden="true" class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></svg><span class="sr-only">{{ 'layout.close_menu'|trans }}</span></button></form>
+    </div>
+    <nav aria-label="{{ 'layout.main_nav'|trans }}" class="flex-1 overflow-y-auto px-2 py-3">
+        <ul role="list" class="space-y-1">
+            <li><a href="{{ astra_path('catalog') }}" class="block rounded-lg px-3 py-3 font-medium hover:bg-neutral-100">{{ 'catalog.all_products'|trans }}</a></li>
+            {% for category in categories %}
+                <li>
+                    <a href="{{ astra_path('category', {slug: category.slug}) }}" class="block rounded-lg px-3 py-3 font-medium hover:bg-neutral-100">{{ category.name }}</a>
+                    {% if category.children is not empty %}
+                        <ul role="list" class="mb-2 ml-3 border-l border-neutral-200 pl-2">
+                            {% for child in category.children %}
+                                <li><a href="{{ astra_path('category', {slug: child.slug}) }}" class="block rounded-lg px-3 py-2.5 text-neutral-700 hover:bg-neutral-100">{{ child.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+    <div class="border-t border-neutral-200 p-4">
+        <a href="{{ astra_path('account') }}" class="astra-btn-secondary w-full">{{ 'layout.account'|trans }}</a>
+    </div>
+</dialog>

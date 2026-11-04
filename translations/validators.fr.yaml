@@ -1,0 +1,7 @@
+astra.email.taken: Un compte existe déjà avec cette adresse e-mail.
+astra.phone.invalid: Ce numéro de téléphone n’est pas valide.
+checkout.error.accept_terms: Vous devez accepter les conditions générales de vente.
+checkout.error.choose_shipping: Choisissez un mode de livraison.
+checkout.error.choose_payment: Choisissez un moyen de paiement.
+account.wrong_password: Le mot de passe est incorrect.
+account.password_too_short: Le mot de passe doit contenir au moins {{ limit }} caractères.

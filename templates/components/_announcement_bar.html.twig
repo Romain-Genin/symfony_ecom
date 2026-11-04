@@ -1,0 +1,52 @@
+{% trans_default_domain 'AstraCheckout' %}
+{#
+  Top-bar announcements. Several messages rotate (WCAG 2.2.2: pause button, pause on hover/focus,
+  no automatic rotation for "reduce motion" users, not announced by screen readers while moving).
+  Dismissed messages are remembered in the visitor's browser: the page stays cacheable.
+#}
+{% set announcements = astra_announcements('top_bar') %}
+{% if announcements is not empty %}
+    {% set tones = {neutral: 'bg-neutral-900 text-white', promo: 'bg-accent-800 text-white', info: 'bg-sky-900 text-white', warning: 'bg-amber-200 text-amber-950'} %}
+    <aside aria-label="{{ 'layout.banner_label'|trans }}" aria-roledescription="{{ 'announcement.carousel'|trans }}"
+           x-data="announcementBar({{ announcements|map(a => a.versionKey)|json_encode|e('html_attr') }}, {{ astra.settings.announcementRotationInterval }})"
+           x-show="visible.length > 0" @mouseenter="hover = true" @mouseleave="hover = false" @focusin="focus = true" @focusout="focus = $el.contains($event.relatedTarget)"
+           class="relative text-center text-sm {{ tones[announcements|first.tone]|default(tones.neutral) }}">
+        <div class="astra-container flex min-h-10 items-center justify-center gap-2 py-1.5">
+            {% if announcements|length > 1 %}
+                <button type="button" class="js-only inline-flex size-8 shrink-0 items-center justify-center rounded-md hover:bg-white/10" @click="previous()" x-show="visible.length > 1">
+                    <span aria-hidden="true">‹</span><span class="sr-only">{{ 'announcement.previous'|trans }}</span>
+                </button>
+            {% endif %}
+            <div class="min-w-0 flex-1" :aria-live="playing ? 'off' : 'polite'" aria-live="off">
+                {% for a in announcements %}
+                    <div role="group" aria-roledescription="{{ 'announcement.slide'|trans }}" aria-label="{{ 'announcement.position'|trans({'%index%': loop.index, '%count%': announcements|length}) }}"
+                         data-tone="{{ tones[a.tone]|default(tones.neutral) }}" {% if not loop.first %}hidden{% endif %}
+                         x-bind:hidden="current !== {{ a.versionKey|json_encode|e('html_attr') }}">
+                        <p>
+                            {{ a.message }}
+                            {% if a.promotionCode %}<strong class="ml-1 rounded bg-white/15 px-1.5 py-0.5 font-mono tracking-wide">{{ a.promotionCode }}</strong>{% endif %}
+                            {% if a.linkUrl %}<a href="{{ a.linkUrl }}" class="ml-1 font-semibold underline underline-offset-2">{{ a.linkLabel ?: 'announcement.more'|trans }}</a>{% endif %}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if announcements|length > 1 %}
+                <button type="button" class="js-only inline-flex size-8 shrink-0 items-center justify-center rounded-md hover:bg-white/10" @click="next()" x-show="visible.length > 1">
+                    <span aria-hidden="true">›</span><span class="sr-only">{{ 'announcement.next'|trans }}</span>
+                </button>
+                <button type="button" class="js-only inline-flex size-8 shrink-0 items-center justify-center rounded-md hover:bg-white/10" @click="togglePause()" x-show="canRotate && visible.length > 1" x-cloak :aria-pressed="paused.toString()">
+                    <svg x-show="!paused" aria-hidden="true" class="size-4" viewBox="0 0 20 20" fill="currentColor"><path d="M6 4h3v12H6zM11 4h3v12h-3z"/></svg>
+                    <svg x-show="paused" x-cloak aria-hidden="true" class="size-4" viewBox="0 0 20 20" fill="currentColor"><path d="M6 4l10 6-10 6z"/></svg>
+                    <span class="sr-only">{{ 'announcement.pause'|trans }}</span>
+                </button>
+            {% endif %}
+            {% if announcements|filter(a => a.dismissible) is not empty %}
+                <button type="button" class="js-only inline-flex size-8 shrink-0 items-center justify-center rounded-md hover:bg-white/10" @click="dismiss()" x-show="dismissible.includes(current)" x-cloak>
+                    <svg aria-hidden="true" class="size-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></svg>
+                    <span class="sr-only">{{ 'announcement.dismiss'|trans }}</span>
+                </button>
+                <script type="application/json" data-dismissible>{{ announcements|filter(a => a.dismissible)|map(a => a.versionKey)|json_encode|raw }}</script>
+            {% endif %}
+        </div>
+    </aside>
+{% endif %}

@@ -1,0 +1,13 @@
+{% extends '@AstraCheckout/account/_form_page.html.twig' %}
+{% trans_default_domain 'AstraCheckout' %}
+{% block title %}{{ 'account.delete_title'|trans }} | {{ astra.settings.shopName }}{% endblock %}
+{% block heading %}{{ 'account.delete_title'|trans }}{% endblock %}
+{% block intro %}
+    <div class="mb-6 rounded-xl border border-red-200 bg-danger-50 p-4 text-sm text-danger-700">
+        <p class="font-semibold">{{ 'account.delete_warning_title'|trans }}</p>
+        <p class="mt-1">{{ 'account.delete_warning'|trans }}</p>
+    </div>
+{% endblock %}
+{% block submit_class %}astra-btn-danger{% endblock %}
+{% block submit %}{{ 'account.delete_submit'|trans }}{% endblock %}
+{% block cancel %}<a href="{{ path('astra_account_profile') }}" class="astra-link text-sm">{{ 'form.cancel'|trans }}</a>{% endblock %}

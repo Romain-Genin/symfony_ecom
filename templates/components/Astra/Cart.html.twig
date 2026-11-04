@@ -1,0 +1,85 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# <twig:Astra:Cart /> — complete cart block. #}
+{% set cart = view.cart %}{% set totals = view.totals %}{% set notices = view.notices %}{% set free_shipping = view.free_shipping %}{% set coupon_attempt = view.coupon_attempt %}{% set coupon_error = view.coupon_error %}
+<div {{ attributes }}>
+    {% if heading %}<h1 class="text-3xl font-bold tracking-tight">{{ 'cart.title'|trans }}</h1>{% endif %}
+
+    {% if announcements %}{{ include('@AstraCheckout/components/_announcements.html.twig', {placement: 'cart', class: 'mt-4'}) }}{% endif %}
+
+    {% for notice in notices %}
+        <p role="status" class="mt-4 rounded-xl border border-amber-200 bg-warning-50 px-4 py-3 text-sm text-warning-800">{{ notice.key|trans(notice.parameters) }}</p>
+    {% endfor %}
+
+    {% if cart is null or cart.empty %}
+        <div class="mt-10 rounded-2xl border border-dashed border-neutral-300 px-6 py-16 text-center">
+            <p class="text-lg font-medium">{{ 'cart.empty'|trans }}</p>
+            <a href="{{ astra_path('catalog') }}" class="astra-btn-primary mt-6">{{ 'cart.continue'|trans }}</a>
+        </div>
+    {% else %}
+        <div class="mt-8 lg:grid lg:grid-cols-[1fr_24rem] lg:items-start lg:gap-12">
+            <section aria-labelledby="astra-cart-items">
+                <h2 id="astra-cart-items" class="sr-only">{{ 'cart.items'|trans }}</h2>
+                <ul role="list" class="divide-y divide-neutral-200 border-y border-neutral-200">
+                    {% for item in cart.items %}
+                        {% set product = item.product %}
+                        {% set variant = item.variant %}
+                        {% set image = product.mainImage %}
+                        <li class="flex gap-4 py-6 sm:gap-6">
+                            <a href="{{ astra_path('product', {slug: product.slug, variant: variant.id}) }}" class="block h-32 w-24 shrink-0 overflow-hidden rounded-xl bg-neutral-100 sm:h-40 sm:w-32" tabindex="-1" aria-hidden="true">
+                                {{ astra_image(image ? image.path : null, {alt: '', width: 128, height: 160, sizes: '128px', class: 'h-full w-full object-cover'}) }}
+                            </a>
+                            <div class="flex flex-1 flex-col gap-3 sm:flex-row sm:justify-between">
+                                <div>
+                                    <h3 class="font-medium"><a href="{{ astra_path('product', {slug: product.slug, variant: variant.id}) }}" class="hover:underline">{{ product.name }}</a></h3>
+                                    {% if variant.label %}<p class="mt-1 text-sm text-neutral-700">{{ variant.label }}</p>{% endif %}
+                                    <p class="mt-1 text-sm text-neutral-700"><span class="sr-only">{{ 'cart.unit_price'|trans }} </span>{{ item.unitPrice|astra_price }}</p>
+                                    {% if variant.lowStock(astra.settings.lowStockThreshold) %}<p class="mt-1 text-sm font-medium text-warning-800">{{ 'product.low_stock'|trans({'%count%': variant.stock}) }}</p>{% endif %}
+                                </div>
+                                <div class="flex items-end justify-between gap-4 sm:flex-col sm:items-end">
+                                    <form action="{{ path('astra_cart_update', {id: item.id}) }}" method="post" class="flex items-end gap-2" x-data>
+                                        <div>
+                                            <label for="qty-{{ item.id }}" class="astra-label">{{ 'cart.quantity'|trans }}<span class="sr-only"> {{ 'cart.for_product'|trans({'%product%': variant.fullName}) }}</span></label>
+                                            <input id="qty-{{ item.id }}" type="number" name="quantity" value="{{ item.quantity }}" min="0" max="{{ min(astra.settings.maxQuantityPerItem, variant.stock ?? astra.settings.maxQuantityPerItem) }}" inputmode="numeric"
+                                                   class="astra-input w-20 text-center" @change="$el.form.requestSubmit()">
+                                        </div>
+                                        <button type="submit" class="astra-btn-secondary no-js-only">{{ 'cart.update'|trans }}</button>
+                                    </form>
+                                    <p class="text-base font-semibold"><span class="sr-only">{{ 'cart.line_total'|trans }} </span>{{ item.total|astra_price }}</p>
+                                    <form action="{{ path('astra_cart_remove', {id: item.id}) }}" method="post">
+                                        <button type="submit" class="inline-flex min-h-11 items-center text-sm font-medium text-neutral-700 underline hover:text-danger-700">
+                                            {{ 'cart.remove'|trans }}<span class="sr-only"> {{ variant.fullName }}</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <a href="{{ astra_path('catalog') }}" class="astra-link mt-6 inline-block text-sm">← {{ 'cart.continue'|trans }}</a>
+            </section>
+
+            <section aria-labelledby="astra-cart-summary" class="mt-10 rounded-2xl bg-neutral-50 p-6 lg:sticky lg:top-24 lg:mt-0">
+                <h2 id="astra-cart-summary" class="text-lg font-semibold">{{ 'cart.summary'|trans }}</h2>
+                {% if free_shipping %}
+                    <div class="mt-4 text-sm">
+                        {% if free_shipping.remaining > 0 %}
+                            <p>{{ 'cart.free_shipping_remaining'|trans({'%amount%': free_shipping.remainingFormatted})|raw }}</p>
+                        {% else %}
+                            <p class="font-medium text-success-700">{{ 'cart.free_shipping_reached'|trans }}</p>
+                        {% endif %}
+                        <progress class="mt-2 h-1.5 w-full overflow-hidden rounded-full [&::-moz-progress-bar]:bg-accent-700 [&::-webkit-progress-bar]:bg-neutral-200 [&::-webkit-progress-value]:bg-accent-700" max="100" value="{{ free_shipping.progress }}" aria-label="{{ 'cart.free_shipping_progress'|trans }}">{{ free_shipping.progress }} %</progress>
+                    </div>
+                {% endif %}
+                <dl class="mt-6 space-y-3 text-sm">
+                    <div class="flex justify-between"><dt>{{ 'cart.subtotal'|trans }} ({{ 'cart.item_count'|trans({'%count%': totals.itemCount}) }})</dt><dd class="font-medium">{{ totals.subtotal|astra_price }}</dd></div>
+                    {{ include('@AstraCheckout/components/_discount_lines.html.twig') }}
+                    <div class="flex justify-between text-neutral-700"><dt>{{ 'cart.shipping'|trans }}</dt><dd>{{ 'cart.shipping_next_step'|trans }}</dd></div>
+                    <div class="flex justify-between border-t border-neutral-200 pt-3 text-base font-semibold"><dt>{{ 'cart.total'|trans }}</dt><dd>{{ totals.total|astra_price }}</dd></div>
+                    {% if totals.pricesIncludeTax %}<div class="flex justify-between text-neutral-600"><dt>{{ 'cart.tax_included'|trans }}</dt><dd>{{ totals.tax|astra_price }}</dd></div>{% endif %}
+                </dl>
+                {{ include('@AstraCheckout/cart/_coupon.html.twig') }}
+                <a href="{{ astra_path('checkout') }}" class="astra-btn-primary astra-btn-lg mt-6 w-full">{{ 'cart.checkout'|trans }}</a>
+            </section>
+        </div>
+    {% endif %}
+</div>

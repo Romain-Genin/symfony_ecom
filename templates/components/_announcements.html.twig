@@ -1,0 +1,15 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# Inline banners of a placement (home, catalog, cart). Param: placement #}
+{% set announcements = astra_announcements(placement) %}
+{% if announcements is not empty %}
+    {% set tones = {neutral: 'border-neutral-200 bg-neutral-50 text-neutral-900', promo: 'border-accent-200 bg-accent-50 text-accent-900', info: 'border-sky-200 bg-sky-50 text-sky-950', warning: 'border-amber-200 bg-warning-50 text-warning-800'} %}
+    <ul role="list" aria-label="{{ 'announcement.list'|trans }}" class="{{ class|default('') }} space-y-2">
+        {% for a in announcements %}
+            <li class="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border px-4 py-3 text-sm {{ tones[a.tone]|default(tones.neutral) }}">
+                <svg aria-hidden="true" class="size-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4 10v4a1 1 0 0 0 1 1h2l5 4V5L7 9H5a1 1 0 0 0-1 1ZM16 9a4 4 0 0 1 0 6"/></svg>
+                <p class="flex-1">{{ a.message }}{% if a.promotionCode %} <strong class="ml-1 rounded bg-white px-1.5 py-0.5 font-mono tracking-wide ring-1 ring-current/20">{{ a.promotionCode }}</strong>{% endif %}</p>
+                {% if a.linkUrl %}<a href="{{ a.linkUrl }}" class="font-semibold underline underline-offset-2">{{ a.linkLabel ?: 'announcement.more'|trans }}</a>{% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

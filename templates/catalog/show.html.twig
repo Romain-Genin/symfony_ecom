@@ -1,0 +1,21 @@
+{% extends astra.layout %}
+{% trans_default_domain 'AstraCheckout' %}
+
+{% block title %}{{ product.metaTitle ?: product.name }} | {{ astra.settings.shopName }}{% endblock %}
+
+{% block meta %}
+    {% set description = product.metaDescription ?: product.shortDescription %}
+    {% if description %}<meta name="description" content="{{ description|striptags|astra_excerpt(160) }}">{% endif %}
+    <link rel="canonical" href="{{ astra_url('product', {slug: product.slug}) }}">
+    <meta property="og:type" content="product">
+    <meta property="og:title" content="{{ product.name }}">
+    {% if product.mainImage %}<meta property="og:image" content="{{ product.mainImage.external ? product.mainImage.path : absolute_url(asset(product.mainImage.path)) }}">{% endif %}
+    {% if product.mainImage %}<link rel="preload" as="image" href="{{ product.mainImage.external ? product.mainImage.path : asset(product.mainImage.path) }}" fetchpriority="high">{% endif %}
+{% endblock %}
+
+{# Public, cacheable page: no session access. #}
+{% block flashes %}{% endblock %}
+
+{% block body %}
+    <twig:Astra:ProductDetail :product="product" class="astra-container py-6 sm:py-8" />
+{% endblock %}

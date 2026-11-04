@@ -1,0 +1,382 @@
+layout:
+    skip_to_content: Aller au contenu principal
+    error: Une erreur est survenue. Veuillez réessayer.
+    banner_label: Informations boutique
+    banner: Livraison offerte dès 60 € · Retours gratuits sous 30 jours
+    menu: Menu
+    close_menu: Fermer le menu
+    home: Accueil
+    main_nav: Navigation principale
+    subcategories_of: 'Afficher les sous-catégories de %name%'
+    see_all: 'Tout voir : %name%'
+    search_label: Rechercher un produit
+    search_placeholder: Rechercher…
+    search_submit: Rechercher
+    account: Mon compte
+    cart: Panier
+    breadcrumb: Fil d’Ariane
+    footer_tagline: Des produits durables, livrés avec soin.
+    footer_shop: Boutique
+    footer_account: Mon compte
+    footer_service: Service client
+    reassurance:
+        shipping: Livraison offerte dès 60 €
+        returns: Retours gratuits sous 30 jours
+        secure: Paiement sécurisé
+flash:
+    success: Succès
+    error: Erreur
+    warning: Attention
+    info: Information
+form:
+    optional: facultatif
+    error_prefix: 'Erreur :'
+    error_summary: Le formulaire contient des erreurs. Veuillez corriger les champs suivants.
+    show_password: Afficher
+    hide_password: Masquer
+    save: Enregistrer
+    cancel: Annuler
+pagination:
+    label: Pagination
+    previous: Précédent
+    next: Suivant
+    page: Page
+    page_n: 'Page %page%'
+    page_of: 'Page %page% sur %count%'
+price:
+    label: 'Prix :'
+    sale: 'Prix soldé :'
+    regular: 'Prix initial :'
+    from: à partir de
+    tax_included: TVA incluse, frais de livraison calculés à la commande
+    tax_excluded: Prix hors taxes, TVA calculée à la commande
+home:
+    title: Boutique en ligne
+    meta_description: '%shop% : des produits durables, livrés avec soin. Livraison offerte dès 60 €.'
+    hero_title: Des essentiels pensés pour durer
+    hero_text: Matières responsables, fabrication européenne et prix justes. Livraison offerte dès 60 €.
+    shop_now: Découvrir la boutique
+    see_sales: Voir les promotions
+    new_arrivals: Nouveautés
+    sales: Promotions
+    see_all: Tout voir
+catalog:
+    category_not_found: 'Cette catégorie n’existe pas ou n’est plus disponible.'
+    all_products: Tous les produits
+    search: Recherche
+    search_results: 'Résultats pour « %query% »'
+    subcategories: Sous-catégories
+    filters: Filtres
+    close_filters: Fermer les filtres
+    results: Résultats
+    count: '{1} 1 produit|]1,Inf[ %first%–%last% sur %count% produits'
+    active_filters: 'Filtres actifs :'
+    remove_filter: (retirer ce filtre)
+    clear_filters: Tout effacer
+    empty: Aucun produit ne correspond à votre recherche.
+    empty_help: Essayez d’autres mots-clés ou retirez des filtres.
+    sort:
+        label: Trier par
+        submit: Trier
+        relevance: Pertinence
+        newest: Nouveautés
+        price_asc: Prix croissant
+        price_desc: Prix décroissant
+        name_asc: Nom (A → Z)
+    filter:
+        price: Prix (€)
+        price_range: 'De %min% à %max%'
+        min: Minimum
+        max: Maximum
+        min_chip: 'Dès %amount%'
+        max_chip: 'Jusqu’à %amount%'
+        availability: Disponibilité
+        in_stock: En stock uniquement
+        on_sale: En promotion
+        apply: Appliquer les filtres
+product:
+    not_found: 'Ce produit n’existe pas ou n’est plus disponible.'
+    choose_options: 'Choisir'
+    offers: Nos offres
+    gallery: Galerie d’images
+    thumbnails: Miniatures
+    show_image: 'Afficher l’image %index% sur %count%'
+    gallery_position: 'Image %index% sur %count%'
+    sold_out: Épuisé
+    discount: '%percent% % de réduction'
+    in_stock: En stock
+    out_of_stock: Épuisé
+    low_stock: 'Plus que %count% en stock'
+    variant_unavailable: Cette combinaison n’existe pas
+    choose_variant: Choisissez une déclinaison
+    add_to_cart: Ajouter au panier
+    description: Description
+    sku: Référence
+    related: Vous aimerez aussi
+cart:
+    title: Panier
+    close: Fermer le panier
+    empty: Votre panier est vide.
+    continue: Continuer mes achats
+    items: Articles du panier
+    quantity: Quantité
+    for_product: 'pour %product%'
+    decrease: Diminuer la quantité
+    increase: Augmenter la quantité
+    update: Mettre à jour
+    remove: Retirer
+    unit_price: 'Prix unitaire :'
+    line_total: 'Total :'
+    summary: Récapitulatif
+    subtotal: Sous-total
+    shipping: Livraison
+    shipping_next_step: Calculée à l’étape suivante
+    shipping_at_checkout: Frais de livraison calculés à la commande.
+    tax: TVA
+    tax_included: Dont TVA
+    tax_included_rate: 'Dont TVA %rate%'
+    total: Total
+    item_count: '{0} aucun article|{1} 1 article|]1,Inf[ %count% articles'
+    checkout: Passer commande
+    view: Voir le panier
+    badge_empty: panier vide
+    badge_one: 1 article
+    badge_many: '%count% articles'
+    free_shipping_remaining: 'Plus que <strong>%amount%</strong> pour profiter de la livraison offerte.'
+    free_shipping_remaining_js: 'Plus que %amount% pour profiter de la livraison offerte.'
+    free_shipping_reached: La livraison vous est offerte !
+    free_shipping_progress: Progression vers la livraison offerte
+    added: '« %product% » a été ajouté au panier.'
+    updated: 'Quantité de « %product% » mise à jour : %quantity%.'
+    removed: '« %product% » a été retiré du panier.'
+    notice:
+        removed: '« %product% » n’est plus disponible et a été retiré de votre panier.'
+        reduced: 'Le stock de « %product% » a diminué : la quantité a été ramenée à %quantity%.'
+    error:
+        invalid_quantity: La quantité doit être d’au moins 1.
+        unavailable: Ce produit n’est plus disponible.
+        out_of_stock: '« %product% » est épuisé.'
+        not_enough_stock: 'Il ne reste que %stock% exemplaire(s) de « %product% ».'
+        max_quantity: 'Vous ne pouvez pas commander plus de %max% exemplaires d’un même article.'
+        item_not_found: Cet article n’est plus dans votre panier.
+checkout:
+    title: Commande
+    steps: Étapes de la commande
+    step_done: terminée
+    step:
+        address: Coordonnées
+        shipping: Livraison et paiement
+        review: Vérification
+    already_customer: Déjà client ?
+    login: Se connecter pour aller plus vite
+    email: Adresse e-mail
+    email_help: Pour vous envoyer la confirmation et le suivi de votre commande.
+    shipping_address: Adresse de livraison
+    billing_address: Adresse de facturation
+    billing_same: Utiliser la même adresse pour la facturation
+    billing_same_short: Identique à l’adresse de livraison
+    save_address: Enregistrer cette adresse dans mon carnet
+    saved_addresses: Mes adresses enregistrées
+    choose_saved_address: Choisir une adresse…
+    address_filled: Le formulaire a été rempli avec l’adresse choisie.
+    continue_to_shipping: Continuer vers la livraison
+    continue_to_review: Vérifier ma commande
+    back_to_cart: Retour au panier
+    back_to_address: Retour aux coordonnées
+    back_to_shipping: Retour à la livraison
+    deliver_to: Livraison à
+    edit: Modifier
+    edit_cart: Modifier le panier
+    shipping_method: Mode de livraison
+    payment_method: Moyen de paiement
+    shipping_and_payment: Livraison et paiement
+    contact: Contact
+    note: Note pour la commande
+    note_help: Instructions de livraison, message cadeau…
+    free: Offerte
+    show_summary: Afficher le récapitulatif
+    amount_due: Montant à payer
+    accept_terms: 'J’ai lu et j’accepte les <a href="%url%" class="astra-link" target="_blank" rel="noopener">conditions générales de vente<span class="sr-only"> (nouvelle fenêtre)</span></a>.'
+    place_order: Commander avec obligation de paiement
+    error:
+        cart_changed: Votre panier a été mis à jour (stock ou disponibilité). Vérifiez-le avant de valider.
+        incomplete: Certaines informations de commande sont manquantes.
+    confirmation:
+        title: Merci, votre commande est enregistrée !
+        number: 'Numéro de commande : <strong>%number%</strong>'
+        email: 'Une confirmation a été envoyée à %email%.'
+        next_step: Pour finaliser votre commande
+        create_account: Créer un compte pour suivre ma commande
+        track: Suivre ma commande
+shipping:
+    standard:
+        label: Livraison standard
+        description: Livré en 2 à 4 jours ouvrés. Offerte dès 60 €.
+    express:
+        label: Livraison express
+        description: Livré le lendemain pour toute commande passée avant 13 h.
+payment:
+    bank_transfer:
+        label: Virement bancaire
+        description: Votre commande est expédiée dès réception du virement.
+        instructions: "Merci d’effectuer un virement de {total} en indiquant la référence {number}.\nIBAN : FR76 0000 0000 0000 0000 0000 000 – BIC : XXXXFRPP\nVotre commande sera expédiée dès réception du paiement."
+order:
+    not_found: 'Cette commande est introuvable.'
+    title: 'Commande %number%'
+    items: Articles
+    placed_on: 'Passée le %date%'
+    quantity_price: '%quantity% × %price%'
+    progress: Suivi de la commande
+    status_label: 'Statut :'
+    cancel: Annuler la commande
+    cancel_confirm: Voulez-vous vraiment annuler cette commande ?
+    status:
+        pending_payment: En attente de paiement
+        paid: Payée
+        processing: En préparation
+        shipped: Expédiée
+        delivered: Livrée
+        cancelled: Annulée
+        refunded: Remboursée
+address:
+    not_found: 'Cette adresse est introuvable.'
+    first_name: Prénom
+    last_name: Nom
+    company: Société
+    street: Adresse
+    street2: Complément d’adresse
+    street2_help: Bâtiment, étage, code d’accès…
+    postal_code: Code postal
+    city: Ville
+    country: Pays
+    country_placeholder: Choisissez un pays
+    phone: Téléphone
+    phone_help: Utilisé uniquement par le transporteur.
+    label: Nom de l’adresse
+    label_help: 'Par exemple : Maison, Bureau'
+    default: Adresse par défaut
+    default_title: Adresse par défaut
+    default_badge: Par défaut
+    none: Vous n’avez pas encore d’adresse enregistrée.
+    manage: Gérer mes adresses
+    add: Ajouter une adresse
+    edit: Modifier
+    delete: Supprimer
+    delete_confirm: Supprimer cette adresse ?
+    make_default: Définir par défaut
+    saved: Adresse enregistrée.
+    deleted: Adresse supprimée.
+    default_saved: Adresse par défaut modifiée.
+account:
+    hello: 'Bonjour %name%'
+    logout: Se déconnecter
+    nav:
+        label: Mon compte
+        dashboard: Tableau de bord
+        orders: Mes commandes
+        addresses: Mes adresses
+        profile: Mes informations
+        password: Mot de passe
+    recent_orders: Commandes récentes
+    all_orders: 'Voir les %count% commandes'
+    no_orders: Vous n’avez pas encore passé de commande.
+    edit_profile: Modifier mes informations
+    first_name: Prénom
+    last_name: Nom
+    email: Adresse e-mail
+    phone: Téléphone
+    password: Mot de passe
+    password_help: 8 caractères minimum. Une phrase de passe est plus sûre et plus facile à retenir.
+    password_too_short: Le mot de passe doit contenir au moins {{ limit }} caractères.
+    current_password: Mot de passe actuel
+    new_password: Nouveau mot de passe
+    wrong_password: Le mot de passe est incorrect.
+    change_password: Changer le mot de passe
+    password_changed: Votre mot de passe a été modifié.
+    profile_saved: Vos informations ont été enregistrées.
+    login_title: Connexion
+    login_checkout_intro: Connectez-vous pour retrouver vos adresses et suivre votre commande.
+    login_submit: Se connecter
+    remember_me: Rester connecté sur cet appareil
+    forgot_password: Mot de passe oublié ?
+    no_account: Pas encore de compte ?
+    register_link: Créer un compte
+    continue_as_guest: Continuer sans créer de compte
+    register_title: Créer un compte
+    register_submit: Créer mon compte
+    registered: 'Bienvenue %name%, votre compte a été créé.'
+    has_account: Déjà un compte ?
+    login_link: Se connecter
+    privacy_notice: Vos données servent uniquement à gérer vos commandes. Vous pouvez supprimer votre compte à tout moment.
+    reset_title: Mot de passe oublié
+    reset_intro: Indiquez votre adresse e-mail, nous vous enverrons un lien pour choisir un nouveau mot de passe.
+    reset_submit: Envoyer le lien
+    reset_sent: Si un compte existe pour cette adresse, un e-mail vient de vous être envoyé.
+    reset_invalid: Ce lien n’est plus valide. Faites une nouvelle demande.
+    reset_new_title: Nouveau mot de passe
+    back_to_login: Retour à la connexion
+    order_cancelled: 'La commande %number% a été annulée.'
+    delete_link: Supprimer mon compte
+    delete_title: Supprimer mon compte
+    delete_warning_title: Cette action est définitive.
+    delete_warning: Vos informations personnelles et vos adresses seront supprimées. Vos commandes passées sont conservées pour nos obligations comptables, sans être rattachées à un compte.
+    delete_confirm_password: Confirmez avec votre mot de passe
+    delete_submit: Supprimer définitivement mon compte
+    deleted: Votre compte a été supprimé.
+email:
+    footer: 'Cet e-mail vous a été envoyé par %shop% suite à votre activité sur notre boutique.'
+    order_confirmation:
+        subject: 'Votre commande %number% – %shop%'
+        title: Merci pour votre commande !
+        intro: 'Nous avons bien reçu votre commande %number%. Voici son récapitulatif.'
+    order_status:
+        subject: 'Votre commande %number% a été mise à jour'
+        paid: 'Nous avons bien reçu le paiement de votre commande %number%. Nous la préparons.'
+        shipped: 'Bonne nouvelle : votre commande %number% a été expédiée.'
+        cancelled: 'Votre commande %number% a été annulée.'
+        refunded: 'Votre commande %number% a été remboursée.'
+    password_reset:
+        subject: Réinitialisation de votre mot de passe
+        intro: 'Bonjour %name%, cliquez sur le bouton ci-dessous pour choisir un nouveau mot de passe. Ce lien est valable %minutes% minutes.'
+        button: Choisir un nouveau mot de passe
+        ignore: Si vous n’êtes pas à l’origine de cette demande, ignorez simplement cet e-mail.
+announcement:
+    carousel: carrousel
+    slide: annonce
+    list: Annonces
+    position: 'Annonce %index% sur %count%'
+    previous: Annonce précédente
+    next: Annonce suivante
+    pause: Mettre en pause le défilement des annonces
+    dismiss: Masquer cette annonce
+    dismissed: Annonce masquée.
+    more: En savoir plus
+coupon:
+    label: Code promo
+    apply: Appliquer
+    remove: Retirer
+    applied_label: 'Code promo appliqué :'
+    applied: 'Le code %code% a été appliqué.'
+    applied_not_best: 'Le code %code% est enregistré, mais une offre plus avantageuse et non cumulable s’applique déjà à votre panier.'
+    removed: Le code promo a été retiré.
+    free_shipping: Livraison offerte
+    notice:
+        removed: 'Le code %code% ne s’applique plus à votre panier et a été retiré.'
+    error:
+        unknown: Ce code promo n’existe pas. Vérifiez l’orthographe.
+        not_started: 'Ce code sera valable à partir du %date%.'
+        expired: Ce code promo a expiré.
+        usage_limit: Ce code promo n’est plus disponible (nombre maximal d’utilisations atteint).
+        customer_limit: Vous avez déjà utilisé ce code promo.
+        min_subtotal: 'Ce code est valable dès %minimum% d’achat : ajoutez encore %remaining%.'
+        not_applicable: Ce code ne s’applique à aucun article de votre panier.
+        empty_cart: Ajoutez un article au panier avant de saisir un code promo.
+promotion:
+    from_amount: 'dès %amount% d’achat'
+search:
+    suggestions_label: Suggestions de recherche
+    suggestion: 1 suggestion disponible, utilisez les flèches pour la parcourir.
+    suggestions: '%count% suggestions disponibles, utilisez les flèches pour les parcourir.'
+    no_suggestion: Aucune suggestion. Appuyez sur Entrée pour lancer la recherche.
+    category: Catégorie
+    see_all: 'Voir tous les résultats pour « %query% »'

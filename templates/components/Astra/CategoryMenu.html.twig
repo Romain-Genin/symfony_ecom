@@ -1,0 +1,30 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# <twig:Astra:CategoryMenu class="flex gap-2" linkClass="px-3 py-2" depth="2" /> — category links for your navigation. #}
+{% set categories = astra_categories() %}
+<ul role="list" {{ attributes.defaults({class: 'flex flex-wrap items-center gap-1'}) }} {% if label %}aria-label="{{ label }}"{% endif %}>
+    {% for category in categories %}
+        {% set sub = depth > 1 and category.children is not empty %}
+        <li class="relative" {% if sub %}x-data="disclosure" @keydown.escape.window="close(true)" @click.outside="close()" @focusout="$el.contains($event.relatedTarget) || close()"{% endif %}>
+            <div class="flex items-center">
+                <a href="{{ astra_path('category', {slug: category.slug}) }}" class="{{ linkClass ?: 'rounded-lg px-3 py-2 text-sm font-medium text-neutral-800 hover:bg-neutral-100' }}"
+                   {% if app.request.attributes.get('slug') == category.slug %}aria-current="page"{% endif %}>{{ category.name }}</a>
+                {% if sub %}
+                    <button type="button" x-ref="button" class="js-only -ml-1 inline-flex size-8 items-center justify-center rounded-md hover:bg-neutral-100"
+                            @click="toggle()" :aria-expanded="expanded.toString()" aria-expanded="false" aria-controls="astra-subnav-{{ category.id }}">
+                        <svg aria-hidden="true" class="size-4 transition-transform" :class="expanded && 'rotate-180'" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                        <span class="sr-only">{{ 'layout.subcategories_of'|trans({'%name%': category.name}) }}</span>
+                    </button>
+                {% endif %}
+            </div>
+            {% if sub %}
+                <ul id="astra-subnav-{{ category.id }}" x-show="expanded" x-cloak x-transition.opacity role="list"
+                    class="absolute left-0 top-full z-50 mt-2 w-56 rounded-xl border border-neutral-200 bg-white p-2 shadow-lg">
+                    {% for child in category.children %}
+                        <li><a href="{{ astra_path('category', {slug: child.slug}) }}" class="block rounded-lg px-3 py-2.5 text-sm text-neutral-800 hover:bg-neutral-100">{{ child.name }}</a></li>
+                    {% endfor %}
+                    <li class="mt-1 border-t border-neutral-100 pt-1"><a href="{{ astra_path('category', {slug: category.slug}) }}" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-accent-700 hover:bg-neutral-100">{{ 'layout.see_all'|trans({'%name%': category.name}) }}</a></li>
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

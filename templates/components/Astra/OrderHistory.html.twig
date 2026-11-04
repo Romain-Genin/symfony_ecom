@@ -1,0 +1,31 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# <twig:Astra:OrderHistory perPage="10" /> — orders of the logged-in customer. #}
+<div {{ attributes }}>
+{% if orders is empty %}
+    {% block empty %}<p class="text-neutral-700">{{ 'account.no_orders'|trans }}</p>{% endblock %}
+{% else %}
+<ul role="list" class="mt-4 divide-y divide-neutral-200">
+    {% for order in orders %}
+        <li class="relative flex flex-wrap items-center justify-between gap-x-6 gap-y-2 py-4">
+            <div>
+                <h{{ headingLevel }} class="font-medium"><a href="{{ astra_path('order', {number: order.number}) }}" class="after:absolute after:inset-0 hover:underline">{{ 'order.title'|trans({'%number%': order.number}) }}</a></h{{ headingLevel }}>
+                <p class="text-sm text-neutral-700"><time datetime="{{ order.createdAt|date('c') }}">{{ order.createdAt|date('d/m/Y') }}</time> · {{ 'cart.item_count'|trans({'%count%': order.itemCount}) }}</p>
+            </div>
+            <div class="flex items-center gap-4">
+                {{ include('@AstraCheckout/components/_order_status.html.twig', {status: order.status}) }}
+                <p class="font-semibold">{{ order.total|astra_price(order.currency) }}</p>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+{% if pagination %}
+        {% if pageCount > 1 %}
+            <nav aria-label="{{ 'pagination.label'|trans }}" class="mt-8 flex justify-between">
+                {% if currentPage > 1 %}<a class="astra-btn-secondary" rel="prev" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({page: currentPage - 1})) }}">← {{ 'pagination.previous'|trans }}</a>{% else %}<span></span>{% endif %}
+                <p class="self-center text-sm text-neutral-700">{{ 'pagination.page_of'|trans({'%page%': currentPage, '%count%': pageCount}) }}</p>
+                {% if currentPage < pageCount %}<a class="astra-btn-secondary" rel="next" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({page: currentPage + 1})) }}">{{ 'pagination.next'|trans }} →</a>{% else %}<span></span>{% endif %}
+            </nav>
+        {% endif %}
+{% endif %}
+{% endif %}
+</div>

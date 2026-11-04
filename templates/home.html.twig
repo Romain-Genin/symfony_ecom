@@ -1,0 +1,40 @@
+{% extends astra.layout %}
+{% trans_default_domain 'AstraCheckout' %}
+{% block title %}{{ astra.settings.shopName }} – {{ 'home.title'|trans }}{% endblock %}
+{% block meta %}<meta name="description" content="{{ 'home.meta_description'|trans({'%shop%': astra.settings.shopName}) }}"><link rel="canonical" href="{{ url('astra_home') }}">{% endblock %}
+{# Public, cacheable page: no session access. #}
+{% block flashes %}{% endblock %}
+
+{% block body %}
+<section class="bg-neutral-100" aria-labelledby="astra-hero">
+    <div class="astra-container grid items-center gap-8 py-14 sm:py-20 lg:grid-cols-2">
+        <div>
+            <h1 id="astra-hero" class="text-4xl font-bold tracking-tight text-balance sm:text-5xl">{{ 'home.hero_title'|trans }}</h1>
+            <p class="mt-4 max-w-lg text-lg text-neutral-700">{{ 'home.hero_text'|trans }}</p>
+            <div class="mt-8 flex flex-wrap gap-3">
+                <a href="{{ astra_path('catalog') }}" class="astra-btn-primary astra-btn-lg">{{ 'home.shop_now'|trans }}</a>
+                {% if sales.total > 0 %}<a href="{{ astra_path('catalog', {on_sale: 1}) }}" class="astra-btn-secondary astra-btn-lg">{{ 'home.see_sales'|trans }}</a>{% endif %}
+            </div>
+        </div>
+        <ul role="list" class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-2">
+            {% for category in astra_categories()|slice(0, 4) %}
+                <li><a href="{{ astra_path('category', {slug: category.slug}) }}" class="flex min-h-24 items-end rounded-2xl bg-white p-4 text-lg font-semibold shadow-sm ring-1 ring-neutral-200 hover:ring-neutral-400">{{ category.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
+<div class="astra-container"><twig:Astra:Announcements placement="home" class="mt-8" /></div>
+
+{% for block in [{id: 'new', title: 'home.new_arrivals'|trans, page: newest, link: astra_path('catalog', {sort: 'newest'})}, {id: 'sales', title: 'home.sales'|trans, page: sales, link: astra_path('catalog', {on_sale: 1})}] %}
+    {% if block.page.total > 0 %}
+        <section class="astra-container mt-14" aria-labelledby="astra-home-{{ block.id }}">
+            <div class="flex items-end justify-between gap-4">
+                <h2 id="astra-home-{{ block.id }}" class="text-2xl font-bold tracking-tight">{{ block.title }}</h2>
+                <a href="{{ block.link }}" class="astra-link text-sm">{{ 'home.see_all'|trans }}<span class="sr-only"> : {{ block.title }}</span></a>
+            </div>
+            <twig:Astra:ProductGrid :products="block.page.products" :eager="loop.first ? 2 : 0" class="mt-6 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4 sm:gap-x-6" />
+        </section>
+    {% endif %}
+{% endfor %}
+{% endblock %}

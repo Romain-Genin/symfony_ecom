@@ -1,0 +1,56 @@
+{% trans_default_domain 'AstraCheckout' %}
+{#
+  Complete product page block. Compose your own instead with:
+  <twig:Astra:ProductGallery :product="product" /> <twig:Astra:BuyBox :product="product" /> <twig:Astra:RelatedProducts :product="product" />
+#}
+{% if product is null %}
+    <p role="alert" {{ attributes }}>{{ 'product.not_found'|trans }}</p>
+{% else %}
+{% set category = product.mainCategory %}
+{% set v = this.selectedVariant %}
+{% set images = product.images %}
+<div {{ attributes }}>
+    {% set crumbs = [{label: 'layout.home'|trans, url: astra_home_path()}] %}
+    {% if category %}
+        {% for ancestor in category.ancestors %}{% set crumbs = crumbs|merge([{label: ancestor.name, url: astra_path('category', {slug: ancestor.slug})}]) %}{% endfor %}
+        {% set crumbs = crumbs|merge([{label: category.name, url: astra_path('category', {slug: category.slug})}]) %}
+    {% endif %}
+    {% if breadcrumb %}<twig:Astra:Breadcrumb :items="crumbs|merge([{label: product.name, url: null}])" />{% endif %}
+
+    <div class="mt-6 grid gap-8 lg:grid-cols-2 lg:gap-12">
+        <twig:Astra:ProductGallery :product="product" class="lg:sticky lg:top-24 lg:self-start" />
+        <div>
+            <twig:Astra:BuyBox :product="product" :selectedVariant="v" />
+            {% block after_buy_box %}{% endblock %}
+            {% if description and product.description %}
+                <section aria-labelledby="astra-description" class="mt-10 border-t border-neutral-200 pt-8">
+                    <h2 id="astra-description" class="text-lg font-semibold">{{ 'product.description'|trans }}</h2>
+                    <div class="astra-prose mt-4">{{ product.description|raw }}</div>
+                </section>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if related %}<twig:Astra:RelatedProducts :product="product" />{% endif %}
+</div>
+
+{% if jsonLd %}
+{{ astra_json_ld({
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: (product.shortDescription ?: product.description)|default('')|striptags,
+    image: images|map(i => i.external ? i.path : absolute_url(asset(i.path))),
+    brand: product.brand ? {'@type': 'Brand', name: product.brand} : null,
+    sku: v ? v.sku : null,
+    offers: product.variants|map(variant => {
+        '@type': 'Offer',
+        sku: variant.sku,
+        price: variant.price|astra_decimal,
+        priceCurrency: astra.settings.currency,
+        availability: variant.available ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+        url: astra_url('product', {slug: product.slug, variant: variant.id}),
+    }),
+}|filter(v => v is not null)) }}
+{% endif %}
+{% endif %}

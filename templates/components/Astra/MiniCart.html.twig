@@ -1,0 +1,62 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# Mini-cart drawer, rendered client-side from /cart/summary (pages stay cacheable). #}
+<dialog id="astra-minicart" x-data aria-labelledby="astra-minicart-title"
+        class="astra-dialog m-0 ml-auto h-dvh w-[min(26rem,100vw)] bg-white p-0 shadow-xl open:flex open:flex-col">
+    <div class="flex items-center justify-between border-b border-neutral-200 px-5 py-4">
+        <h2 id="astra-minicart-title" class="text-lg font-semibold">
+            {{ 'cart.title'|trans }} <span class="text-neutral-600" x-text="'(' + $store.cart.count + ')'"></span>
+        </h2>
+        <form method="dialog">
+            <button class="astra-icon-btn -mr-2" autofocus>
+                <svg aria-hidden="true" class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></svg>
+                <span class="sr-only">{{ 'cart.close'|trans }}</span>
+            </button>
+        </form>
+    </div>
+
+    <template x-if="$store.cart.freeShipping && $store.cart.count > 0">
+        <div class="border-b border-neutral-200 px-5 py-3 text-sm">
+            <p x-show="$store.cart.freeShipping.remaining > 0" x-text="'{{ 'cart.free_shipping_remaining_js'|trans|e('js') }}'.replace('%amount%', $store.cart.freeShipping.remainingFormatted)"></p>
+            <p x-show="$store.cart.freeShipping.remaining === 0" class="font-medium text-success-700">{{ 'cart.free_shipping_reached'|trans }}</p>
+            <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-neutral-200" aria-hidden="true">
+                <div class="h-full rounded-full bg-accent-700" :style="'width:' + $store.cart.freeShipping.progress + '%'"></div>
+            </div>
+        </div>
+    </template>
+
+    <div class="flex-1 overflow-y-auto px-5">
+        <p x-show="$store.cart.count === 0" class="py-10 text-center text-neutral-700">{{ 'cart.empty'|trans }}</p>
+        <ul role="list" class="divide-y divide-neutral-200">
+            <template x-for="item in $store.cart.items" :key="item.id">
+                <li class="flex gap-4 py-4">
+                    <div class="h-24 w-20 shrink-0 overflow-hidden rounded-lg bg-neutral-100">
+                        <template x-if="item.image"><img :src="item.image.src" alt="" width="80" height="96" loading="lazy" class="h-full w-full object-cover"></template>
+                    </div>
+                    <div class="flex min-w-0 flex-1 flex-col">
+                        <a :href="item.url" class="font-medium text-neutral-900 hover:underline" x-text="item.name"></a>
+                        <p class="text-sm text-neutral-600" x-show="item.variant" x-text="item.variant"></p>
+                        <p class="text-sm text-neutral-700"><span>{{ 'cart.quantity'|trans }}</span> <span x-text="item.quantity"></span></p>
+                        <div class="mt-auto flex items-center justify-between">
+                            <p class="font-semibold" x-text="item.total"></p>
+                            <button type="button" class="rounded-md px-2 py-1 text-sm font-medium text-neutral-700 underline hover:text-danger-700" @click="$store.cart.remove(item)">
+                                {{ 'cart.remove'|trans }}<span class="sr-only" x-text="' ' + item.name"></span>
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            </template>
+        </ul>
+    </div>
+
+    <div class="border-t border-neutral-200 px-5 py-4" x-show="$store.cart.count > 0">
+        <template x-for="d in $store.cart.discounts" :key="d.label">
+            <p class="mb-1 flex justify-between gap-4 text-sm text-success-700"><span x-text="d.label + (d.code ? ' (' + d.code + ')' : '')"></span><span x-text="d.amount ? '−' + d.amount : '{{ 'coupon.free_shipping'|trans|e('js') }}'"></span></p>
+        </template>
+        <p class="flex justify-between text-base font-semibold"><span>{{ 'cart.subtotal'|trans }}</span><span x-text="$store.cart.subtotal"></span></p>
+        <p class="mt-1 text-sm text-neutral-600">{{ 'cart.shipping_at_checkout'|trans }}</p>
+        <div class="mt-4 grid gap-2">
+            <a href="{{ astra_path('checkout') }}" class="astra-btn-primary astra-btn-lg">{{ 'cart.checkout'|trans }}</a>
+            <a href="{{ astra_path('cart') }}" class="astra-btn-secondary">{{ 'cart.view'|trans }}</a>
+        </div>
+    </div>
+</dialog>

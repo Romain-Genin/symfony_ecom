@@ -1,0 +1,36 @@
+{% extends '@AstraCheckout/account/_layout.html.twig' %}
+{% trans_default_domain 'AstraCheckout' %}
+{% block title %}{{ 'account.nav.dashboard'|trans }} | {{ astra.settings.shopName }}{% endblock %}
+{% block heading %}{{ 'account.nav.dashboard'|trans }}{% endblock %}
+
+{% block content %}
+<div class="grid gap-6 md:grid-cols-2">
+    <section class="astra-card p-5 md:col-span-2" aria-labelledby="d-orders">
+        <div class="flex items-center justify-between gap-4">
+            <h2 id="d-orders" class="text-lg font-semibold">{{ 'account.recent_orders'|trans }}</h2>
+            {% if order_count > 0 %}<a href="{{ astra_path('orders') }}" class="astra-link text-sm">{{ 'account.all_orders'|trans({'%count%': order_count}) }}</a>{% endif %}
+        </div>
+        {% if order_count == 0 %}
+            <p class="mt-3 text-sm text-neutral-700">{{ 'account.no_orders'|trans }}</p>
+            <a href="{{ astra_path('catalog') }}" class="astra-btn-primary mt-4">{{ 'cart.continue'|trans }}</a>
+        {% else %}
+            <twig:Astra:OrderHistory :perPage="3" :pagination="false" :headingLevel="3" />
+        {% endif %}
+    </section>
+    <section class="astra-card p-5" aria-labelledby="d-profile">
+        <h2 id="d-profile" class="text-lg font-semibold">{{ 'account.nav.profile'|trans }}</h2>
+        <p class="mt-2 text-sm text-neutral-700">{{ account.fullName ?: account.displayName }}{% if account.email %}<br>{{ account.email }}{% endif %}</p>
+        {% if astra.settings.builtInAuth %}<a href="{{ path('astra_account_profile') }}" class="astra-link mt-3 inline-block text-sm">{{ 'account.edit_profile'|trans }}</a>{% endif %}
+    </section>
+    <section class="astra-card p-5" aria-labelledby="d-address">
+        <h2 id="d-address" class="text-lg font-semibold">{{ 'address.default_title'|trans }}</h2>
+        {% set default = default_address %}
+        {% if default %}
+            <address class="mt-2 not-italic text-sm text-neutral-700">{% for line in default.postalAddress.lines %}{{ line }}<br>{% endfor %}{{ default.postalAddress.countryCode|astra_country(app.request.locale) }}</address>
+        {% else %}
+            <p class="mt-2 text-sm text-neutral-700">{{ 'address.none'|trans }}</p>
+        {% endif %}
+        <a href="{{ astra_path('addresses') }}" class="astra-link mt-3 inline-block text-sm">{{ 'address.manage'|trans }}</a>
+    </section>
+</div>
+{% endblock %}

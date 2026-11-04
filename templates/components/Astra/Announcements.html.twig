@@ -1,0 +1,6 @@
+{% trans_default_domain 'AstraCheckout' %}
+{% if placement == 'top_bar' %}
+    {{ include('@AstraCheckout/components/_announcement_bar.html.twig') }}
+{% else %}
+    {{ include('@AstraCheckout/components/_announcements.html.twig', {placement: placement, class: attributes.render('class')}) }}
+{% endif %}

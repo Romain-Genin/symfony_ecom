@@ -1,0 +1,6 @@
+{% extends astra.layout %}
+{% trans_default_domain 'AstraCheckout' %}
+{% block title %}{{ ('checkout.step.' ~ step)|trans }} – {{ 'checkout.title'|trans }} | {{ astra.settings.shopName }}{% endblock %}
+{% block body %}
+    <twig:Astra:Checkout :step="step" class="astra-container py-8" />
+{% endblock %}

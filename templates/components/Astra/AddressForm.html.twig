@@ -1,0 +1,17 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# <twig:Astra:AddressForm /> — on your page (POST allowed; {id} route parameter to edit). #}
+{% if form is null %}
+    <p role="alert" {{ attributes }}>{{ 'address.not_found'|trans }}</p>
+{% else %}
+{% form_theme form '@AstraCheckout/form/theme.html.twig' %}
+<div {{ attributes.defaults({class: 'max-w-xl'}) }}>
+    {{ include('@AstraCheckout/form/_error_summary.html.twig') }}
+    {{ form_start(form, {attr: {novalidate: 'novalidate', class: 'space-y-5'}}) }}
+        {{ form_widget(form) }}
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+            <button type="submit" class="astra-btn-primary">{{ 'form.save'|trans }}</button>
+            <a href="{{ astra_path('addresses') }}" class="astra-link text-sm">{{ 'form.cancel'|trans }}</a>
+        </div>
+    {{ form_end(form) }}
+</div>
+{% endif %}

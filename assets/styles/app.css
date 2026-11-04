@@ -1,0 +1,29 @@
+/*
+ * Stand-alone stylesheet of the bundle (public/astra-checkout.css), for sites without Tailwind.
+ * With Tailwind, import astra.css in your own build instead (see README).
+ */
+@import "tailwindcss" source(none);
+@import "./astra.css";
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; scroll-padding-top: 5rem; }
+  body { @apply bg-white text-neutral-900 antialiased; }
+
+  /* Visible, consistent focus (WCAG 2.4.7 / 2.4.11) — never removed, only for keyboard users. */
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--color-accent-600); outline-offset: 2px; border-radius: 0.25rem; }
+
+  a { text-underline-offset: 0.2em; }
+  del { text-decoration-thickness: 1px; }
+  ins { text-decoration: none; }
+
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+
+  @media (forced-colors: active) {
+    .astra-btn, .astra-input, .astra-pill { border: 1px solid ButtonText; }
+  }
+}
+

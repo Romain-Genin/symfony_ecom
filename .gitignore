@@ -1,0 +1,9 @@
+/vendor/
+/composer.lock
+/node_modules/
+/.phpunit.cache/
+/.phpunit.result.cache
+/tests/var/
+/tests/var/
+/tests/app/public/bundles/
+/tests/app/public/uploads/

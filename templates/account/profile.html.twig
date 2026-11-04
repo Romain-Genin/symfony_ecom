@@ -1,0 +1,5 @@
+{% extends '@AstraCheckout/account/_form_page.html.twig' %}
+{% trans_default_domain 'AstraCheckout' %}
+{% block title %}{{ 'account.nav.profile'|trans }} | {{ astra.settings.shopName }}{% endblock %}
+{% block heading %}{{ 'account.nav.profile'|trans }}{% endblock %}
+{% block cancel %}<a href="{{ path('astra_account_delete') }}" class="text-sm font-medium text-danger-700 underline">{{ 'account.delete_link'|trans }}</a>{% endblock %}

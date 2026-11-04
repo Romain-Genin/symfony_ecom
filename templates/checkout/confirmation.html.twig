@@ -1,0 +1,8 @@
+{% extends astra.layout %}
+{% trans_default_domain 'AstraCheckout' %}
+
+{% block title %}{{ 'checkout.confirmation.title'|trans }} | {{ astra.settings.shopName }}{% endblock %}
+
+{% block body %}
+    <twig:Astra:OrderConfirmation :order="order" class="astra-container max-w-3xl py-10" />
+{% endblock %}

@@ -1,0 +1,61 @@
+{% trans_default_domain 'AstraCheckout' %}
+    {{ include('@AstraCheckout/form/_error_summary.html.twig') }}
+
+    <div class="mb-8 rounded-xl border border-neutral-200 p-4 text-sm">
+        <div class="flex items-start justify-between gap-4">
+            <div>
+                <p class="font-medium">{{ 'checkout.deliver_to'|trans }}</p>
+                <address class="mt-1 not-italic text-neutral-700">{{ cart.shippingAddress.lines|join(', ') }}, {{ cart.shippingAddress.countryCode|astra_country(app.request.locale) }}</address>
+            </div>
+            <a href="{{ astra_path('checkout', {step: 'address'}) }}" class="astra-link shrink-0">{{ 'checkout.edit'|trans }}<span class="sr-only"> {{ 'checkout.shipping_address'|trans|lower }}</span></a>
+        </div>
+    </div>
+
+    {{ form_start(form, {attr: {novalidate: 'novalidate', class: 'space-y-8'}}) }}
+        <fieldset {% if form.shippingMethod.vars.errors|length %}aria-describedby="{{ form.shippingMethod.vars.id }}_errors"{% endif %}>
+            <legend class="text-base font-semibold">{{ 'checkout.shipping_method'|trans }}</legend>
+            {{ form_errors(form.shippingMethod) }}
+            <div class="mt-3 grid gap-3" id="{{ form.shippingMethod.vars.id }}">
+                {% for choice in form.shippingMethod %}
+                    {% set method = shipping_methods[choice.vars.value] %}
+                    {% set cost = shipping_costs[choice.vars.value] %}
+                    <label class="astra-option-card" for="{{ choice.vars.id }}">
+                        <input type="radio" id="{{ choice.vars.id }}" name="{{ choice.vars.full_name }}" value="{{ choice.vars.value }}" {{ choice.vars.checked ? 'checked' }} class="astra-checkbox mt-0.5 rounded-full" {% if method.description %}aria-describedby="{{ choice.vars.id }}_desc"{% endif %}>
+                        <span class="flex flex-1 flex-wrap justify-between gap-x-4 gap-y-1">
+                            <span>
+                                <span class="block font-medium">{{ method.label|trans }}</span>
+                                {% if method.description %}<span id="{{ choice.vars.id }}_desc" class="block text-sm text-neutral-700">{{ method.description|trans }}</span>{% endif %}
+                            </span>
+                            <span class="font-semibold">{{ cost == 0 ? 'checkout.free'|trans : cost|astra_price }}</span>
+                        </span>
+                    </label>
+                {% endfor %}
+            </div>
+        </fieldset>
+
+        <fieldset {% if form.paymentMethod.vars.errors|length %}aria-describedby="{{ form.paymentMethod.vars.id }}_errors"{% endif %}>
+            <legend class="text-base font-semibold">{{ 'checkout.payment_method'|trans }}</legend>
+            {{ form_errors(form.paymentMethod) }}
+            <div class="mt-3 grid gap-3" id="{{ form.paymentMethod.vars.id }}">
+                {% for choice in form.paymentMethod %}
+                    {% set method = payment_methods[choice.vars.value] %}
+                    <label class="astra-option-card" for="{{ choice.vars.id }}">
+                        <input type="radio" id="{{ choice.vars.id }}" name="{{ choice.vars.full_name }}" value="{{ choice.vars.value }}" {{ choice.vars.checked ? 'checked' }} class="astra-checkbox mt-0.5 rounded-full" {% if method.description %}aria-describedby="{{ choice.vars.id }}_desc"{% endif %}>
+                        <span>
+                            <span class="block font-medium">{{ method.label|trans }}</span>
+                            {% if method.description %}<span id="{{ choice.vars.id }}_desc" class="block text-sm text-neutral-700">{{ method.description|trans }}</span>{% endif %}
+                        </span>
+                    </label>
+                {% endfor %}
+            </div>
+        </fieldset>
+        {% do form.shippingMethod.setRendered %}
+        {% do form.paymentMethod.setRendered %}
+
+        <div class="max-w-xl">{{ form_row(form.customerNote) }}</div>
+
+        <div class="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <a href="{{ astra_path('checkout', {step: 'address'}) }}" class="astra-link text-sm">← {{ 'checkout.back_to_address'|trans }}</a>
+            <button type="submit" class="astra-btn-primary astra-btn-lg">{{ 'checkout.continue_to_review'|trans }}</button>
+        </div>
+    {{ form_end(form) }}

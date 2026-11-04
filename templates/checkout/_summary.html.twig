@@ -1,0 +1,47 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# Order summary: collapsible on small screens (native <details>, no JS). #}
+{% set content %}
+    <ul role="list" class="divide-y divide-neutral-200">
+        {% for item in cart.items %}
+            {% set image = item.product.mainImage %}
+            <li class="flex gap-3 py-3">
+                <div class="relative h-16 w-14 shrink-0 overflow-hidden rounded-lg bg-white">
+                    {{ astra_image(image ? image.path : null, {alt: '', width: 56, height: 64, sizes: '56px', class: 'h-full w-full object-cover'}) }}
+                    <span class="absolute -right-1 -top-1 inline-flex size-5 items-center justify-center rounded-full bg-neutral-700 text-xs font-bold text-white" aria-hidden="true">{{ item.quantity }}</span>
+                </div>
+                <div class="min-w-0 flex-1 text-sm">
+                    <p class="font-medium">{{ item.product.name }}</p>
+                    {% if item.variant.label %}<p class="text-neutral-700">{{ item.variant.label }}</p>{% endif %}
+                    <p class="sr-only">{{ 'cart.quantity'|trans }} {{ item.quantity }}</p>
+                </div>
+                <p class="text-sm font-medium">{{ item.total|astra_price }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    <dl class="mt-4 space-y-2 border-t border-neutral-200 pt-4 text-sm">
+        <div class="flex justify-between"><dt>{{ 'cart.subtotal'|trans }}</dt><dd>{{ totals.subtotal|astra_price }}</dd></div>
+        {{ include('@AstraCheckout/components/_discount_lines.html.twig') }}
+        <div class="flex justify-between"><dt>{{ 'cart.shipping'|trans }}</dt><dd>{% if totals.shipping is null %}{{ 'cart.shipping_next_step'|trans }}{% elseif totals.shipping == 0 %}{{ 'checkout.free'|trans }}{% else %}{{ totals.shipping|astra_price }}{% endif %}</dd></div>
+        {% if not totals.pricesIncludeTax %}<div class="flex justify-between"><dt>{{ 'cart.tax'|trans }}</dt><dd>{{ totals.tax|astra_price }}</dd></div>{% endif %}
+        <div class="flex justify-between border-t border-neutral-200 pt-2 text-base font-semibold"><dt>{{ 'cart.total'|trans }}</dt><dd>{{ totals.total|astra_price }}</dd></div>
+        {% if totals.pricesIncludeTax %}
+            {% for rate, amount in totals.taxByRate %}
+                <div class="flex justify-between text-neutral-600"><dt>{{ 'cart.tax_included_rate'|trans({'%rate%': rate|astra_percent}) }}</dt><dd>{{ amount|astra_price }}</dd></div>
+            {% endfor %}
+        {% endif %}
+    </dl>
+{% endset %}
+<div class="rounded-2xl bg-neutral-50 p-5 lg:sticky lg:top-24">
+    <details class="group lg:hidden">
+        <summary class="flex min-h-11 cursor-pointer list-none items-center justify-between font-medium [&::-webkit-details-marker]:hidden">
+            <span>{{ 'checkout.show_summary'|trans }} <span class="text-neutral-700">({{ 'cart.item_count'|trans({'%count%': totals.itemCount}) }})</span></span>
+            <span class="font-semibold">{{ totals.total|astra_price }}</span>
+        </summary>
+        <div class="mt-2">{{ content }}</div>
+    </details>
+    <section class="hidden lg:block" aria-labelledby="astra-summary-title">
+        <h2 id="astra-summary-title" class="text-lg font-semibold">{{ 'cart.summary'|trans }}</h2>
+        <div class="mt-2">{{ content }}</div>
+        <a href="{{ astra_path('cart') }}" class="astra-link mt-4 inline-block text-sm">{{ 'checkout.edit_cart'|trans }}</a>
+    </section>
+</div>

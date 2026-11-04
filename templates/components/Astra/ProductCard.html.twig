@@ -1,0 +1,32 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# One link per card (the name), stretched over the card: a single, meaningful tab stop. Override with templates/bundles/AstraCheckoutBundle/components/Astra/ProductCard.html.twig #}
+{% set image = product.mainImage %}
+<article {{ attributes.defaults({class: 'group relative flex flex-col'}) }}>
+    <div class="relative aspect-[4/5] overflow-hidden rounded-xl bg-neutral-100">
+        {{ astra_image(image ? image.path : null, {
+            alt: '',
+            width: image ? image.width : null,
+            height: image ? image.height : null,
+            sizes: '(min-width: 1280px) 300px, (min-width: 640px) 33vw, 50vw',
+            class: 'h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]',
+            loading: eager ? 'eager' : 'lazy',
+            fetchpriority: eager ? 'high' : null,
+        }) }}
+        <div class="absolute left-2 top-2 flex flex-col items-start gap-1">
+            {% if not product.inStock %}
+                <span class="astra-badge bg-neutral-900 text-white">{{ 'product.sold_out'|trans }}</span>
+            {% elseif product.onSale %}
+                <span class="astra-badge bg-danger-700 text-white"><span aria-hidden="true">−{{ product.discountPercent }} %</span><span class="sr-only">{{ 'product.discount'|trans({'%percent%': product.discountPercent}) }}</span></span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="mt-3 flex flex-1 flex-col">
+        {% if product.brand %}<p class="text-xs font-medium uppercase tracking-wide text-neutral-600">{{ product.brand }}</p>{% endif %}
+        <h{{ headingLevel }} class="text-sm font-medium text-neutral-900 sm:text-base">
+            <a href="{{ astra_path('product', {slug: product.slug}) }}" class="after:absolute after:inset-0 after:rounded-xl focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-3 focus-visible:after:outline-offset-2 focus-visible:after:outline-accent-600">{{ product.name }}</a>
+        </h{{ headingLevel }}>
+        <div class="mt-1">
+            <twig:Astra:ProductPrice :price="product.minPrice" :compareAt="product.compareAtPrice" :from="product.hasPriceRange" />
+        </div>
+    </div>
+</article>

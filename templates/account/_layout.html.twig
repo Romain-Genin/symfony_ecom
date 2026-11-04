@@ -1,0 +1,40 @@
+{% extends astra.layout %}
+{% trans_default_domain 'AstraCheckout' %}
+
+{% block body %}
+{% set route = app.request.attributes.get('_route') %}
+{% set links = [
+    {page: 'account', label: 'account.nav.dashboard', match: ['astra_account']},
+    {page: 'orders', label: 'account.nav.orders', match: ['astra_account_orders', 'astra_account_order']},
+    {page: 'addresses', label: 'account.nav.addresses', match: ['astra_account_addresses', 'astra_account_address_new', 'astra_account_address_edit']},
+] %}
+{# Profile and password pages belong to your site when you reuse your own user accounts. #}
+{% if astra.settings.builtInAuth %}
+    {% set links = links|merge([
+        {route: 'astra_account_profile', label: 'account.nav.profile', match: ['astra_account_profile']},
+        {route: 'astra_account_password', label: 'account.nav.password', match: ['astra_account_password']},
+    ]) %}
+{% endif %}
+<div class="astra-container py-8">
+    <p class="text-sm text-neutral-700">{{ 'account.hello'|trans({'%name%': account.displayName}) }}</p>
+    <h1 class="text-3xl font-bold tracking-tight">{% block heading %}{% endblock %}</h1>
+
+    <div class="mt-8 lg:grid lg:grid-cols-[14rem_1fr] lg:gap-12">
+        <nav aria-label="{{ 'account.nav.label'|trans }}" class="mb-8 lg:mb-0">
+            <ul role="list" class="flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:gap-1 lg:overflow-visible">
+                {% for link in links %}
+                    {% set active = route in link.match %}
+                    <li class="shrink-0">
+                        <a href="{{ link.page is defined ? astra_path(link.page) : path(link.route) }}" {% if active %}aria-current="page"{% endif %}
+                           class="flex min-h-11 items-center rounded-lg px-3 text-sm font-medium {{ active ? 'bg-neutral-900 text-white' : 'text-neutral-800 hover:bg-neutral-100' }}">{{ link.label|trans }}</a>
+                    </li>
+                {% endfor %}
+                <li class="shrink-0 lg:mt-4 lg:border-t lg:border-neutral-200 lg:pt-4">
+                    <a href="{{ path(astra.settings.logoutRoute) }}" class="flex min-h-11 items-center rounded-lg px-3 text-sm font-medium text-neutral-800 hover:bg-neutral-100">{{ 'account.logout'|trans }}</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="min-w-0">{% block content %}{% endblock %}</div>
+    </div>
+</div>
+{% endblock %}

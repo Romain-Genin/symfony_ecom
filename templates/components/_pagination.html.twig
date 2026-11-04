@@ -1,0 +1,26 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# page: ProductPage. Keeps the current filters in the links. #}
+{% if page.pageCount > 1 %}
+    {% set route = app.request.attributes.get('_route') %}
+    {% set params = app.request.attributes.get('_route_params')|merge(app.request.query.all) %}
+    {% set link = 'inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg px-3 text-sm font-medium' %}
+    <nav aria-label="{{ 'pagination.label'|trans }}" class="mt-12 flex justify-center">
+        <ul role="list" class="flex flex-wrap items-center gap-1">
+            {% if page.page > 1 %}
+                <li><a href="{{ path(route, params|merge({page: page.page - 1 > 1 ? page.page - 1 : null})) }}" rel="prev" class="{{ link }} text-neutral-800 hover:bg-neutral-100"><span aria-hidden="true">←</span><span class="sr-only sm:not-sr-only sm:ml-1">{{ 'pagination.previous'|trans }}</span></a></li>
+            {% endif %}
+            {% for p in page.window %}
+                {% if p is null %}
+                    <li aria-hidden="true" class="{{ link }} text-neutral-500">…</li>
+                {% elseif p == page.page %}
+                    <li><a href="{{ path(route, params|merge({page: p > 1 ? p : null})) }}" aria-current="page" class="{{ link }} bg-neutral-900 text-white"><span class="sr-only">{{ 'pagination.page'|trans }} </span>{{ p }}</a></li>
+                {% else %}
+                    <li><a href="{{ path(route, params|merge({page: p > 1 ? p : null})) }}" class="{{ link }} text-neutral-800 hover:bg-neutral-100"><span class="sr-only">{{ 'pagination.page'|trans }} </span>{{ p }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if page.page < page.pageCount %}
+                <li><a href="{{ path(route, params|merge({page: page.page + 1})) }}" rel="next" class="{{ link }} text-neutral-800 hover:bg-neutral-100"><span class="sr-only sm:not-sr-only sm:mr-1">{{ 'pagination.next'|trans }}</span><span aria-hidden="true">→</span></a></li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}

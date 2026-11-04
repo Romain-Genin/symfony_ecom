@@ -1,0 +1,18 @@
+{
+  "name": "@studioastra/astra-checkout-assets",
+  "private": true,
+  "description": "Front-end sources of AstraCheckoutBundle. The compiled files in public/ are committed: applications do not need Node.",
+  "scripts": {
+    "build:css": "tailwindcss -i assets/styles/app.css -o public/astra-checkout.css --minify",
+    "build:js": "esbuild assets/js/app.js --bundle --minify --format=iife --target=es2020 --outfile=public/astra-checkout.js && esbuild assets/js/standalone.js --bundle --minify --format=iife --target=es2020 --outfile=public/astra-checkout-components.js",
+    "build": "npm run build:css && npm run build:js",
+    "watch:css": "tailwindcss -i assets/styles/app.css -o public/astra-checkout.css --watch",
+    "watch:js": "esbuild assets/js/app.js --bundle --format=iife --target=es2020 --outfile=public/astra-checkout.js --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.0",
+    "alpinejs": "^3.14.0",
+    "esbuild": "^0.25.0",
+    "tailwindcss": "^4.1.0"
+  }
+}

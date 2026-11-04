@@ -1,0 +1,47 @@
+{% trans_default_domain 'AstraCheckout' %}
+{#
+  <twig:Astra:Checkout /> — whole checkout on your page (route accepting POST, step in ?step=).
+#}
+{% if form %}
+{% form_theme form '@AstraCheckout/form/theme.html.twig' %}
+{% set shipping_methods = data.shipping_methods ?? [] %}{% set shipping_costs = data.shipping_costs ?? [] %}{% set payment_methods = data.payment_methods ?? [] %}
+{% set saved_addresses = data.saved_addresses ?? [] %}{% set shipping_method = data.shipping_method ?? null %}{% set payment_method = data.payment_method ?? null %}
+<div {{ attributes }}>
+    {% block heading %}<h1 class="sr-only">{{ 'checkout.title'|trans }}</h1>{% endblock %}
+    {% set steps = this.steps %}
+    {% set current_index = steps|filter(s => s == step)|keys|first %}
+    <nav aria-label="{{ 'checkout.steps'|trans }}">
+        <ol role="list" class="flex items-center gap-2 text-sm sm:gap-4">
+            {% for s in steps %}
+                {% set done = loop.index0 < current_index %}
+                <li class="flex items-center gap-2 sm:gap-4">
+                    {% if not loop.first %}<span aria-hidden="true" class="h-px w-6 bg-neutral-300 sm:w-12"></span>{% endif %}
+                    {% set inner %}
+                        <span class="inline-flex size-7 items-center justify-center rounded-full text-xs font-bold {{ s == step ? 'bg-accent-700 text-white' : (done ? 'bg-neutral-900 text-white' : 'border border-neutral-400 text-neutral-700') }}" aria-hidden="true">{% if done %}✓{% else %}{{ loop.index }}{% endif %}</span>
+                        <span class="{{ s == step ? 'font-semibold text-neutral-900' : 'text-neutral-700' }} {{ s != step ? 'hidden sm:inline' }}">{{ ('checkout.step.' ~ s)|trans }}</span>
+                        {% if done %}<span class="sr-only">({{ 'checkout.step_done'|trans }})</span>{% endif %}
+                    {% endset %}
+                    {% if done %}
+                        <a href="{{ astra_path('checkout', {step: s}) }}" class="flex items-center gap-2 rounded-lg hover:underline">{{ inner }}</a>
+                    {% else %}
+                        <span class="flex items-center gap-2" {% if s == step %}aria-current="step"{% endif %}>{{ inner }}</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ol>
+    </nav>
+
+    <div class="mt-8 {{ summary ? 'lg:grid lg:grid-cols-[1fr_24rem] lg:items-start lg:gap-12' }}">
+        <div>
+            <h2 class="text-2xl font-bold tracking-tight">{{ ('checkout.step.' ~ step)|trans }}</h2>
+            {{ include('@AstraCheckout/components/_announcements.html.twig', {placement: 'cart', class: 'mt-6'}) }}
+            <div class="mt-6">{{ include('@AstraCheckout/components/Astra/checkout/_' ~ step ~ '.html.twig') }}</div>
+        </div>
+        {% if summary %}
+        <aside class="order-first mb-8 lg:order-none lg:mb-0">
+            {{ include('@AstraCheckout/checkout/_summary.html.twig') }}
+        </aside>
+        {% endif %}
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,14 @@
+{% trans_default_domain 'AstraCheckout' %}
+<!DOCTYPE html>
+<html lang="{{ email.locale|default('fr') }}">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>{{ shop_name }}</title></head>
+<body style="margin:0;padding:0;background:#f5f5f5;font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:#171717;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f5;"><tr><td align="center" style="padding:24px 12px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border-radius:12px;">
+        <tr><td style="padding:24px 28px;border-bottom:1px solid #e5e5e5;font-size:20px;font-weight:700;">{{ shop_name }}</td></tr>
+        <tr><td style="padding:28px;font-size:16px;line-height:1.6;">{% block content %}{% endblock %}</td></tr>
+        <tr><td style="padding:20px 28px;border-top:1px solid #e5e5e5;font-size:13px;color:#525252;">{{ 'email.footer'|trans({'%shop%': shop_name}) }}</td></tr>
+    </table>
+</td></tr></table>
+</body>
+</html>

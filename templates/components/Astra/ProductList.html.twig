@@ -1,0 +1,151 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# Product listing block. Override a card with {% block card %}…{{ product.name }}…{% endblock %}. #}
+{% set page = listing.page %}
+{% set criteria = listing.criteria %}
+{% set category = listing.category %}
+{% set is_search = listing.isSearch %}
+{% set sorts = this.sorts %}
+{% if is_search %}
+    {% set heading = criteria.search ? 'catalog.search_results'|trans({'%query%': criteria.search}) : 'catalog.search'|trans %}
+{% elseif category %}
+    {% set heading = category.name %}
+{% else %}
+    {% set heading = 'catalog.all_products'|trans %}
+{% endif %}
+
+{% set q = app.request.query %}
+{% set route = app.request.attributes.get('_route') %}
+{% set route_params = app.request.attributes.get('_route_params') %}
+<div {{ attributes }}>
+    {% set crumbs = [{label: 'layout.home'|trans, url: astra_home_path()}] %}
+    {% if category %}
+        {% for ancestor in category.ancestors %}{% set crumbs = crumbs|merge([{label: ancestor.name, url: astra_path('category', {slug: ancestor.slug})}]) %}{% endfor %}
+        {% set crumbs = crumbs|merge([{label: category.name, url: null}]) %}
+    {% else %}
+        {% set crumbs = crumbs|merge([{label: heading, url: null}]) %}
+    {% endif %}
+    {% if breadcrumb %}<twig:Astra:Breadcrumb :items="crumbs" />{% endif %}
+
+    {% if notFound %}
+        <p role="alert" class="mt-6 rounded-xl border border-amber-200 bg-warning-50 px-4 py-3 text-sm text-warning-800">{{ 'catalog.category_not_found'|trans }}</p>
+    {% endif %}
+
+    {% if header %}
+    <div class="mt-4 max-w-3xl">
+        <h1 class="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">{{ heading }}</h1>
+        {% if category and category.description %}<p class="mt-3 text-neutral-700">{{ category.description }}</p>{% endif %}
+    </div>
+    {% endif %}
+
+    {% if is_search %}
+        <form action="{{ astra_path('search') }}" method="get" role="search" class="mt-6 flex max-w-xl gap-2"
+              x-data="searchSuggest('{{ path('astra_search_suggest') }}', {{ astra.settings.searchMinLength }})" @click.outside="close()" @keydown.escape.prevent="escape()">
+            <div class="flex-1">{{ include('@AstraCheckout/components/_search_field.html.twig', {id: 'astra-search-page', value: criteria.search}) }}</div>
+            <button class="astra-btn-primary">{{ 'layout.search_submit'|trans }}</button>
+        </form>
+    {% endif %}
+
+    {% if announcements %}{{ include('@AstraCheckout/components/_announcements.html.twig', {placement: 'catalog', class: 'mt-6'}) }}{% endif %}
+
+    {% if subcategories and listing.subcategories is not empty %}
+        <nav aria-label="{{ 'catalog.subcategories'|trans }}" class="mt-6">
+            <ul role="list" class="flex gap-2 overflow-x-auto pb-1">
+                {% for sub in listing.subcategories %}
+                    <li class="shrink-0"><a href="{{ astra_path('category', {slug: sub.slug}) }}" class="astra-pill rounded-full">{{ sub.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    {% endif %}
+
+    <div class="mt-8 {{ filters ? 'lg:grid lg:grid-cols-[16rem_1fr] lg:gap-10' }}">
+        {% if filters %}
+        <aside class="hidden lg:block" aria-labelledby="astra-filters-title">
+            <h2 id="astra-filters-title" class="sr-only">{{ 'catalog.filters'|trans }}</h2>
+            <div class="sticky top-24">{{ include('@AstraCheckout/catalog/_filters.html.twig', {prefix: 'f'}) }}</div>
+        </aside>
+        {% endif %}
+
+        <section aria-labelledby="astra-results-title">
+            <h2 id="astra-results-title" class="sr-only">{{ 'catalog.results'|trans }}</h2>
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-neutral-200 pb-4">
+                <p class="text-sm text-neutral-700">
+                    {% if page.total > 0 %}{{ 'catalog.count'|trans({'%count%': page.total, '%first%': page.firstIndex, '%last%': page.lastIndex}) }}{% endif %}
+                </p>
+                <div class="flex items-center gap-2">
+                    {% if filters %}<div x-data="dialog('astra-filters-dialog')" class="lg:hidden">
+                        <button type="button" class="astra-btn-secondary" @click="open()" aria-haspopup="dialog">
+                            <svg aria-hidden="true" class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" d="M4 6h16M7 12h10M10 18h4"/></svg>
+                            {{ 'catalog.filters'|trans }}
+                        </button>
+                    </div>{% endif %}
+                    {% if sorting %}<form method="get" class="flex items-center gap-2" x-data>
+                        {% for name, value in q.all|filter((v, k) => k not in ['sort', 'page'] and v is not iterable) %}
+                            <input type="hidden" name="{{ name }}" value="{{ value }}">
+                        {% endfor %}
+                        <label for="astra-sort" class="whitespace-nowrap text-sm text-neutral-700">{{ 'catalog.sort.label'|trans }}</label>
+                        <select id="astra-sort" name="sort" class="astra-select mt-0 w-auto min-w-0" @change="$el.form.submit()">
+                            {% for sort in sorts %}
+                                {% if sort != 'relevance' or criteria.search %}
+                                    <option value="{{ sort }}" {{ criteria.sort == sort ? 'selected' }}>{{ ('catalog.sort.' ~ sort)|trans }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <button type="submit" class="astra-btn-secondary no-js-only">{{ 'catalog.sort.submit'|trans }}</button>
+                    </form>{% endif %}
+                </div>
+            </div>
+
+            {% if criteria.hasFilters %}
+                <div class="mt-4 flex flex-wrap items-center gap-2">
+                    <p class="text-sm font-medium" id="astra-active-filters">{{ 'catalog.active_filters'|trans }}</p>
+                    <ul role="list" aria-labelledby="astra-active-filters" class="flex flex-wrap gap-2">
+                        {% set chips = [] %}
+                        {% if criteria.minPrice is not null %}{% set chips = chips|merge([{key: 'min', label: 'catalog.filter.min_chip'|trans({'%amount%': criteria.minPrice|astra_price})}]) %}{% endif %}
+                        {% if criteria.maxPrice is not null %}{% set chips = chips|merge([{key: 'max', label: 'catalog.filter.max_chip'|trans({'%amount%': criteria.maxPrice|astra_price})}]) %}{% endif %}
+                        {% if criteria.inStockOnly %}{% set chips = chips|merge([{key: 'in_stock', label: 'catalog.filter.in_stock'|trans}]) %}{% endif %}
+                        {% if criteria.onSaleOnly %}{% set chips = chips|merge([{key: 'on_sale', label: 'catalog.filter.on_sale'|trans}]) %}{% endif %}
+                        {% for chip in chips %}
+                            <li>
+                                <a href="{{ path(route, route_params|merge(q.all|filter((v, k) => k not in [chip.key, 'page']))) }}" class="inline-flex min-h-9 items-center gap-1.5 rounded-full bg-neutral-100 px-3 text-sm hover:bg-neutral-200">
+                                    {{ chip.label }}<svg aria-hidden="true" class="size-4" viewBox="0 0 20 20" fill="currentColor"><path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/></svg>
+                                    <span class="sr-only">{{ 'catalog.remove_filter'|trans }}</span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{{ path(route, route_params|merge(q.get('q') ? {q: q.get('q')} : {})) }}" class="astra-link text-sm">{{ 'catalog.clear_filters'|trans }}</a>
+                </div>
+            {% endif %}
+
+            {% if page.total == 0 %}
+                <div class="py-16 text-center">
+                    <p class="text-lg font-medium">{{ 'catalog.empty'|trans }}</p>
+                    <p class="mt-2 text-neutral-700">{{ 'catalog.empty_help'|trans }}</p>
+                    <a href="{{ astra_path('catalog') }}" class="astra-btn-primary mt-6">{{ 'catalog.all_products'|trans }}</a>
+                </div>
+            {% else %}
+                <ul role="list" class="mt-6 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 xl:grid-cols-4">
+                    {% for product in page %}
+                        <li>{% block card %}<twig:Astra:ProductCard :product="product" :eager="loop.index <= 4" />{% endblock %}</li>
+                    {% endfor %}
+                </ul>
+                {% if pagination %}{{ include('@AstraCheckout/components/_pagination.html.twig') }}{% endif %}
+            {% endif %}
+        </section>
+    </div>
+
+
+{% if filters %}<dialog id="astra-filters-dialog" aria-labelledby="astra-filters-dialog-title" class="astra-dialog m-0 ml-auto h-dvh w-[min(24rem,100vw)] bg-white p-0 shadow-xl open:flex open:flex-col lg:hidden">
+    <div class="flex items-center justify-between border-b border-neutral-200 px-5 py-4">
+        <h2 id="astra-filters-dialog-title" class="text-lg font-semibold">{{ 'catalog.filters'|trans }}</h2>
+        <form method="dialog"><button class="astra-icon-btn -mr-2" autofocus><svg aria-hidden="true" class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></svg><span class="sr-only">{{ 'catalog.close_filters'|trans }}</span></button></form>
+    </div>
+    <div class="flex-1 overflow-y-auto p-5">{{ include('@AstraCheckout/catalog/_filters.html.twig', {prefix: 'm'}) }}</div>
+</dialog>{% endif %}
+
+{{ astra_json_ld({
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: page.products|map((p, i) => {'@type': 'ListItem', position: page.firstIndex + i, url: astra_url('product', {slug: p.slug}), name: p.name}),
+}) }}
+</div>

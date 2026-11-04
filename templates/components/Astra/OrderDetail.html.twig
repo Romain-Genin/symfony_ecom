@@ -1,0 +1,42 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# <twig:Astra:OrderDetail /> on your page with a {number} route parameter. #}
+{% if order is null %}
+    <p role="alert" {{ attributes }}>{{ 'order.not_found'|trans }}</p>
+{% else %}
+<div {{ attributes }}>
+    {% if heading %}<h2 class="text-xl font-semibold">{{ 'order.title'|trans({'%number%': order.number}) }}</h2>{% endif %}
+    <div class="flex flex-wrap items-center gap-3 text-sm text-neutral-700">
+        <p>{{ 'order.placed_on'|trans({'%date%': order.createdAt|date('d/m/Y H:i')}) }}</p>
+        {{ include('@AstraCheckout/components/_order_status.html.twig', {status: order.status}) }}
+    </div>
+
+    {% set current_step = order.status.step %}
+    {% if current_step is not null %}
+        <ol role="list" aria-label="{{ 'order.progress'|trans }}" class="mt-6 grid grid-cols-5 gap-2 text-xs sm:text-sm">
+            {% for status in this.timeline %}
+                {% set done = status.step <= current_step %}
+                <li class="flex flex-col gap-2" {% if status.step == current_step %}aria-current="step"{% endif %}>
+                    <span class="h-1.5 rounded-full {{ done ? 'bg-accent-700' : 'bg-neutral-200' }}" aria-hidden="true"></span>
+                    <span class="{{ done ? 'font-medium text-neutral-900' : 'text-neutral-600' }}">{{ status.translationKey|trans }}{% if done and status.step != current_step %}<span class="sr-only"> ({{ 'checkout.step_done'|trans }})</span>{% endif %}</span>
+                </li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+
+    {% if instructions %}
+        <section class="mt-6 rounded-2xl border border-amber-200 bg-warning-50 p-5" aria-labelledby="o-instr">
+            <h2 id="o-instr" class="font-semibold text-warning-800">{{ 'checkout.confirmation.next_step'|trans }}</h2>
+            <p class="mt-2 whitespace-pre-line text-sm">{{ instructions|trans({'{number}': order.number, '{total}': order.total|astra_price(order.currency)}) }}</p>
+        </section>
+    {% endif %}
+
+    {{ include('@AstraCheckout/components/_order_details.html.twig') }}
+
+    {% if order.cancellableByCustomer %}
+        <form method="post" action="{{ path('astra_account_order_cancel', {number: order.number}) }}" class="mt-8" x-data @submit="confirm('{{ 'order.cancel_confirm'|trans|e('js') }}') || $event.preventDefault()">
+            <input type="hidden" name="_token" value="{{ csrf_token('cancel-order-' ~ order.number) }}">
+            <button class="astra-btn-secondary">{{ 'order.cancel'|trans }}</button>
+        </form>
+    {% endif %}
+</div>
+{% endif %}

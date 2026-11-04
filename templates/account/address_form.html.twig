@@ -1,0 +1,7 @@
+{% extends '@AstraCheckout/account/_layout.html.twig' %}
+{% trans_default_domain 'AstraCheckout' %}
+{% block title %}{{ (is_new ? 'address.add' : 'address.edit')|trans }} | {{ astra.settings.shopName }}{% endblock %}
+{% block heading %}{{ (is_new ? 'address.add' : 'address.edit')|trans }}{% endblock %}
+{% block content %}
+    <twig:Astra:AddressForm />
+{% endblock %}

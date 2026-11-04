@@ -1,0 +1,6 @@
+{% extends '@AstraCheckout/email/_layout.html.twig' %}
+{% trans_default_domain 'AstraCheckout' %}
+{% block content %}
+    <h1 style="margin:0 0 12px;font-size:22px;">{{ 'order.title'|trans({'%number%': order.number}) }}</h1>
+    <p style="margin:0;">{{ ('email.order_status.' ~ order.status.value)|trans({'%number%': order.number}) }}</p>
+{% endblock %}

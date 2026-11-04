@@ -1,0 +1,8 @@
+{% extends '@AstraCheckout/account/_layout.html.twig' %}
+{% trans_default_domain 'AstraCheckout' %}
+{% block title %}{{ 'account.nav.orders'|trans }} | {{ astra.settings.shopName }}{% endblock %}
+{% block heading %}{{ 'account.nav.orders'|trans }}{% endblock %}
+
+{% block content %}
+    <twig:Astra:OrderHistory />
+{% endblock %}

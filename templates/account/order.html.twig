@@ -1,0 +1,8 @@
+{% extends '@AstraCheckout/account/_layout.html.twig' %}
+{% trans_default_domain 'AstraCheckout' %}
+{% block title %}{{ 'order.title'|trans({'%number%': number}) }} | {{ astra.settings.shopName }}{% endblock %}
+{% block heading %}{{ 'order.title'|trans({'%number%': number}) }}{% endblock %}
+
+{% block content %}
+    <twig:Astra:OrderDetail :heading="false" />
+{% endblock %}

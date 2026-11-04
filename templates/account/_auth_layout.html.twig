@@ -1,0 +1,12 @@
+{% extends astra.layout %}
+{% trans_default_domain 'AstraCheckout' %}
+{% block body %}
+<div class="astra-container flex justify-center py-10 sm:py-16">
+    <div class="w-full max-w-md">
+        <h1 class="text-center text-3xl font-bold tracking-tight">{% block heading %}{% endblock %}</h1>
+        {% block intro %}{% endblock %}
+        <div class="astra-card mt-8 p-6 sm:p-8">{% block content %}{% endblock %}</div>
+        {% block after %}{% endblock %}
+    </div>
+</div>
+{% endblock %}

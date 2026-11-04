@@ -1,0 +1,382 @@
+layout:
+    skip_to_content: Skip to main content
+    error: Something went wrong. Please try again.
+    banner_label: Shop information
+    banner: Free shipping from €60 · Free returns within 30 days
+    menu: Menu
+    close_menu: Close menu
+    home: Home
+    main_nav: Main navigation
+    subcategories_of: 'Show subcategories of %name%'
+    see_all: 'See all: %name%'
+    search_label: Search products
+    search_placeholder: Search…
+    search_submit: Search
+    account: My account
+    cart: Cart
+    breadcrumb: Breadcrumb
+    footer_tagline: Durable products, delivered with care.
+    footer_shop: Shop
+    footer_account: My account
+    footer_service: Customer service
+    reassurance:
+        shipping: Free shipping from €60
+        returns: Free returns within 30 days
+        secure: Secure payment
+flash:
+    success: Success
+    error: Error
+    warning: Warning
+    info: Information
+form:
+    optional: optional
+    error_prefix: 'Error:'
+    error_summary: There is a problem with the form. Please fix the following fields.
+    show_password: Show
+    hide_password: Hide
+    save: Save
+    cancel: Cancel
+pagination:
+    label: Pagination
+    previous: Previous
+    next: Next
+    page: Page
+    page_n: 'Page %page%'
+    page_of: 'Page %page% of %count%'
+price:
+    label: 'Price:'
+    sale: 'Sale price:'
+    regular: 'Regular price:'
+    from: from
+    tax_included: Tax included, shipping calculated at checkout
+    tax_excluded: Excluding tax, tax calculated at checkout
+home:
+    title: Online shop
+    meta_description: '%shop%: durable products, delivered with care. Free shipping from €60.'
+    hero_title: Essentials designed to last
+    hero_text: Responsible materials, made in Europe, fair prices. Free shipping from €60.
+    shop_now: Shop now
+    see_sales: See the sales
+    new_arrivals: New arrivals
+    sales: On sale
+    see_all: See all
+catalog:
+    category_not_found: 'This category does not exist or is no longer available.'
+    all_products: All products
+    search: Search
+    search_results: 'Results for “%query%”'
+    subcategories: Subcategories
+    filters: Filters
+    close_filters: Close filters
+    results: Results
+    count: '{1} 1 product|]1,Inf[ %first%–%last% of %count% products'
+    active_filters: 'Active filters:'
+    remove_filter: (remove this filter)
+    clear_filters: Clear all
+    empty: No product matches your search.
+    empty_help: Try other keywords or remove some filters.
+    sort:
+        label: Sort by
+        submit: Sort
+        relevance: Relevance
+        newest: Newest
+        price_asc: Price, low to high
+        price_desc: Price, high to low
+        name_asc: Name (A → Z)
+    filter:
+        price: Price (€)
+        price_range: 'From %min% to %max%'
+        min: Minimum
+        max: Maximum
+        min_chip: 'From %amount%'
+        max_chip: 'Up to %amount%'
+        availability: Availability
+        in_stock: In stock only
+        on_sale: On sale
+        apply: Apply filters
+product:
+    not_found: 'This product does not exist or is no longer available.'
+    choose_options: 'Choose'
+    offers: Our offers
+    gallery: Image gallery
+    thumbnails: Thumbnails
+    show_image: 'Show image %index% of %count%'
+    gallery_position: 'Image %index% of %count%'
+    sold_out: Sold out
+    discount: '%percent% % off'
+    in_stock: In stock
+    out_of_stock: Sold out
+    low_stock: 'Only %count% left'
+    variant_unavailable: This combination does not exist
+    choose_variant: Choose an option
+    add_to_cart: Add to cart
+    description: Description
+    sku: SKU
+    related: You may also like
+cart:
+    title: Cart
+    close: Close cart
+    empty: Your cart is empty.
+    continue: Continue shopping
+    items: Cart items
+    quantity: Quantity
+    for_product: 'for %product%'
+    decrease: Decrease quantity
+    increase: Increase quantity
+    update: Update
+    remove: Remove
+    unit_price: 'Unit price:'
+    line_total: 'Total:'
+    summary: Order summary
+    subtotal: Subtotal
+    shipping: Shipping
+    shipping_next_step: Calculated at the next step
+    shipping_at_checkout: Shipping calculated at checkout.
+    tax: Tax
+    tax_included: Including tax
+    tax_included_rate: 'Including %rate% VAT'
+    total: Total
+    item_count: '{0} no items|{1} 1 item|]1,Inf[ %count% items'
+    checkout: Checkout
+    view: View cart
+    badge_empty: empty cart
+    badge_one: 1 item
+    badge_many: '%count% items'
+    free_shipping_remaining: 'Only <strong>%amount%</strong> away from free shipping.'
+    free_shipping_remaining_js: 'Only %amount% away from free shipping.'
+    free_shipping_reached: You get free shipping!
+    free_shipping_progress: Progress towards free shipping
+    added: '“%product%” was added to your cart.'
+    updated: 'Quantity of “%product%” updated: %quantity%.'
+    removed: '“%product%” was removed from your cart.'
+    notice:
+        removed: '“%product%” is no longer available and was removed from your cart.'
+        reduced: 'Stock of “%product%” went down: the quantity was reduced to %quantity%.'
+    error:
+        invalid_quantity: The quantity must be at least 1.
+        unavailable: This product is no longer available.
+        out_of_stock: '“%product%” is sold out.'
+        not_enough_stock: 'Only %stock% left of “%product%”.'
+        max_quantity: 'You cannot order more than %max% of the same item.'
+        item_not_found: This item is no longer in your cart.
+checkout:
+    title: Checkout
+    steps: Checkout steps
+    step_done: completed
+    step:
+        address: Details
+        shipping: Shipping and payment
+        review: Review
+    already_customer: Already a customer?
+    login: Log in to check out faster
+    email: E-mail address
+    email_help: To send you the order confirmation and tracking.
+    shipping_address: Shipping address
+    billing_address: Billing address
+    billing_same: Use the same address for billing
+    billing_same_short: Same as the shipping address
+    save_address: Save this address to my address book
+    saved_addresses: My saved addresses
+    choose_saved_address: Choose an address…
+    address_filled: The form was filled in with the chosen address.
+    continue_to_shipping: Continue to shipping
+    continue_to_review: Review my order
+    back_to_cart: Back to cart
+    back_to_address: Back to details
+    back_to_shipping: Back to shipping
+    deliver_to: Deliver to
+    edit: Edit
+    edit_cart: Edit cart
+    shipping_method: Shipping method
+    payment_method: Payment method
+    shipping_and_payment: Shipping and payment
+    contact: Contact
+    note: Order note
+    note_help: Delivery instructions, gift message…
+    free: Free
+    show_summary: Show order summary
+    amount_due: Amount due
+    accept_terms: 'I have read and accept the <a href="%url%" class="astra-link" target="_blank" rel="noopener">terms and conditions<span class="sr-only"> (opens in a new window)</span></a>.'
+    place_order: Place order with obligation to pay
+    error:
+        cart_changed: Your cart was updated (stock or availability). Please check it before ordering.
+        incomplete: Some order information is missing.
+    confirmation:
+        title: Thank you, your order is confirmed!
+        number: 'Order number: <strong>%number%</strong>'
+        email: 'A confirmation was sent to %email%.'
+        next_step: To complete your order
+        create_account: Create an account to track my order
+        track: Track my order
+shipping:
+    standard:
+        label: Standard shipping
+        description: Delivered in 2 to 4 business days. Free from €60.
+    express:
+        label: Express shipping
+        description: Next-day delivery for orders placed before 1 pm.
+payment:
+    bank_transfer:
+        label: Bank transfer
+        description: Your order ships as soon as the transfer is received.
+        instructions: "Please transfer {total} with the reference {number}.\nIBAN: FR76 0000 0000 0000 0000 0000 000 – BIC: XXXXFRPP\nYour order will ship as soon as the payment is received."
+order:
+    not_found: 'This order cannot be found.'
+    title: 'Order %number%'
+    items: Items
+    placed_on: 'Placed on %date%'
+    quantity_price: '%quantity% × %price%'
+    progress: Order tracking
+    status_label: 'Status:'
+    cancel: Cancel order
+    cancel_confirm: Do you really want to cancel this order?
+    status:
+        pending_payment: Awaiting payment
+        paid: Paid
+        processing: Processing
+        shipped: Shipped
+        delivered: Delivered
+        cancelled: Cancelled
+        refunded: Refunded
+address:
+    not_found: 'This address cannot be found.'
+    first_name: First name
+    last_name: Last name
+    company: Company
+    street: Address
+    street2: Address line 2
+    street2_help: Building, floor, door code…
+    postal_code: Postal code
+    city: City
+    country: Country
+    country_placeholder: Choose a country
+    phone: Phone
+    phone_help: Only used by the carrier.
+    label: Address name
+    label_help: 'For example: Home, Office'
+    default: Default address
+    default_title: Default address
+    default_badge: Default
+    none: You have no saved address yet.
+    manage: Manage my addresses
+    add: Add an address
+    edit: Edit
+    delete: Delete
+    delete_confirm: Delete this address?
+    make_default: Make default
+    saved: Address saved.
+    deleted: Address deleted.
+    default_saved: Default address updated.
+account:
+    hello: 'Hello %name%'
+    logout: Log out
+    nav:
+        label: My account
+        dashboard: Dashboard
+        orders: My orders
+        addresses: My addresses
+        profile: My details
+        password: Password
+    recent_orders: Recent orders
+    all_orders: 'See all %count% orders'
+    no_orders: You have not placed any order yet.
+    edit_profile: Edit my details
+    first_name: First name
+    last_name: Last name
+    email: E-mail address
+    phone: Phone
+    password: Password
+    password_help: At least 8 characters. A passphrase is safer and easier to remember.
+    password_too_short: The password must be at least {{ limit }} characters long.
+    current_password: Current password
+    new_password: New password
+    wrong_password: The password is incorrect.
+    change_password: Change password
+    password_changed: Your password was changed.
+    profile_saved: Your details were saved.
+    login_title: Log in
+    login_checkout_intro: Log in to use your saved addresses and track your order.
+    login_submit: Log in
+    remember_me: Keep me logged in on this device
+    forgot_password: Forgot your password?
+    no_account: No account yet?
+    register_link: Create an account
+    continue_as_guest: Continue without an account
+    register_title: Create an account
+    register_submit: Create my account
+    registered: 'Welcome %name%, your account was created.'
+    has_account: Already have an account?
+    login_link: Log in
+    privacy_notice: Your data is only used to manage your orders. You can delete your account at any time.
+    reset_title: Forgot your password
+    reset_intro: Enter your e-mail address and we will send you a link to choose a new password.
+    reset_submit: Send the link
+    reset_sent: If an account exists for this address, an e-mail has just been sent.
+    reset_invalid: This link is no longer valid. Please make a new request.
+    reset_new_title: New password
+    back_to_login: Back to login
+    order_cancelled: 'Order %number% was cancelled.'
+    delete_link: Delete my account
+    delete_title: Delete my account
+    delete_warning_title: This cannot be undone.
+    delete_warning: Your personal details and addresses will be deleted. Your past orders are kept for accounting obligations, without being linked to an account.
+    delete_confirm_password: Confirm with your password
+    delete_submit: Permanently delete my account
+    deleted: Your account was deleted.
+email:
+    footer: 'This e-mail was sent by %shop% following your activity on our shop.'
+    order_confirmation:
+        subject: 'Your order %number% – %shop%'
+        title: Thank you for your order!
+        intro: 'We have received your order %number%. Here is the summary.'
+    order_status:
+        subject: 'Your order %number% was updated'
+        paid: 'We have received the payment for order %number%. We are preparing it.'
+        shipped: 'Good news: your order %number% has shipped.'
+        cancelled: 'Your order %number% was cancelled.'
+        refunded: 'Your order %number% was refunded.'
+    password_reset:
+        subject: Reset your password
+        intro: 'Hello %name%, click the button below to choose a new password. This link is valid for %minutes% minutes.'
+        button: Choose a new password
+        ignore: If you did not request this, simply ignore this e-mail.
+announcement:
+    carousel: carousel
+    slide: announcement
+    list: Announcements
+    position: 'Announcement %index% of %count%'
+    previous: Previous announcement
+    next: Next announcement
+    pause: Pause the announcements rotation
+    dismiss: Hide this announcement
+    dismissed: Announcement hidden.
+    more: Learn more
+coupon:
+    label: Promo code
+    apply: Apply
+    remove: Remove
+    applied_label: 'Promo code applied:'
+    applied: 'The code %code% was applied.'
+    applied_not_best: 'The code %code% is saved, but a better offer that cannot be combined already applies to your cart.'
+    removed: The promo code was removed.
+    free_shipping: Free shipping
+    notice:
+        removed: 'The code %code% no longer applies to your cart and was removed.'
+    error:
+        unknown: This promo code does not exist. Check the spelling.
+        not_started: 'This code will be valid from %date%.'
+        expired: This promo code has expired.
+        usage_limit: This promo code is no longer available (maximum number of uses reached).
+        customer_limit: You have already used this promo code.
+        min_subtotal: 'This code requires a minimum purchase of %minimum%: add %remaining% more.'
+        not_applicable: This code does not apply to any item in your cart.
+        empty_cart: Add an item to your cart before entering a promo code.
+promotion:
+    from_amount: 'from %amount% purchase'
+search:
+    suggestions_label: Search suggestions
+    suggestion: 1 suggestion available, use the arrow keys to browse it.
+    suggestions: '%count% suggestions available, use the arrow keys to browse them.'
+    no_suggestion: No suggestion. Press Enter to search.
+    category: Category
+    see_all: 'See all results for “%query%”'

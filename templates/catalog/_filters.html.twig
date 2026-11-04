@@ -1,0 +1,38 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# Filters form (GET). Rendered twice (sidebar + mobile dialog) with distinct id prefixes. #}
+{% set q = app.request.query %}
+<form method="get" action="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" class="space-y-6" aria-label="{{ 'catalog.filters'|trans }}">
+    {% if q.get('q') %}<input type="hidden" name="q" value="{{ q.get('q') }}">{% endif %}
+    {% if q.get('sort') %}<input type="hidden" name="sort" value="{{ q.get('sort') }}">{% endif %}
+
+    <fieldset>
+        <legend class="text-sm font-semibold text-neutral-900">{{ 'catalog.filter.price'|trans }}</legend>
+        {% if page.priceRange %}<p class="astra-help" id="{{ prefix }}-price-help">{{ 'catalog.filter.price_range'|trans({'%min%': page.priceRange.min|astra_price, '%max%': page.priceRange.max|astra_price}) }}</p>{% endif %}
+        <div class="mt-2 grid grid-cols-2 gap-3">
+            <div>
+                <label for="{{ prefix }}-min" class="astra-label">{{ 'catalog.filter.min'|trans }}</label>
+                <input id="{{ prefix }}-min" name="min" type="number" inputmode="decimal" min="0" step="1" value="{{ q.get('min') }}" class="astra-input" {% if page.priceRange %}aria-describedby="{{ prefix }}-price-help" placeholder="{{ (page.priceRange.min / 100)|round(0, 'floor') }}"{% endif %}>
+            </div>
+            <div>
+                <label for="{{ prefix }}-max" class="astra-label">{{ 'catalog.filter.max'|trans }}</label>
+                <input id="{{ prefix }}-max" name="max" type="number" inputmode="decimal" min="0" step="1" value="{{ q.get('max') }}" class="astra-input" {% if page.priceRange %}aria-describedby="{{ prefix }}-price-help" placeholder="{{ (page.priceRange.max / 100)|round(0, 'ceil') }}"{% endif %}>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend class="text-sm font-semibold text-neutral-900">{{ 'catalog.filter.availability'|trans }}</legend>
+        <div class="mt-2 space-y-1">
+            <label class="flex min-h-11 cursor-pointer items-center gap-3 text-sm">
+                <input type="checkbox" name="in_stock" value="1" class="astra-checkbox" {{ q.getBoolean('in_stock') ? 'checked' }}>
+                {{ 'catalog.filter.in_stock'|trans }}
+            </label>
+            <label class="flex min-h-11 cursor-pointer items-center gap-3 text-sm">
+                <input type="checkbox" name="on_sale" value="1" class="astra-checkbox" {{ q.getBoolean('on_sale') ? 'checked' }}>
+                {{ 'catalog.filter.on_sale'|trans }}
+            </label>
+        </div>
+    </fieldset>
+
+    <button type="submit" class="astra-btn-primary w-full">{{ 'catalog.filter.apply'|trans }}</button>
+</form>

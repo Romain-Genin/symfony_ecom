@@ -1,0 +1,16 @@
+{% extends '@AstraCheckout/account/_auth_layout.html.twig' %}
+{% trans_default_domain 'AstraCheckout' %}
+{% form_theme form '@AstraCheckout/form/theme.html.twig' %}
+{% block title %}{{ 'account.register_title'|trans }} | {{ astra.settings.shopName }}{% endblock %}
+{% block heading %}{{ 'account.register_title'|trans }}{% endblock %}
+{% block content %}
+    {{ include('@AstraCheckout/form/_error_summary.html.twig') }}
+    {{ form_start(form, {attr: {novalidate: 'novalidate', class: 'space-y-5'}}) }}
+        <div class="grid gap-5 sm:grid-cols-2">{{ form_row(form.firstName) }}{{ form_row(form.lastName) }}</div>
+        {{ form_row(form.email) }}
+        {{ form_row(form.plainPassword) }}
+        <p class="text-xs text-neutral-600">{{ 'account.privacy_notice'|trans }}</p>
+        <button type="submit" class="astra-btn-primary astra-btn-lg w-full">{{ 'account.register_submit'|trans }}</button>
+    {{ form_end(form) }}
+{% endblock %}
+{% block after %}<p class="mt-6 text-center text-sm text-neutral-700">{{ 'account.has_account'|trans }} <a href="{{ path('astra_login') }}" class="astra-link">{{ 'account.login_link'|trans }}</a></p>{% endblock %}

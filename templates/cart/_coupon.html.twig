@@ -1,0 +1,26 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# Promo code: plain form (works without JS); the error is linked to the field. #}
+{% set error = coupon_error|default(null) %}
+<div class="mt-6 border-t border-neutral-200 pt-5">
+    {% if cart.couponCode %}
+        <form action="{{ path('astra_cart_coupon_remove') }}" method="post" class="flex items-center justify-between gap-3 rounded-lg bg-white px-3 py-2 text-sm ring-1 ring-neutral-200">
+            <p><span class="sr-only">{{ 'coupon.applied_label'|trans }} </span><span class="font-mono font-semibold tracking-wide">{{ cart.couponCode }}</span></p>
+            <button type="submit" class="inline-flex min-h-11 items-center font-medium text-neutral-700 underline hover:text-danger-700">{{ 'coupon.remove'|trans }}<span class="sr-only"> {{ cart.couponCode }}</span></button>
+        </form>
+    {% else %}
+        <form action="{{ path('astra_cart_coupon') }}" method="post" novalidate>
+            <label for="astra-coupon" class="astra-label">{{ 'coupon.label'|trans }}</label>
+            <div class="mt-1 flex gap-2">
+                <input id="astra-coupon" name="code" type="text" value="{{ coupon_attempt }}" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="50"
+                       class="astra-input mt-0 uppercase" {% if error %}aria-invalid="true" aria-describedby="astra-coupon-error"{% endif %}>
+                <button type="submit" class="astra-btn-secondary shrink-0">{{ 'coupon.apply'|trans }}</button>
+            </div>
+            {% if error %}
+                <p id="astra-coupon-error" class="astra-field-error" role="alert">
+                    <svg aria-hidden="true" class="mt-0.5 size-4 shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+                    <span>{{ error }}</span>
+                </p>
+            {% endif %}
+        </form>
+    {% endif %}
+</div>

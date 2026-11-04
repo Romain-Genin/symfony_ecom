@@ -1,0 +1,11 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# Price with accessible sale semantics. Params: price, compare_at (optional), from (bool), size ('sm'|'lg') #}
+{% set on_sale = compareAt and compareAt > price %}
+<p {{ attributes.defaults({class: 'flex flex-wrap items-baseline gap-x-2 ' ~ (size == 'lg' ? 'text-2xl' : 'text-base')}) }}>
+    {% if on_sale %}
+        <ins class="font-semibold text-danger-700"><span class="sr-only">{{ 'price.sale'|trans }} </span>{% if from %}{{ 'price.from'|trans }} {% endif %}{{ price|astra_price }}</ins>
+        <del class="text-neutral-600 {{ size == 'lg' ? 'text-lg' : 'text-sm' }}"><span class="sr-only">{{ 'price.regular'|trans }} </span>{{ compareAt|astra_price }}</del>
+    {% else %}
+        <span class="font-semibold text-neutral-900"><span class="sr-only">{{ 'price.label'|trans }} </span>{% if from %}{{ 'price.from'|trans }} {% endif %}{{ price|astra_price }}</span>
+    {% endif %}
+</p>

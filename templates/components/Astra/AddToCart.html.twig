@@ -1,0 +1,13 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# <twig:Astra:AddToCart :product="product" class="btn" /> — one-click add for simple products, "choose" link otherwise. #}
+{% if variant %}
+    <form action="{{ path('astra_cart_add') }}" method="post" x-data="addToCart" @submit.prevent="submit($event)">
+        <input type="hidden" name="variant" value="{{ variant.id }}">
+        <button type="submit" {{ attributes.defaults({class: 'astra-btn-primary'}) }} {{ not variant.available ? 'disabled' }} :disabled="busy" :aria-busy="busy.toString()">
+            {{ variant.available ? (label ?? 'product.add_to_cart'|trans) : 'product.out_of_stock'|trans }}<span class="sr-only"> : {{ variant.fullName }}</span>
+        </button>
+        <p x-show="error" x-cloak x-text="error" role="alert" class="astra-field-error"></p>
+    </form>
+{% elseif product %}
+    <a href="{{ astra_path('product', {slug: product.slug}) }}" {{ attributes.defaults({class: 'astra-btn-secondary'}) }}>{{ label ?? 'product.choose_options'|trans }}<span class="sr-only"> : {{ product.name }}</span></a>
+{% endif %}

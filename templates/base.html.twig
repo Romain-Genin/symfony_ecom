@@ -1,0 +1,33 @@
+{% trans_default_domain 'AstraCheckout' %}
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|default('fr')|replace({'_': '-'}) }}" class="no-js h-full scroll-smooth">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ astra.settings.shopName }}{% endblock %}</title>
+    {% block meta %}{% endblock %}
+    <meta name="theme-color" content="#ffffff">
+    {{ astra_head() }}
+    {% block head %}{% endblock %}
+</head>
+<body class="flex min-h-full flex-col">
+    <a href="#main" class="skip-link">{{ 'layout.skip_to_content'|trans }}</a>
+
+
+    {% block header %}
+        {{ include('@AstraCheckout/components/_header.html.twig') }}
+    {% endblock %}
+
+    <main id="main" tabindex="-1" class="flex-1 focus:outline-none">
+        {# Flash messages read the session: pages meant to be cached publicly override this block. #}
+        {% block flashes %}{{ include('@AstraCheckout/components/_flashes.html.twig') }}{% endblock %}
+        {% block body %}{% endblock %}
+    </main>
+
+    {% block footer %}
+        {{ include('@AstraCheckout/components/_footer.html.twig') }}
+    {% endblock %}
+
+    {{ astra_body_end() }}
+</body>
+</html>

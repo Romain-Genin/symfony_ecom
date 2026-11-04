@@ -1,0 +1,38 @@
+{% extends 'site_base.html.twig' %}
+{#- Pages of the existing website, built with the shop blocks. -#}
+{% set r = app.request.attributes.get('_route') %}
+{% block title %}{{ title|default('Mon site') }}{% endblock %}
+{% block body %}
+    {% if r == 'app_home' %}
+        <h1>Accueil du site</h1>
+        <section><h2>Nos nouveautés</h2><twig:Astra:ProductGrid limit="2" class="site-grid" /></section>
+    {% elseif r == 'app_catalog' %}
+        <twig:Astra:ProductList />
+    {% elseif r == 'app_category' %}
+        <twig:Astra:ProductList :category="slug" />
+    {% elseif r == 'app_search' %}
+        <twig:Astra:ProductList search />
+    {% elseif r == 'app_product' %}
+        <twig:Astra:ProductDetail :product="slug" />
+    {% elseif r == 'app_cart' %}
+        <twig:Astra:Cart />
+    {% elseif r == 'app_checkout' %}
+        <twig:Astra:Checkout />
+    {% elseif r == 'app_confirmation' %}
+        <twig:Astra:OrderConfirmation />
+    {% elseif r == 'app_orders' %}
+        <h1>Mes commandes</h1>
+        <twig:Astra:OrderHistory />
+    {% elseif r == 'app_order' %}
+        <h1>Ma commande</h1>
+        <twig:Astra:OrderDetail />
+    {% elseif r == 'app_addresses' %}
+        <h1>Mes adresses</h1>
+        <twig:Astra:AddressBook />
+    {% elseif r in ['app_address_new', 'app_address_edit'] %}
+        <h1>Adresse</h1>
+        <twig:Astra:AddressForm />
+    {% else %}
+        <h1>{{ title }}</h1>
+    {% endif %}
+{% endblock %}

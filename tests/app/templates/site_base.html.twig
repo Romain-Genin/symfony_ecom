@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Mon site{% endblock %}</title>
+    <link rel="stylesheet" href="/build/site-tailwind.css">
+    <script src="/build/alpine.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <a href="/">Mon site</a>
+        <nav class="site-nav">
+            <twig:Astra:CategoryMenu class="site-menu" />
+            <twig:Astra:SearchBox id="site-search" />
+            <twig:Astra:AccountLink :icon="false" />
+            <twig:Astra:CartButton class="site-nav-link" />
+        </nav>
+    </header>
+    <main id="main">{% block body %}{% endblock %}</main>
+    <footer>Pied de page du site</footer>
+</body>
+</html>

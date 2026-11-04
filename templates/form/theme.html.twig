@@ -1,0 +1,168 @@
+{% use 'form_div_layout.html.twig' %}
+
+{# Accessible Tailwind form theme: errors and help are linked to the field (aria-describedby),
+   invalid fields carry aria-invalid, optional fields are marked "(optional)" in the label,
+   radio/checkbox groups are fieldsets with a legend. #}
+
+{%- block form_row -%}
+    {%- set row_attr = row_attr|merge({class: (row_attr.class|default('') ~ ' astra-row')|trim}) -%}
+    <div{% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
+        {{- form_label(form) -}}
+        {{- form_help(form) -}}
+        {{- form_widget(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock form_row -%}
+
+{%- block form_label -%}
+    {%- if label is not same as(false) -%}
+        {%- if compound and not (expanded|default(false)) -%}
+            {# Compound forms (address…) get a legend from fieldset_row instead. #}
+        {%- else -%}
+            {%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' astra-label')|trim}) -%}
+            {%- if not compound -%}{% set label_attr = label_attr|merge({for: id}) %}{%- endif -%}
+            {%- if label is empty -%}{%- set label = name|humanize -%}{%- endif -%}
+            <label{% with {attr: label_attr} %}{{ block('attributes') }}{% endwith %}>
+                {{- block('form_label_content') -}}
+                {%- if not required %} <span class="astra-optional">({{ 'form.optional'|trans({}, 'AstraCheckout') }})</span>{% endif -%}
+            </label>
+        {%- endif -%}
+    {%- endif -%}
+{%- endblock form_label -%}
+
+{%- block form_help -%}
+    {%- if help is not empty -%}
+        <p id="{{ id }}_help" class="astra-help">{{- block('form_help_content') -}}</p>
+    {%- endif -%}
+{%- endblock form_help -%}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+        <div id="{{ id }}_errors" class="astra-field-error">
+            <svg aria-hidden="true" class="mt-0.5 size-4 shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+            <div><span class="sr-only">{{ 'form.error_prefix'|trans({}, 'AstraCheckout') }} </span>{%- for error in errors -%}<span class="block">{{ error.message }}</span>{%- endfor -%}</div>
+        </div>
+    {%- endif -%}
+{%- endblock form_errors -%}
+
+{%- block widget_attributes -%}
+    {%- set describedby = [] -%}
+    {%- if help is not empty %}{% set describedby = describedby|merge([id ~ '_help']) %}{% endif -%}
+    {%- if errors|length > 0 %}{% set describedby = describedby|merge([id ~ '_errors']) %}{% endif -%}
+    {%- if attr['aria-describedby'] is defined %}{% set describedby = describedby|merge([attr['aria-describedby']]) %}{% endif -%}
+    {%- set attr = attr|filter((v, k) => k != 'aria-describedby') -%}
+    id="{{ id }}" name="{{ full_name }}"
+    {%- if disabled %} disabled="disabled"{% endif -%}
+    {%- if required %} required="required"{% endif -%}
+    {%- if errors|length > 0 %} aria-invalid="true"{% endif -%}
+    {%- if describedby is not empty %} aria-describedby="{{ describedby|join(' ') }}"{% endif -%}
+    {{ block('attributes') }}
+{%- endblock widget_attributes -%}
+
+{%- block form_widget_simple -%}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' astra-input')|trim}) -%}
+    {%- if attr['data-password-toggle'] is defined -%}
+        {%- set attr = attr|filter((v, k) => k != 'data-password-toggle') -%}
+        <div class="relative" x-data="passwordToggle">
+            {{- parent() -}}
+            <button type="button" class="js-only absolute inset-y-0 right-0 mt-1 inline-flex items-center rounded-r-lg px-3 text-sm font-medium text-accent-700" @click="toggle()" :aria-pressed="visible.toString()" aria-pressed="false" aria-controls="{{ id }}">
+                <span x-text="visible ? '{{ 'form.hide_password'|trans({}, 'AstraCheckout')|e('js') }}' : '{{ 'form.show_password'|trans({}, 'AstraCheckout')|e('js') }}'">{{ 'form.show_password'|trans({}, 'AstraCheckout') }}</span>
+            </button>
+        </div>
+    {%- else -%}
+        {{- parent() -}}
+    {%- endif -%}
+{%- endblock form_widget_simple -%}
+
+{%- block textarea_widget -%}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' astra-input')|trim}) -%}
+    {{- parent() -}}
+{%- endblock textarea_widget -%}
+
+{%- block choice_widget_collapsed -%}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' astra-select')|trim}) -%}
+    {{- parent() -}}
+{%- endblock choice_widget_collapsed -%}
+
+{%- block checkbox_widget -%}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' astra-checkbox')|trim}) -%}
+    {{- parent() -}}
+{%- endblock checkbox_widget -%}
+
+{%- block radio_widget -%}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' astra-checkbox rounded-full')|trim}) -%}
+    {{- parent() -}}
+{%- endblock radio_widget -%}
+
+{%- block checkbox_row -%}
+    <div class="astra-row">
+        <div class="flex items-start gap-3">
+            <div class="flex min-h-6 items-center">{{- form_widget(form) -}}</div>
+            {%- set label_attr = label_attr|merge({for: id, class: 'text-sm text-neutral-900'}) -%}
+            <label{% with {attr: label_attr} %}{{ block('attributes') }}{% endwith %}>{{- block('form_label_content') -}}</label>
+        </div>
+        {{- form_help(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock checkbox_row -%}
+
+{# Expanded choices and compound types: fieldset + legend (WCAG 1.3.1). #}
+{%- block choice_row -%}
+    {%- if expanded -%}
+        {{- block('fieldset_row') -}}
+    {%- else -%}
+        {{- block('form_row') -}}
+    {%- endif -%}
+{%- endblock choice_row -%}
+
+{%- block fieldset_row -%}
+    <fieldset class="astra-row" {% if help is not empty or errors|length > 0 %}aria-describedby="{{ help is not empty ? id ~ '_help' }} {{ errors|length > 0 ? id ~ '_errors' }}"{% endif %}>
+        {%- if label is not same as(false) -%}
+            <legend class="mb-2 text-base font-semibold text-neutral-900">{{- block('form_label_content') -}}</legend>
+        {%- endif -%}
+        {{- form_help(form) -}}
+        {{- form_errors(form) -}}
+        {{- form_widget(form) -}}
+    </fieldset>
+{%- endblock fieldset_row -%}
+
+{%- block choice_widget_expanded -%}
+    <div class="space-y-2" id="{{ id }}">
+        {%- for child in form %}
+            <label class="flex min-h-11 cursor-pointer items-center gap-3 text-sm" for="{{ child.vars.id }}">
+                {{- form_widget(child) -}}
+                <span>{{ child.vars.label|trans(child.vars.label_translation_parameters, choice_translation_domain) }}</span>
+            </label>
+        {% endfor -%}
+    </div>
+{%- endblock choice_widget_expanded -%}
+
+{%- block postal_address_row -%}
+    {%- if label is same as(false) -%}
+        <div class="astra-row">{{- form_errors(form) -}}{{- form_widget(form) -}}</div>
+    {%- else -%}
+        {{- block('fieldset_row') -}}
+    {%- endif -%}
+{%- endblock postal_address_row -%}
+
+{%- block postal_address_widget -%}
+    <div class="grid gap-x-4 gap-y-4 sm:grid-cols-2">
+        {{ form_row(form.firstName) }}
+        {{ form_row(form.lastName) }}
+        {{ form_row(form.company, {row_attr: {class: 'sm:col-span-2'}}) }}
+        {{ form_row(form.street, {row_attr: {class: 'sm:col-span-2'}}) }}
+        {{ form_row(form.street2, {row_attr: {class: 'sm:col-span-2'}}) }}
+        {{ form_row(form.postalCode) }}
+        {{ form_row(form.city) }}
+        {{ form_row(form.countryCode) }}
+        {{ form_row(form.phone) }}
+    </div>
+{%- endblock postal_address_widget -%}
+
+{%- block form_widget_compound -%}
+    <div {{ block('widget_container_attributes') }} class="space-y-4">
+        {%- if form is rootform -%}{{ form_errors(form) }}{%- endif -%}
+        {{- block('form_rows') -}}
+        {{- form_rest(form) -}}
+    </div>
+{%- endblock form_widget_compound -%}

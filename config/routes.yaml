@@ -1,0 +1,10 @@
+# Import from your application (config/routes/astra_checkout.yaml), without prefix:
+#
+#   astra_checkout:
+#       resource: '@AstraCheckoutBundle/config/routes.yaml'
+#
+# Paths are set in astra_checkout.routing (e.g. /produits, /panier), the shop home page on "/"
+# can be disabled, and the account pages your site already has are not registered.
+astra_checkout_routes:
+    resource: .
+    type: astra_checkout

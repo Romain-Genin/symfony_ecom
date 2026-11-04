@@ -1,0 +1,24 @@
+{% trans_default_domain 'AstraCheckout' %}
+{# Shop configuration, mini-cart and live region, before </body>. Injected automatically on shop pages (or call {{ astra_body_end() }}). #}
+<script type="application/json" id="astra-config">{{ {
+    summaryUrl: path('astra_cart_summary'),
+    i18n: {
+        'error': 'layout.error'|trans,
+        'cart.empty_label': 'cart.badge_empty'|trans,
+        'cart.count_label': 'cart.badge_one'|trans,
+        'cart.count_label_plural': 'cart.badge_many'|trans,
+        'variant.unavailable': 'product.variant_unavailable'|trans,
+        'stock.in': 'product.in_stock'|trans,
+        'stock.out': 'product.out_of_stock'|trans,
+        'stock.low': 'product.low_stock'|trans,
+        'gallery.position': 'product.gallery_position'|trans,
+        'address.filled': 'checkout.address_filled'|trans,
+        'announcement.dismissed': 'announcement.dismissed'|trans,
+        'search.suggestion': 'search.suggestion'|trans,
+        'search.suggestions': 'search.suggestions'|trans,
+        'search.no_suggestion': 'search.no_suggestion'|trans,
+    },
+}|json_encode(constant('JSON_HEX_TAG') b-or constant('JSON_HEX_AMP') b-or constant('JSON_UNESCAPED_UNICODE'))|raw }}</script>
+<twig:Astra:MiniCart />
+{# Single polite live region for every dynamic update (cart, variant, gallery…). #}
+<div x-data aria-live="polite" aria-atomic="true" class="sr-only" x-text="$store.announcer.message"></div>
