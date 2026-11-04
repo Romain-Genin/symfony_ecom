@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Customer;
+namespace RomainGenin\AstraCheckoutBundle\Customer;
 
 /**
  * Optional: implement it on your own user entity to control what the shop displays.

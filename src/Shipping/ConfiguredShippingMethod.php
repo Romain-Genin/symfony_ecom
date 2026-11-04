@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Shipping;
+namespace RomainGenin\AstraCheckoutBundle\Shipping;
 
-use StudioAstra\AstraCheckoutBundle\Entity\Cart;
+use RomainGenin\AstraCheckoutBundle\Entity\Cart;
 
 /** Flat-rate method defined in astra_checkout.shipping.methods. */
 final class ConfiguredShippingMethod implements ShippingMethodInterface

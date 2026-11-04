@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Entity;
+namespace RomainGenin\AstraCheckoutBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use StudioAstra\AstraCheckoutBundle\Enum\PromotionType;
-use StudioAstra\AstraCheckoutBundle\Repository\PromotionRepository;
+use RomainGenin\AstraCheckoutBundle\Enum\PromotionType;
+use RomainGenin\AstraCheckoutBundle\Repository\PromotionRepository;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 

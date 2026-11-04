@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Presentation;
+namespace RomainGenin\AstraCheckoutBundle\Presentation;
 
-use StudioAstra\AstraCheckoutBundle\Catalog\ProductListCriteria;
-use StudioAstra\AstraCheckoutBundle\Catalog\ProductPage;
-use StudioAstra\AstraCheckoutBundle\Entity\Category;
+use RomainGenin\AstraCheckoutBundle\Catalog\ProductListCriteria;
+use RomainGenin\AstraCheckoutBundle\Catalog\ProductPage;
+use RomainGenin\AstraCheckoutBundle\Entity\Category;
 
 /** Everything a product listing block displays. */
 final class ListingView

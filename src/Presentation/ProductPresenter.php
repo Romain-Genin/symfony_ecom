@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Presentation;
+namespace RomainGenin\AstraCheckoutBundle\Presentation;
 
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
-use StudioAstra\AstraCheckoutBundle\Entity\ProductVariant;
-use StudioAstra\AstraCheckoutBundle\Pricing\MoneyFormatter;
-use StudioAstra\AstraCheckoutBundle\Promotion\PromotionProvider;
-use StudioAstra\AstraCheckoutBundle\Repository\ProductRepository;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Entity\ProductVariant;
+use RomainGenin\AstraCheckoutBundle\Pricing\MoneyFormatter;
+use RomainGenin\AstraCheckoutBundle\Promotion\PromotionProvider;
+use RomainGenin\AstraCheckoutBundle\Repository\ProductRepository;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -71,7 +71,7 @@ final class ProductPresenter
         return $out;
     }
 
-    /** @return list<\StudioAstra\AstraCheckoutBundle\Entity\Promotion> automatic promotions advertised on this product */
+    /** @return list<\RomainGenin\AstraCheckoutBundle\Entity\Promotion> automatic promotions advertised on this product */
     public function promotions(Product $product): array
     {
         return $this->promotions->forProduct($product);

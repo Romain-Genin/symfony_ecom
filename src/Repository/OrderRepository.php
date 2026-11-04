@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Repository;
+namespace RomainGenin\AstraCheckoutBundle\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use StudioAstra\AstraCheckoutBundle\Entity\Order;
+use RomainGenin\AstraCheckoutBundle\Entity\Order;
 
 /**
  * @extends ServiceEntityRepository<Order>
@@ -40,7 +40,7 @@ class OrderRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('o')->select('COUNT(o.id)')
             ->where('o.couponCode = :code')->setParameter('code', $code)
-            ->andWhere('o.status != :cancelled')->setParameter('cancelled', \StudioAstra\AstraCheckoutBundle\Enum\OrderStatus::Cancelled);
+            ->andWhere('o.status != :cancelled')->setParameter('cancelled', \RomainGenin\AstraCheckoutBundle\Enum\OrderStatus::Cancelled);
         $or = [];
         if (null !== $customer) {
             $or[] = 'o.customer = :customer';

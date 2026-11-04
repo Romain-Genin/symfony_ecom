@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\EventListener;
+namespace RomainGenin\AstraCheckoutBundle\EventListener;
 
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Events;
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
-use StudioAstra\AstraCheckoutBundle\Entity\ProductVariant;
-use StudioAstra\AstraCheckoutBundle\Search\ProductDocumentFactory;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Entity\ProductVariant;
+use RomainGenin\AstraCheckoutBundle\Search\ProductDocumentFactory;
 
 /**
  * Keeps Product::searchText in sync in the same flush (no extra query when searching).

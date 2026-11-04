@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Form;
+namespace RomainGenin\AstraCheckoutBundle\Form;
 
 use Symfony\Component\Validator\Constraints as Assert;
 

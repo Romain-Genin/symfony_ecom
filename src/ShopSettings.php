@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle;
+namespace RomainGenin\AstraCheckoutBundle;
 
 /**
  * Resolved "astra_checkout" configuration, injectable anywhere (and exposed to Twig as "astra.settings").

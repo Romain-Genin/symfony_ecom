@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Announcement;
+namespace RomainGenin\AstraCheckoutBundle\Announcement;
 
 /** Cache-friendly, read-only copy of an Announcement for the templates. */
 final class AnnouncementView

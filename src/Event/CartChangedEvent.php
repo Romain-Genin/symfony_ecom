@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Event;
+namespace RomainGenin\AstraCheckoutBundle\Event;
 
-use StudioAstra\AstraCheckoutBundle\Entity\Cart;
+use RomainGenin\AstraCheckoutBundle\Entity\Cart;
 
 /** Dispatched after an item is added, updated or removed (analytics, recommendations…). */
 final class CartChangedEvent

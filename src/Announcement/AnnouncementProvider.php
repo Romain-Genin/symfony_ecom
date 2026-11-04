@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Announcement;
+namespace RomainGenin\AstraCheckoutBundle\Announcement;
 
 use Psr\Clock\ClockInterface;
-use StudioAstra\AstraCheckoutBundle\Entity\Announcement;
-use StudioAstra\AstraCheckoutBundle\Enum\AnnouncementPlacement;
-use StudioAstra\AstraCheckoutBundle\Promotion\PromotionProvider;
-use StudioAstra\AstraCheckoutBundle\Repository\AnnouncementRepository;
-use StudioAstra\AstraCheckoutBundle\Repository\PromotionRepository;
+use RomainGenin\AstraCheckoutBundle\Entity\Announcement;
+use RomainGenin\AstraCheckoutBundle\Enum\AnnouncementPlacement;
+use RomainGenin\AstraCheckoutBundle\Promotion\PromotionProvider;
+use RomainGenin\AstraCheckoutBundle\Repository\AnnouncementRepository;
+use RomainGenin\AstraCheckoutBundle\Repository\PromotionRepository;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\Service\ResetInterface;

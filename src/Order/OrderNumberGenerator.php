@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Order;
+namespace RomainGenin\AstraCheckoutBundle\Order;
 
-use StudioAstra\AstraCheckoutBundle\Repository\OrderRepository;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Repository\OrderRepository;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 
 /**
  * "AS-261104-7KQ4M2": readable over the phone (no 0/O, 1/I/L), not guessable, not revealing the sales volume.

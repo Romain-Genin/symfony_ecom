@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Exception;
+namespace RomainGenin\AstraCheckoutBundle\Exception;
 
 /** Business error shown to the visitor; the message is a translation key of the AstraCheckout domain. */
 class CartException extends \DomainException

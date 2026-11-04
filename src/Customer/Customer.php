@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Customer;
+namespace RomainGenin\AstraCheckoutBundle\Customer;
 
 use Doctrine\ORM\Mapping as ORM;
-use StudioAstra\AstraCheckoutBundle\Repository\CustomerRepository;
+use RomainGenin\AstraCheckoutBundle\Repository\CustomerRepository;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;

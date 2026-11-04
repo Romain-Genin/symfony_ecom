@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Entity;
+namespace RomainGenin\AstraCheckoutBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

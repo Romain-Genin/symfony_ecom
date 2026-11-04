@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Http;
+namespace RomainGenin\AstraCheckoutBundle\Http;
 
-use StudioAstra\AstraCheckoutBundle\Announcement\AnnouncementProvider;
-use StudioAstra\AstraCheckoutBundle\Promotion\PromotionProvider;
+use RomainGenin\AstraCheckoutBundle\Announcement\AnnouncementProvider;
+use RomainGenin\AstraCheckoutBundle\Promotion\PromotionProvider;
 
 /**
  * Part of every catalog ETag: a cached page is invalidated when a promotion or an announcement

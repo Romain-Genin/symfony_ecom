@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\EventListener;
+namespace RomainGenin\AstraCheckoutBundle\EventListener;
 
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
@@ -21,7 +21,7 @@ final class IntegrationInjector
     public function __construct(
         private readonly ShopSettings $settings,
         private readonly Environment $twig,
-        private readonly ?\StudioAstra\AstraCheckoutBundle\Twig\ComponentUsageTracker $blocks = null,
+        private readonly ?\RomainGenin\AstraCheckoutBundle\Twig\ComponentUsageTracker $blocks = null,
     ) {
     }
 

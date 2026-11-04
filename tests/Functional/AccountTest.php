@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Tests\Functional;
+namespace RomainGenin\AstraCheckoutBundle\Tests\Functional;
 
-use StudioAstra\AstraCheckoutBundle\Customer\Customer;
-use StudioAstra\AstraCheckoutBundle\Entity\Order;
+use RomainGenin\AstraCheckoutBundle\Customer\Customer;
+use RomainGenin\AstraCheckoutBundle\Entity\Order;
 
 final class AccountTest extends ShopTestCase
 {

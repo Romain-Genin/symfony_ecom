@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Search;
+namespace RomainGenin\AstraCheckoutBundle\Search;
 
-use StudioAstra\AstraCheckoutBundle\Catalog\ProductListCriteria;
-use StudioAstra\AstraCheckoutBundle\Catalog\ProductPage;
-use StudioAstra\AstraCheckoutBundle\Repository\ProductRepository;
+use RomainGenin\AstraCheckoutBundle\Catalog\ProductListCriteria;
+use RomainGenin\AstraCheckoutBundle\Catalog\ProductPage;
+use RomainGenin\AstraCheckoutBundle\Repository\ProductRepository;
 
 /**
  * Search in SQL on a pre-normalized column (accents, case, plurals, compound words, SKUs,

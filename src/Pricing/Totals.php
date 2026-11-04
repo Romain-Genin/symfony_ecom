@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Pricing;
+namespace RomainGenin\AstraCheckoutBundle\Pricing;
 
-use StudioAstra\AstraCheckoutBundle\Promotion\AppliedPromotions;
+use RomainGenin\AstraCheckoutBundle\Promotion\AppliedPromotions;
 
 /** Totals of a cart, in minor units. */
 final class Totals

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Enum;
+namespace RomainGenin\AstraCheckoutBundle\Enum;
 
 enum PromotionType: string
 {

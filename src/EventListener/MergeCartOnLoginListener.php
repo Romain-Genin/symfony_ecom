@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\EventListener;
+namespace RomainGenin\AstraCheckoutBundle\EventListener;
 
-use StudioAstra\AstraCheckoutBundle\Cart\CartContext;
-use StudioAstra\AstraCheckoutBundle\Cart\CartManager;
-use StudioAstra\AstraCheckoutBundle\Customer\CustomerInfo;
+use RomainGenin\AstraCheckoutBundle\Cart\CartContext;
+use RomainGenin\AstraCheckoutBundle\Cart\CartManager;
+use RomainGenin\AstraCheckoutBundle\Customer\CustomerInfo;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\Security\Http\Event\LoginSuccessEvent;
 

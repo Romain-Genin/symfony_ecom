@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Search\Meilisearch;
+namespace RomainGenin\AstraCheckoutBundle\Search\Meilisearch;
 
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
-use StudioAstra\AstraCheckoutBundle\Search\ProductDocumentFactory;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Search\ProductDocumentFactory;
 
 /** Product index: settings, upserts, deletions. */
 final class MeilisearchIndex

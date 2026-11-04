@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Controller\Account;
+namespace RomainGenin\AstraCheckoutBundle\Controller\Account;
 
 use Doctrine\ORM\EntityManagerInterface;
-use StudioAstra\AstraCheckoutBundle\Cart\CartContext;
-use StudioAstra\AstraCheckoutBundle\Cart\CartManager;
-use StudioAstra\AstraCheckoutBundle\Customer\Customer;
-use StudioAstra\AstraCheckoutBundle\Form\RegistrationType;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Cart\CartContext;
+use RomainGenin\AstraCheckoutBundle\Cart\CartManager;
+use RomainGenin\AstraCheckoutBundle\Customer\Customer;
+use RomainGenin\AstraCheckoutBundle\Form\RegistrationType;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;

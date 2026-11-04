@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Twig\Components;
+namespace RomainGenin\AstraCheckoutBundle\Twig\Components;
 
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
-use StudioAstra\AstraCheckoutBundle\Http\PageResponse;
-use StudioAstra\AstraCheckoutBundle\Presentation\ProductPresenter;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Http\PageResponse;
+use RomainGenin\AstraCheckoutBundle\Presentation\ProductPresenter;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 use Symfony\UX\TwigComponent\Attribute\PostMount;
 
@@ -41,7 +41,7 @@ final class ProductDetail
         }
     }
 
-    public function getSelectedVariant(): ?\StudioAstra\AstraCheckoutBundle\Entity\ProductVariant
+    public function getSelectedVariant(): ?\RomainGenin\AstraCheckoutBundle\Entity\ProductVariant
     {
         return $this->product instanceof Product ? $this->presenter->selectedVariant($this->product) : null;
     }

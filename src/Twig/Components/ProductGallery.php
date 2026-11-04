@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Twig\Components;
+namespace RomainGenin\AstraCheckoutBundle\Twig\Components;
 
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
 /** <twig:Astra:ProductGallery :product="product" /> — main image + keyboard-friendly thumbnails. */

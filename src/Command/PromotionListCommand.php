@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Command;
+namespace RomainGenin\AstraCheckoutBundle\Command;
 
 use Psr\Clock\ClockInterface;
-use StudioAstra\AstraCheckoutBundle\Entity\Promotion;
-use StudioAstra\AstraCheckoutBundle\Enum\PromotionType;
-use StudioAstra\AstraCheckoutBundle\Repository\PromotionRepository;
+use RomainGenin\AstraCheckoutBundle\Entity\Promotion;
+use RomainGenin\AstraCheckoutBundle\Enum\PromotionType;
+use RomainGenin\AstraCheckoutBundle\Repository\PromotionRepository;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

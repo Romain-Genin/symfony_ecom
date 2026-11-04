@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Exception;
+namespace RomainGenin\AstraCheckoutBundle\Exception;
 
 final class CheckoutException extends CartException
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Entity;
+namespace RomainGenin\AstraCheckoutBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use StudioAstra\AstraCheckoutBundle\Customer\CustomerInterface;
-use StudioAstra\AstraCheckoutBundle\Repository\AddressRepository;
+use RomainGenin\AstraCheckoutBundle\Customer\CustomerInterface;
+use RomainGenin\AstraCheckoutBundle\Repository\AddressRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /** Entry of a customer's address book. */

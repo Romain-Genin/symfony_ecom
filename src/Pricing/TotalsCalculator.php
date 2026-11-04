@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Pricing;
+namespace RomainGenin\AstraCheckoutBundle\Pricing;
 
-use StudioAstra\AstraCheckoutBundle\Entity\Cart;
-use StudioAstra\AstraCheckoutBundle\Promotion\PromotionCalculator;
-use StudioAstra\AstraCheckoutBundle\Shipping\ShippingMethodRegistry;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Entity\Cart;
+use RomainGenin\AstraCheckoutBundle\Promotion\PromotionCalculator;
+use RomainGenin\AstraCheckoutBundle\Shipping\ShippingMethodRegistry;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 
 /**
  * Computes cart totals. Promotions are allocated per line first, then taxes are computed per

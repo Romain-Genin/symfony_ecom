@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\EventListener;
+namespace RomainGenin\AstraCheckoutBundle\EventListener;
 
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Events;
-use StudioAstra\AstraCheckoutBundle\Announcement\AnnouncementProvider;
-use StudioAstra\AstraCheckoutBundle\Entity\Announcement;
-use StudioAstra\AstraCheckoutBundle\Entity\Category;
-use StudioAstra\AstraCheckoutBundle\Entity\Promotion;
-use StudioAstra\AstraCheckoutBundle\Promotion\PromotionProvider;
-use StudioAstra\AstraCheckoutBundle\Twig\AstraCheckoutExtension;
+use RomainGenin\AstraCheckoutBundle\Announcement\AnnouncementProvider;
+use RomainGenin\AstraCheckoutBundle\Entity\Announcement;
+use RomainGenin\AstraCheckoutBundle\Entity\Category;
+use RomainGenin\AstraCheckoutBundle\Entity\Promotion;
+use RomainGenin\AstraCheckoutBundle\Promotion\PromotionProvider;
+use RomainGenin\AstraCheckoutBundle\Twig\AstraCheckoutExtension;
 use Symfony\Contracts\Cache\CacheInterface;
 
 /** Drops the cached menu / promotions / announcements as soon as one of them changes. */

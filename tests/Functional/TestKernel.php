@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Tests\Functional;
+namespace RomainGenin\AstraCheckoutBundle\Tests\Functional;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
-use StudioAstra\AstraCheckoutBundle\AstraCheckoutBundle;
-use StudioAstra\AstraCheckoutBundle\Customer\Customer;
-use StudioAstra\AstraCheckoutBundle\Tests\Functional\App\User;
+use RomainGenin\AstraCheckoutBundle\AstraCheckoutBundle;
+use RomainGenin\AstraCheckoutBundle\Customer\Customer;
+use RomainGenin\AstraCheckoutBundle\Tests\Functional\App\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
@@ -74,14 +74,16 @@ final class TestKernel extends Kernel
         $container->extension('twig_component', ['anonymous_template_directory' => 'components/', 'defaults' => ['App\\Twig\\Components\\' => 'components/']]);
         // TwigBundle only wires TemplatedEmail rendering when symfony/mailer is a non-dev dependency.
         $container->import(\dirname(__DIR__, 2) . '/vendor/symfony/twig-bundle/Resources/config/mailer.php');
+        $doctrine2 = version_compare((string) \Composer\InstalledVersions::getVersion('doctrine/doctrine-bundle'), '3.0', '<');
         $container->extension('doctrine', [
             'dbal' => ['url' => 'sqlite:///' . \dirname(__DIR__) . '/var/' . $this->environment . '/shop.sqlite'],
             'orm' => array_filter([
                 'auto_mapping' => true,
-                'mappings' => $host ? ['App' => ['type' => 'attribute', 'is_bundle' => false, 'dir' => __DIR__ . '/App', 'prefix' => 'StudioAstra\\AstraCheckoutBundle\\Tests\\Functional\\App']] : null,
+                'mappings' => $host ? ['App' => ['type' => 'attribute', 'is_bundle' => false, 'dir' => __DIR__ . '/App', 'prefix' => 'RomainGenin\\AstraCheckoutBundle\\Tests\\Functional\\App']] : null,
                 'enable_lazy_ghost_objects' => \PHP_VERSION_ID < 80400 ? true : null,
-                'report_fields_where_declared' => true,
-                'controller_resolver' => ['auto_mapping' => false],
+                // DoctrineBundle 2 only (opt-in to the 3.0 behaviour); the options are gone in 3.x.
+                'report_fields_where_declared' => $doctrine2 ? true : null,
+                'controller_resolver' => $doctrine2 ? ['auto_mapping' => false] : null,
             ], static fn ($v) => null !== $v),
         ]);
         if ($host) {

@@ -2,7 +2,7 @@
 
 // Local preview of the bundle: php -S 127.0.0.1:8000 -t tests/app/public tests/app/public/index.php
 
-use StudioAstra\AstraCheckoutBundle\Tests\Functional\TestKernel;
+use RomainGenin\AstraCheckoutBundle\Tests\Functional\TestKernel;
 use Symfony\Component\HttpFoundation\Request;
 
 if (\PHP_SAPI === 'cli-server' && is_file(__DIR__ . parse_url($_SERVER['REQUEST_URI'], \PHP_URL_PATH))) {

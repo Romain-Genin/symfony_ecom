@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Controller;
+namespace RomainGenin\AstraCheckoutBundle\Controller;
 
-use StudioAstra\AstraCheckoutBundle\Cart\CartContext;
-use StudioAstra\AstraCheckoutBundle\Cart\CartManager;
-use StudioAstra\AstraCheckoutBundle\Entity\Cart;
-use StudioAstra\AstraCheckoutBundle\Exception\CartException;
-use StudioAstra\AstraCheckoutBundle\Http\SameOriginGuard;
-use StudioAstra\AstraCheckoutBundle\Pricing\MoneyFormatter;
-use StudioAstra\AstraCheckoutBundle\Pricing\TotalsCalculator;
-use StudioAstra\AstraCheckoutBundle\Repository\ProductVariantRepository;
-use StudioAstra\AstraCheckoutBundle\Shipping\ShippingMethodRegistry;
+use RomainGenin\AstraCheckoutBundle\Cart\CartContext;
+use RomainGenin\AstraCheckoutBundle\Cart\CartManager;
+use RomainGenin\AstraCheckoutBundle\Entity\Cart;
+use RomainGenin\AstraCheckoutBundle\Exception\CartException;
+use RomainGenin\AstraCheckoutBundle\Http\SameOriginGuard;
+use RomainGenin\AstraCheckoutBundle\Pricing\MoneyFormatter;
+use RomainGenin\AstraCheckoutBundle\Pricing\TotalsCalculator;
+use RomainGenin\AstraCheckoutBundle\Repository\ProductVariantRepository;
+use RomainGenin\AstraCheckoutBundle\Shipping\ShippingMethodRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -37,9 +37,9 @@ final class CartController extends AbstractController
         private readonly SameOriginGuard $origin,
         private readonly TranslatorInterface $translator,
         private readonly Packages $packages,
-        private readonly \StudioAstra\AstraCheckoutBundle\Presentation\CartPresenter $presenter,
-        private readonly \StudioAstra\AstraCheckoutBundle\Routing\ShopUrls $urls,
-        private readonly \StudioAstra\AstraCheckoutBundle\Customer\CustomerInfo $customers,
+        private readonly \RomainGenin\AstraCheckoutBundle\Presentation\CartPresenter $presenter,
+        private readonly \RomainGenin\AstraCheckoutBundle\Routing\ShopUrls $urls,
+        private readonly \RomainGenin\AstraCheckoutBundle\Customer\CustomerInfo $customers,
     ) {
     }
 

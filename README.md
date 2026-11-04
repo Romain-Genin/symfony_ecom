@@ -47,14 +47,18 @@ variantes, panier, tunnel de commande, compte client et commandes. Le front est 
 ## Installation
 
 ```bash
-composer require studioastra/astra-checkout-bundle
+composer require romain-genin/symfony-ecom
 ```
+
+> Site existant avec ses propres comptes et son gabarit (par exemple
+> [`romain-genin/symfony-starter`](https://packagist.org/packages/romain-genin/symfony-starter)) :
+> voir [Exemple : brancher la boutique sur un site existant](#exemple--brancher-la-boutique-sur-un-site-existant).
 
 Avec Symfony Flex, le bundle est enregistré automatiquement. Sinon, dans `config/bundles.php` :
 
 ```php
 Symfony\UX\TwigComponent\TwigComponentBundle::class => ['all' => true],   // dépendance : les blocs <twig:Astra:… />
-StudioAstra\AstraCheckoutBundle\AstraCheckoutBundle::class => ['all' => true],
+RomainGenin\AstraCheckoutBundle\AstraCheckoutBundle::class => ['all' => true],
 ```
 
 ### 1. Routes
@@ -91,10 +95,10 @@ votre contrôle. Dans `config/packages/security.yaml` :
 ```yaml
 security:
     password_hashers:
-        StudioAstra\AstraCheckoutBundle\Customer\Customer: auto
+        RomainGenin\AstraCheckoutBundle\Customer\Customer: auto
     providers:
         astra_customers:
-            entity: { class: StudioAstra\AstraCheckoutBundle\Customer\Customer, property: email }
+            entity: { class: RomainGenin\AstraCheckoutBundle\Customer\Customer, property: email }
     firewalls:
         main:
             lazy: true                       # indispensable pour que les pages catalogue restent cachables
@@ -162,7 +166,7 @@ astra_checkout:
     layout: '@AstraCheckout/base.html.twig'   # gabarit étendu par toutes les pages de la boutique (le vôtre : 'base.html.twig')
 
     customer:
-        class: StudioAstra\AstraCheckoutBundle\Customer\Customer   # votre entité, ex. App\Entity\User
+        class: RomainGenin\AstraCheckoutBundle\Customer\Customer   # votre entité, ex. App\Entity\User
         properties: { email: email, first_name: firstName, last_name: lastName, phone: null }
 
     pages: {}                        # vos routes : { product: app_product, checkout: app_checkout… } (voir « Intégrer à un site existant »)
@@ -452,7 +456,7 @@ php bin/console astra:search:reindex     # crée l'index, applique les réglages
 - **Front léger** : CSS 42 Ko et JS 60 Ko minifiés (≈ 8 Ko + 22 Ko compressés, Alpine compris), polices système (aucune police web),
   `defer`, URLs versionnées par empreinte (cache d'un an possible), images en `loading="lazy"` avec `width`/`height` (pas de décalage
   de mise en page), première image de la fiche produit préchargée en `fetchpriority="high"`.
-- **Images** : si [`studioastra/image-optimizer-bundle`](https://github.com/StudioAstra/ImageOptimizer) est installé, toutes les images
+- **Images** : si [`romain-genin/symfony-image-optimizer-bundle`](https://github.com/Romain-Genin/symfony_imageoptim) est installé, toutes les images
   produits passent automatiquement par `responsive_image()` (AVIF/WebP, `srcset` adapté à l'écran) sans rien changer aux templates.
 - Compatible avec les runtimes persistants (FrankenPHP worker, RoadRunner) : les services avec état implémentent `ResetInterface`.
 
@@ -623,9 +627,56 @@ astra_checkout:
 - Commandes, paniers et adresses sont reliés à votre entité (Doctrine `resolve_target_entities`) ; la table `astra_customer` n'est pas créée.
 - La boutique lit l'e-mail, le prénom, le nom et le téléphone via `customer.properties` (propriétés ou getters, `null` si absent ;
   le formulaire de commande est prérempli avec ce qui existe). Pour tout contrôler, votre entité peut implémenter
-  `StudioAstra\AstraCheckoutBundle\Customer\CustomerInterface`.
+  `RomainGenin\AstraCheckoutBundle\Customer\CustomerInterface`.
 - Connexion, inscription et déconnexion restent celles de votre site ; les pages équivalentes du bundle ne sont pas enregistrées.
   Après la connexion, le client revient au tunnel de commande et son panier anonyme est fusionné dans le sien.
+
+### Exemple : brancher la boutique sur un site existant
+
+Cas d'un site qui a déjà ses utilisateurs (`App\Entity\User`, connexion `app_login`), son gabarit Tailwind + Alpine
+et sa page d'accueil, comme [`romain-genin/symfony-starter`](https://packagist.org/packages/romain-genin/symfony-starter) :
+
+```yaml
+# config/packages/astra_checkout.yaml
+astra_checkout:
+    shop_name: 'Mon site'
+    layout: base.html.twig                 # pages de la boutique dans le gabarit du site
+    customer:
+        class: App\Entity\User             # mêmes comptes, même connexion, panier fusionné à la connexion
+        properties: { email: email, first_name: firstName, last_name: lastName, phone: ~ }
+    account:
+        login_route: app_login
+        logout_route: app_logout
+        register_route: app_register
+    routing:
+        home: false                        # l'accueil reste celui du site
+        paths:
+            catalog: /boutique
+            search: /boutique/recherche
+            category: /boutique/categorie
+            product: /boutique/produit
+            cart: /panier
+            checkout: /commande
+            account: /mon-compte/boutique  # commandes et adresses, à côté de l'espace compte du site
+    mailer:
+        from: no-reply@example.com
+```
+
+```yaml
+# config/routes/astra_checkout.yaml (avec un site multilingue : ajoutez le même prefix /{_locale} que vos pages)
+astra_checkout:
+    resource: '@AstraCheckoutBundle/config/routes.yaml'
+```
+
+Dans le gabarit :
+
+- `<twig:Astra:CartButton />` (et un lien vers `path('astra_catalog')`) dans l'en-tête ;
+- `{% block meta %}{% endblock %}` dans `<head>` si votre gabarit ne l'a pas : les fiches produits y placent
+  description, canonical et Open Graph (retirez alors les vôtres pour ces pages) ;
+- Alpine importé dans votre build (`assets/app.js`, cas du starter) : `assets: { js: none }` et enregistrez
+  les composants avant `Alpine.start()` (voir [Alpine.js](#alpinejs)).
+
+Puis `php bin/console make:migration && php bin/console doctrine:migrations:migrate` (tables `astra_*`).
 
 ### Tailwind : votre thème, une seule feuille de style
 
@@ -637,7 +688,7 @@ astra_checkout:
 ```css
 /* assets/styles/app.css (Tailwind v4) */
 @import "tailwindcss";
-@import "../../vendor/studioastra/astra-checkout-bundle/assets/styles/astra.css";
+@import "../../vendor/romain-genin/symfony-ecom/assets/styles/astra.css";
 
 @theme {
   /* couleurs de la boutique = les vôtres */
@@ -660,15 +711,15 @@ Les classes que vous passez aux blocs (`class="…"`) sont générées par votre
 | `none` | Votre site importe Alpine dans son build (AssetMapper, Vite…) : enregistrez les composants de la boutique |
 
 ```js
-// assets/app.js (AssetMapper : le chemin @studioastra/astra-checkout est déclaré automatiquement)
+// assets/app.js (AssetMapper : le chemin @romain-genin/symfony-ecom est déclaré automatiquement)
 import Alpine from 'alpinejs';
-import { registerAstraCheckout } from '@studioastra/astra-checkout/js/components.js';
+import { registerAstraCheckout } from '@romain-genin/symfony-ecom/js/components.js';
 
 registerAstraCheckout(Alpine);
 Alpine.start();
 ```
 
-Avec Vite ou Webpack, importez `vendor/studioastra/astra-checkout-bundle/assets/js/components.js`.
+Avec Vite ou Webpack, importez `vendor/romain-genin/symfony-ecom/assets/js/components.js`.
 
 ### Actions techniques
 
@@ -727,8 +778,8 @@ Tous les textes sont dans le domaine de traduction `AstraCheckout` (français et
 Implémentez `ShippingMethodInterface` : le service est détecté automatiquement.
 
 ```php
-use StudioAstra\AstraCheckoutBundle\Entity\Cart;
-use StudioAstra\AstraCheckoutBundle\Shipping\ShippingMethodInterface;
+use RomainGenin\AstraCheckoutBundle\Entity\Cart;
+use RomainGenin\AstraCheckoutBundle\Shipping\ShippingMethodInterface;
 
 final class ColissimoRelayShipping implements ShippingMethodInterface
 {
@@ -747,8 +798,8 @@ Implémentez `PaymentMethodInterface`. `process()` est appelé juste après la c
 stock réservé) : renvoyez une redirection vers la page de paiement du prestataire.
 
 ```php
-use StudioAstra\AstraCheckoutBundle\Entity\{Cart, Order};
-use StudioAstra\AstraCheckoutBundle\Payment\PaymentMethodInterface;
+use RomainGenin\AstraCheckoutBundle\Entity\{Cart, Order};
+use RomainGenin\AstraCheckoutBundle\Payment\PaymentMethodInterface;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -817,7 +868,7 @@ composer require easycorp/easyadmin-bundle
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\{AssociationField, BooleanField, CollectionField, MoneyField, SlugField, TextEditorField, TextField};
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
 
 final class ProductCrudController extends AbstractCrudController
 {
@@ -847,7 +898,7 @@ Points d'attention :
   dénormalisés du produit utilisés par les listes.
 - Changez le statut des commandes via `OrderStateMachine::apply()` (action personnalisée EasyAdmin) plutôt que par un champ libre,
   pour bénéficier de la remise en stock et des e-mails.
-- Pour les images, couplez avec `studioastra/image-optimizer-bundle` : chaque fichier envoyé est optimisé sans perte et son texte
+- Pour les images, couplez avec `romain-genin/symfony-image-optimizer-bundle` : chaque fichier envoyé est optimisé sans perte et son texte
   alternatif IPTC peut pré-remplir `ProductImage::alt`.
 
 ## Développement du bundle

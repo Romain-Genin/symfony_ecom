@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Promotion;
+namespace RomainGenin\AstraCheckoutBundle\Promotion;
 
 /** Result of the promotion engine for a cart. */
 final class AppliedPromotions

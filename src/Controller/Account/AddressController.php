@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Controller\Account;
+namespace RomainGenin\AstraCheckoutBundle\Controller\Account;
 
 use Doctrine\ORM\EntityManagerInterface;
-use StudioAstra\AstraCheckoutBundle\Entity\Address;
-use StudioAstra\AstraCheckoutBundle\Customer\CustomerInfo;
-use StudioAstra\AstraCheckoutBundle\Repository\AddressRepository;
-use StudioAstra\AstraCheckoutBundle\ShopSettings;
+use RomainGenin\AstraCheckoutBundle\Entity\Address;
+use RomainGenin\AstraCheckoutBundle\Customer\CustomerInfo;
+use RomainGenin\AstraCheckoutBundle\Repository\AddressRepository;
+use RomainGenin\AstraCheckoutBundle\ShopSettings;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +24,7 @@ final class AddressController extends AbstractController
         private readonly ShopSettings $settings,
         private readonly CustomerInfo $customers,
         private readonly AddressRepository $addresses,
-        private readonly \StudioAstra\AstraCheckoutBundle\Routing\ShopUrls $urls,
+        private readonly \RomainGenin\AstraCheckoutBundle\Routing\ShopUrls $urls,
     ) {
     }
 

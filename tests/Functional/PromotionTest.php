@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Tests\Functional;
+namespace RomainGenin\AstraCheckoutBundle\Tests\Functional;
 
-use StudioAstra\AstraCheckoutBundle\Cart\CartContext;
-use StudioAstra\AstraCheckoutBundle\Entity\Cart;
-use StudioAstra\AstraCheckoutBundle\Entity\CartItem;
-use StudioAstra\AstraCheckoutBundle\Entity\Category;
-use StudioAstra\AstraCheckoutBundle\Entity\Order;
-use StudioAstra\AstraCheckoutBundle\Entity\ProductVariant;
-use StudioAstra\AstraCheckoutBundle\Entity\Promotion;
-use StudioAstra\AstraCheckoutBundle\Enum\OrderStatus;
-use StudioAstra\AstraCheckoutBundle\Enum\PromotionType;
-use StudioAstra\AstraCheckoutBundle\Order\OrderStateMachine;
-use StudioAstra\AstraCheckoutBundle\Pricing\TotalsCalculator;
-use StudioAstra\AstraCheckoutBundle\Promotion\PromotionCalculator;
+use RomainGenin\AstraCheckoutBundle\Cart\CartContext;
+use RomainGenin\AstraCheckoutBundle\Entity\Cart;
+use RomainGenin\AstraCheckoutBundle\Entity\CartItem;
+use RomainGenin\AstraCheckoutBundle\Entity\Category;
+use RomainGenin\AstraCheckoutBundle\Entity\Order;
+use RomainGenin\AstraCheckoutBundle\Entity\ProductVariant;
+use RomainGenin\AstraCheckoutBundle\Entity\Promotion;
+use RomainGenin\AstraCheckoutBundle\Enum\OrderStatus;
+use RomainGenin\AstraCheckoutBundle\Enum\PromotionType;
+use RomainGenin\AstraCheckoutBundle\Order\OrderStateMachine;
+use RomainGenin\AstraCheckoutBundle\Pricing\TotalsCalculator;
+use RomainGenin\AstraCheckoutBundle\Promotion\PromotionCalculator;
 
 final class PromotionTest extends ShopTestCase
 {
@@ -44,9 +44,9 @@ final class PromotionTest extends ShopTestCase
         return $cart;
     }
 
-    private function totals(Cart $cart, ?string $shipping = ''): \StudioAstra\AstraCheckoutBundle\Pricing\Totals
+    private function totals(Cart $cart, ?string $shipping = ''): \RomainGenin\AstraCheckoutBundle\Pricing\Totals
     {
-        self::getContainer()->get(\StudioAstra\AstraCheckoutBundle\Promotion\PromotionProvider::class)->reset();
+        self::getContainer()->get(\RomainGenin\AstraCheckoutBundle\Promotion\PromotionProvider::class)->reset();
 
         return self::getContainer()->get(TotalsCalculator::class)->calculate($cart, $shipping);
     }

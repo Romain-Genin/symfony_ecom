@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Tests\Functional;
+namespace RomainGenin\AstraCheckoutBundle\Tests\Functional;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;
-use StudioAstra\AstraCheckoutBundle\Entity\Category;
-use StudioAstra\AstraCheckoutBundle\Customer\Customer;
-use StudioAstra\AstraCheckoutBundle\Entity\Product;
-use StudioAstra\AstraCheckoutBundle\Entity\ProductImage;
-use StudioAstra\AstraCheckoutBundle\Entity\ProductVariant;
+use RomainGenin\AstraCheckoutBundle\Entity\Category;
+use RomainGenin\AstraCheckoutBundle\Customer\Customer;
+use RomainGenin\AstraCheckoutBundle\Entity\Product;
+use RomainGenin\AstraCheckoutBundle\Entity\ProductImage;
+use RomainGenin\AstraCheckoutBundle\Entity\ProductVariant;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -146,7 +146,7 @@ abstract class ShopTestCase extends WebTestCase
     /** @param array<string, mixed> $parameters */
     protected function shopUrl(string $page, array $parameters = []): string
     {
-        return self::getContainer()->get(\StudioAstra\AstraCheckoutBundle\Routing\ShopUrls::class)->path($page, $parameters);
+        return self::getContainer()->get(\RomainGenin\AstraCheckoutBundle\Routing\ShopUrls::class)->path($page, $parameters);
     }
 
     /** @param array<string, mixed> $parameters */

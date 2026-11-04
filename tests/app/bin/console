@@ -3,7 +3,7 @@
 
 // Console of the preview application: php tests/app/bin/console astra:demo:load
 
-use StudioAstra\AstraCheckoutBundle\Tests\Functional\TestKernel;
+use RomainGenin\AstraCheckoutBundle\Tests\Functional\TestKernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
 require dirname(__DIR__, 3) . '/vendor/autoload.php';

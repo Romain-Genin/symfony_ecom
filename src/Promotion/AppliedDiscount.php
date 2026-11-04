@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StudioAstra\AstraCheckoutBundle\Promotion;
+namespace RomainGenin\AstraCheckoutBundle\Promotion;
 
 final class AppliedDiscount
 {
